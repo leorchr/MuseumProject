@@ -9,6 +9,7 @@ public class CheckPoint : MonoBehaviour
 
     void Start()
     {
+        //player instance le faire spawn au meme endroit que le gameobjet spawn
         respawnPoint = spawn.transform;
     }
 
@@ -17,6 +18,8 @@ public class CheckPoint : MonoBehaviour
         if(other.gameObject.tag == "CheckPoint")
         {
             respawnPoint = other.GetComponent<Transform>();
+            //changer l'aspect du checkpoint
+            //mettre un sfx
         }
     }
 }
