@@ -11,6 +11,7 @@ public class PlayerControler : MonoBehaviour
     [Space]
     [SerializeField] private bool isGrounded;
     [SerializeField] private float speed = 8f;
+    private Vector3 movementForce;
 
     [Space]
     [Header("Player info\n--------------")]
@@ -19,11 +20,9 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private Vector2 direction;
 
 
-
+   
     private InputAction controls;
-    private bool moveRight;
-    private bool moveLeft;
-
+  
     private void Awake()
     {
         controls = new InputAction();
@@ -36,10 +35,20 @@ public class PlayerControler : MonoBehaviour
     
     void Update()
     {
+        //float horizontal = Input.GetAxis("horizontal");
+        //float vertical = Input.GetAxis("vertical");
 
-       transform.position += speed * Time.deltaTime * new Vector3(direction.x, 0, 0);
+        //movementForce = new Vector3(horizontal, 0, 0);
+        
+        
+        transform.position += speed * Time.deltaTime * new Vector3(direction.x, 0, 0);
+        
     }
+    private void FixedUpdate()
+    {
+        
 
+    }
 
     private void OnEnable()
     {
@@ -61,6 +70,8 @@ public class PlayerControler : MonoBehaviour
     {
         direction = context.ReadValue<Vector2>();
         Debug.Log(direction);
+        //rb.AddForce(movementForce * speed);
+       
     }
 
     public void Jump(InputAction.CallbackContext context)
