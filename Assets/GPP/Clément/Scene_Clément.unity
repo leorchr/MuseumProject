@@ -440,15 +440,15 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5447403845026826371, guid: 4cb99fb5c63c74b448f4c2c091db942f,
+    - target: {fileID: 5447403845026826369, guid: 4cb99fb5c63c74b448f4c2c091db942f,
         type: 3}
-      propertyPath: m_Interpolate
-      value: 0
+      propertyPath: isGrounded
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5447403845026826371, guid: 4cb99fb5c63c74b448f4c2c091db942f,
+    - target: {fileID: 5447403845026826369, guid: 4cb99fb5c63c74b448f4c2c091db942f,
         type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
+      propertyPath: jumpVelocity
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5447403845026826376, guid: 4cb99fb5c63c74b448f4c2c091db942f,
         type: 3}
