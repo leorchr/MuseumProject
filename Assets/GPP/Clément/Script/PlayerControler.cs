@@ -14,7 +14,6 @@ public class PlayerControler : MonoBehaviour
     
     [Space]
     [Header("Player info\n--------------")]
-    [SerializeField] private bool isFacingRight = true;
     [Range(1f, 10f)]
     [SerializeField] private float speed;
     private Rigidbody rb;
@@ -30,7 +29,7 @@ public class PlayerControler : MonoBehaviour
     [Range(1f, 10f)]
     [SerializeField] private float jumpVelocity;
     private float fallMultiplier = 2.2f;
-    private float lowJumpMultiplier = 1.8f;
+    private float upMultiplier = 1.8f;
     private bool isHolding = false;
 
     [HideInInspector]
@@ -47,30 +46,37 @@ public class PlayerControler : MonoBehaviour
    
     void Update()
     {
-        
+        //Move
+
         transform.position += speed * Time.deltaTime * new Vector3(direction.x, 0, 0);
 
         //flip
-        
 
-    
-
+            if (direction.x < 0)
+            {
+                transform.rotation = new Quaternion(0,180,0,0);
+            }
+            if (direction.x > 0)
+            {
+                transform.rotation = new Quaternion(0, 0, 0, 0);
+            }
        
-
         //fallJump
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
-        
-
-        
-        
+        if(rb.velocity.y > 0)
+        {
+            rb.velocity += Vector3.up * Physics.gravity.y * (upMultiplier - 1) * Time.deltaTime;
+        }
+   
     }
     private void FixedUpdate()
     {
+        AddJumpForce();
 
-       
+
     }
 
     private void OnEnable()
@@ -93,9 +99,6 @@ public class PlayerControler : MonoBehaviour
     {
         direction = context.ReadValue<Vector2>();
         Debug.Log(direction);
-        
-       
-
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -109,17 +112,11 @@ public class PlayerControler : MonoBehaviour
 
         }
 
-        if (context.canceled && !context.started)
+        if (context.canceled)
         {
             isHolding = false;
         }
-        if (context.performed && !context.started)
-        {
-            isHolding = false;
-        }
-
-
-
+        
 
     }
 
@@ -127,14 +124,8 @@ public class PlayerControler : MonoBehaviour
     {
         if (isHolding)
         {
-            rb.AddForce(new Vector3(speed, 0,0), ForceMode.Impulse);
+            rb.AddForce(Vector3.up * 0.1f, ForceMode.Impulse);
         }
-    }
-    public void Flip()
-    {
-       
-        
-            
     }
 
     private void OnCollisionEnter(Collision collision)
