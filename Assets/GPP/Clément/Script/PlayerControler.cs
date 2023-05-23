@@ -15,22 +15,32 @@ public class PlayerControler : MonoBehaviour
     [Space]
     [Header("Player info\n--------------")]
     [Range(1f, 10f)]
-    [SerializeField] private float speed;
     private Rigidbody rb;
     private InputAction controls;
 
     [Space]
     [Header("Movement\n-----------")]
+    [Range(1f, 10f)]
+    [SerializeField] private float walkSpeed;
+    [Range(1f, 10f)]
+    [SerializeField] private float sprintSpeed;
+    [Range(1f, 10f)]
+    [SerializeField] private float moveSpeed;
     private Vector2 direction;
     private Vector3 movementForce;
+  
+
+
 
     [Space]
     [Header("Jump\n-----------")]
     [Range(1f, 10f)]
     [SerializeField] private float jumpVelocity;
+    [SerializeField] private float holdJumpForce;
     private float fallMultiplier = 2.2f;
-    private float upMultiplier = 1.8f;
+    private float upMultiplier = 1.9f;
     private bool isHolding = false;
+    
 
     [HideInInspector]
     public Vector3 respawnPosition;
@@ -43,12 +53,17 @@ public class PlayerControler : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         controls = new InputAction();
     }
-   
+    private void Start()
+    {
+        moveSpeed = walkSpeed;
+       
+    }
     void Update()
     {
+        
         //Move
 
-        transform.position += speed * Time.deltaTime * new Vector3(direction.x, 0, 0);
+        transform.position += moveSpeed * Time.deltaTime * new Vector3(direction.x, 0, 0);
 
         //flip
 
@@ -70,7 +85,16 @@ public class PlayerControler : MonoBehaviour
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (upMultiplier - 1) * Time.deltaTime;
         }
-   
+        //slow when jumping oppo direction
+        //if(direction.x < 0 && rb.velocity.y < 0)
+        //{
+            //moveSpeed = moveSpeed / 2 * Time.deltaTime;
+        //}
+
+
+        
+
+
     }
     private void FixedUpdate()
     {
@@ -124,10 +148,24 @@ public class PlayerControler : MonoBehaviour
     {
         if (isHolding)
         {
-            rb.AddForce(Vector3.up * 0.1f, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * holdJumpForce, ForceMode.Impulse);
         }
     }
 
+
+    public void Sprint(InputAction.CallbackContext context)
+    {
+        if (context.started && isGrounded)
+        {
+            
+            moveSpeed = sprintSpeed;
+        }
+        if (context.canceled)
+        {
+            
+            moveSpeed = walkSpeed;
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
