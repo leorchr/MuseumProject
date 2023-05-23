@@ -7,7 +7,7 @@ public class CheckPoint : MonoBehaviour
     public static CheckPoint instance;
 
     public GameObject spawn;
-    [SerializeField] private Transform respawnPoint;
+    public Transform respawnPoint;
 
 
     private void Awake()
