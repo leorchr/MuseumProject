@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerControler : MonoBehaviour
 {
-
+    public static PlayerControler instance;
     [Space]
     [Header("Position Check\n--------------")]
     [Space]
@@ -13,18 +13,21 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float speed = 8f;
     private Vector3 movementForce;
 
+
     [Space]
     [Header("Player info\n--------------")]
     [Space]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Vector2 direction;
+    [SerializeField] private bool isFacingRight = true;
 
 
-   
+
     private InputAction controls;
   
     private void Awake()
     {
+        instance = this;
         controls = new InputAction();
     }
     void Start()
@@ -86,6 +89,10 @@ public class PlayerControler : MonoBehaviour
 
     }
 
+    public void Flip()
+    {
+       
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
