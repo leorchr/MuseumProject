@@ -6,8 +6,9 @@ public class CheckPoint : MonoBehaviour
 {
     public static CheckPoint instance;
 
-    public GameObject spawn;
-    public Transform respawnPoint;
+    public GameObject firstSpawn;
+    [SerializeField] private Material checkPointDone;
+    [HideInInspector] public Transform respawnPoint;
 
 
     private void Awake()
@@ -18,15 +19,16 @@ public class CheckPoint : MonoBehaviour
     void Start()
     {
         //player instance le faire spawn au meme endroit que le gameobjet spawn
-        respawnPoint = spawn.transform;
+        respawnPoint = firstSpawn.transform;
     }
 
     public void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "CheckPoint")
         {
+            Debug.Log("New Checkpoint set to : " + other.transform.position);
             respawnPoint = other.GetComponent<Transform>();
-            //changer l'aspect du checkpoint
+            other.GetComponent<MeshRenderer>().material = checkPointDone;
             //mettre un sfx
         }
     }
