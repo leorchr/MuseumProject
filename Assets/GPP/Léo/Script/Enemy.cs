@@ -8,8 +8,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //go to spawn point
-            PlayerControler.instance.transform.position = CheckPoint.instance.respawnPoint.position;
+            PlayerControler.instance.transform.position = PlayerControler.instance.respawnPosition;
         }
     }
 }

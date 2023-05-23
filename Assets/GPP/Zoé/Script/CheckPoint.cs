@@ -4,31 +4,16 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-    public static CheckPoint instance;
-
-    public GameObject firstSpawn;
-    [SerializeField] private Material checkPointDone;
-    [HideInInspector] public Transform respawnPoint;
-
-
-    private void Awake()
-    {
-        if (instance) Destroy(this);
-        instance = this;
-    }
-    void Start()
-    {
-        //player instance le faire spawn au meme endroit que le gameobjet spawn
-        respawnPoint = firstSpawn.transform;
-    }
+    [SerializeField] private Material materialDone;
+    [SerializeField] private MeshRenderer startMesh;
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "CheckPoint")
+        if (other.gameObject.tag == "Player")
         {
-            Debug.Log("New Checkpoint set to : " + other.transform.position);
-            respawnPoint = other.GetComponent<Transform>();
-            other.GetComponent<MeshRenderer>().material = checkPointDone;
+            Debug.Log("New Checkpoint set to : " + transform.position);
+            PlayerControler.instance.respawnPosition = transform.position;
+            startMesh.material = materialDone;
             //mettre un sfx
         }
     }
