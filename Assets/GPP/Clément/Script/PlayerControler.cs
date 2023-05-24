@@ -37,12 +37,12 @@ public class PlayerControler : MonoBehaviour
     [Range(1f, 10f)]
     [SerializeField] private float jumpVelocity;
     [SerializeField] private float holdJumpForce;
-    //private float jumpCooldownTime = 0.2f;
-    //private float jumpCooldown = 0f;
+    [SerializeField] private float jumpBufferTime;
+    private float jumpCooldown = 0f;
     private float fallMultiplier = 2.2f;
     private float upMultiplier = 1.9f;
     private bool isHolding = false;
-    private float rememberGroundedTime = 0.1f;
+    [SerializeField] private float coyoteTime;
     private float rememberGrounded = 0f;
     
 
@@ -68,7 +68,8 @@ public class PlayerControler : MonoBehaviour
         //Move
 
         transform.position += moveSpeed * Time.deltaTime * new Vector3(direction.x, 0, 0);
-
+        
+      
         //flip
 
             if (direction.x < 0)
@@ -94,17 +95,14 @@ public class PlayerControler : MonoBehaviour
         rememberGrounded -= Time.deltaTime;
         if (isGrounded)
         {
-            rememberGrounded = rememberGroundedTime;
+            rememberGrounded = coyoteTime;
         }
 
 
-        //jumpCooldown -= Time.deltaTime;
+        jumpCooldown -= Time.deltaTime;
 
 
-        //if (!isGrounded)
-        //{
-            //jumpCooldown = jumpCooldownTime;
-        //}
+       
         
 
 
@@ -141,14 +139,19 @@ public class PlayerControler : MonoBehaviour
     public void Jump(InputAction.CallbackContext context)
     {
 
-        if (context.started && rememberGrounded > 0)
+        if ((jumpCooldown > 0) && rememberGrounded > 0)
         {
             isHolding = true;
-            //jumpCooldown = 0;
+            jumpCooldown = 0;
             rememberGrounded = 0f;
             rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
             isGrounded = false;
 
+        }
+
+        if (context.started)
+        {
+            jumpCooldown = jumpBufferTime;
         }
 
         if (context.canceled)
