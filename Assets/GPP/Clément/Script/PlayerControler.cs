@@ -8,43 +8,45 @@ using UnityEngine.UIElements;
 public class PlayerControler : MonoBehaviour
 {
     public static PlayerControler instance;
+  
     [Space]
-    [Header("Position Check\n--------------")]
-    [SerializeField] private bool isGrounded;
-    
-    [Space]
-    [Header("Player info\n--------------")]
+    [Header("Player info\n----------")]
     [Range(1f, 10f)]
     private Rigidbody rb;
     private InputAction controls;
+    
 
     [Space]
-    [Header("Movement\n-----------")]
+    [Header("Movement\n----------")]
     [Range(1f, 10f)]
     [SerializeField] private float walkSpeed;
     [Range(1f, 10f)]
     [SerializeField] private float sprintSpeed;
     [Range(1f, 10f)]
-    [SerializeField] private float moveSpeed;
+    private bool isGrounded = true;
+    private float moveSpeed;    
     private Vector2 direction;
     private Vector3 movementForce;
   
-
-
-
     [Space]
-    [Header("Jump\n-----------")]
+    [Header("Jump\n----------")]
     [Range(1f, 10f)]
     [SerializeField] private float jumpVelocity;
     [SerializeField] private float holdJumpForce;
     [SerializeField] private float jumpBufferTime;
-    private float jumpCooldown = 0f;
-    private float fallMultiplier = 2.2f;
-    private float upMultiplier = 1.9f;
-    private bool isHolding = false;
+    [Range(1f, 10f)]
+    [SerializeField] private float fallMultiplier;
+    [Range(1f, 10f)]
+    [SerializeField] private float upMultiplier;
     [SerializeField] private float coyoteTime;
-    private float rememberGrounded = 0f;
-    
+    private float jumpBufferGrounded = 0f;
+    private float coyoteTimeGrounded = 0f;
+    private bool isHolding = false;
+
+    [Space]
+    [Header("Crouch\n----------")]
+
+
 
     [HideInInspector]
     public Vector3 respawnPosition;
@@ -64,15 +66,14 @@ public class PlayerControler : MonoBehaviour
     }
     void Update()
     {
-        
+
         //Move
-
-        transform.position += moveSpeed * Time.deltaTime * new Vector3(direction.x, 0, 0);
+        //transform.position += moveSpeed * Time.deltaTime * new Vector3(direction.x, 0, 0);
         
-      
-        //flip
+       
 
-            if (direction.x < 0)
+        //flip
+        if (direction.x < 0)
             {
                 transform.rotation = new Quaternion(0,180,0,0);
             }
@@ -92,25 +93,25 @@ public class PlayerControler : MonoBehaviour
         }
 
         //timer for coyote time
-        rememberGrounded -= Time.deltaTime;
         if (isGrounded)
         {
-            rememberGrounded = coyoteTime;
+            coyoteTimeGrounded = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeGrounded -= Time.deltaTime;
         }
 
+        jumpBufferGrounded -= Time.deltaTime;
 
-        jumpCooldown -= Time.deltaTime;
-
-
-       
-        
 
 
     }
     private void FixedUpdate()
     {
         AddJumpForce();
-
+        //move
+        rb.velocity = new Vector2(direction.x * moveSpeed, rb.velocity.y);
 
     }
 
@@ -122,7 +123,6 @@ public class PlayerControler : MonoBehaviour
     {
         controls.Disable();
     }
-
 
 
     public void Interact(InputAction.CallbackContext context)
@@ -139,11 +139,11 @@ public class PlayerControler : MonoBehaviour
     public void Jump(InputAction.CallbackContext context)
     {
 
-        if ((jumpCooldown > 0) && rememberGrounded > 0)
+        if ((jumpBufferGrounded > 0f) && coyoteTimeGrounded > 0f)
         {
             isHolding = true;
-            jumpCooldown = 0;
-            rememberGrounded = 0f;
+            jumpBufferGrounded = 0;
+            coyoteTimeGrounded = 0f;
             rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
             isGrounded = false;
 
@@ -151,7 +151,7 @@ public class PlayerControler : MonoBehaviour
 
         if (context.started)
         {
-            jumpCooldown = jumpBufferTime;
+            jumpBufferGrounded = jumpBufferTime;
         }
 
         if (context.canceled)
@@ -190,6 +190,14 @@ public class PlayerControler : MonoBehaviour
     {
         
     }
+
+
+    public void Crouch(InputAction.CallbackContext context)
+    {
+
+    }
+
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
