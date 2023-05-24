@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 5447403845026826371}
   - component: {fileID: 5447403845026826369}
   - component: {fileID: 5447403845026826370}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ Transform:
   m_Children:
   - {fileID: 1701934103}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5447403845026826381
 MeshFilter:
@@ -232,6 +232,8 @@ MonoBehaviour:
   moveSpeed: 3.17
   jumpVelocity: 6
   holdJumpForce: 0.2
+  jumpBufferTime: 0
+  coyoteTime: 0
   respawnPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &5447403845026826370
 MonoBehaviour:
