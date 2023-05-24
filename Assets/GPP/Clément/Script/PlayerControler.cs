@@ -37,9 +37,13 @@ public class PlayerControler : MonoBehaviour
     [Range(1f, 10f)]
     [SerializeField] private float jumpVelocity;
     [SerializeField] private float holdJumpForce;
+    //private float jumpCooldownTime = 0.2f;
+    //private float jumpCooldown = 0f;
     private float fallMultiplier = 2.2f;
     private float upMultiplier = 1.9f;
     private bool isHolding = false;
+    private float rememberGroundedTime = 0.1f;
+    private float rememberGrounded = 0f;
     
 
     [HideInInspector]
@@ -85,13 +89,22 @@ public class PlayerControler : MonoBehaviour
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (upMultiplier - 1) * Time.deltaTime;
         }
-        //slow when jumping oppo direction
-        //if(direction.x < 0 && rb.velocity.y < 0)
+
+        //timer for coyote time
+        rememberGrounded -= Time.deltaTime;
+        if (isGrounded)
+        {
+            rememberGrounded = rememberGroundedTime;
+        }
+
+
+        //jumpCooldown -= Time.deltaTime;
+
+
+        //if (!isGrounded)
         //{
-            //moveSpeed = moveSpeed / 2 * Time.deltaTime;
+            //jumpCooldown = jumpCooldownTime;
         //}
-
-
         
 
 
@@ -128,9 +141,11 @@ public class PlayerControler : MonoBehaviour
     public void Jump(InputAction.CallbackContext context)
     {
 
-        if (context.started && isGrounded)
+        if (context.started && rememberGrounded > 0)
         {
             isHolding = true;
+            //jumpCooldown = 0;
+            rememberGrounded = 0f;
             rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
             isGrounded = false;
 
@@ -165,6 +180,12 @@ public class PlayerControler : MonoBehaviour
             
             moveSpeed = walkSpeed;
         }
+    }
+
+
+    public void SlowSpeed()
+    {
+        
     }
     private void OnCollisionEnter(Collision collision)
     {
