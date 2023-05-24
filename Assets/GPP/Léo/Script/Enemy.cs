@@ -8,7 +8,11 @@ public class Enemy : MonoBehaviour
 {
     #region Enemy Movements
 
-    public Transform[] target;
+    [Space]
+    [Header("Movements")]
+    [Space]
+    [SerializeField] private Transform[] target;
+    [SerializeField] private Transform centralPos;
     private int currentTarget;
     [SerializeField] private float speed;
 
@@ -16,12 +20,15 @@ public class Enemy : MonoBehaviour
 
     #region Player Detection
 
-    private RaycastHit hit;
+    [Space]
+    [Header("Detection")]
+    [Space]
     [SerializeField] private Transform raycastPos;
     [Range(1f, 50f)][SerializeField] private float viewingDistance = 5f;
+    [Range(1f, 50f)][SerializeField] private float maxTravelDistance = 10f;
     [SerializeField] private LayerMask playerMask = ~0;
     [SerializeField] private LayerMask obstacleMask = ~0;
-    private bool playerFocus;
+    private RaycastHit hit;
 
     #endregion
 
@@ -38,7 +45,6 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         currentTarget = 0;
-        playerFocus = false;
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -51,9 +57,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        DetectPlayer();
         Movements();
-        
     }
 
     private void SelectNextTarget()
@@ -75,7 +79,8 @@ public class Enemy : MonoBehaviour
     private void Movements()
     {
         // Deplacement focus joueur
-        if (playerFocus)
+
+        if (DetectPlayer() && Vector3.Distance(transform.position, centralPos.position) < maxTravelDistance)
         {
             FlipSprite(PlayerControler.instance.transform.position);
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(PlayerControler.instance.transform.position.x, transform.position.y, transform.position.z), speed * Time.deltaTime);
@@ -93,7 +98,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void DetectPlayer()
+    private bool DetectPlayer()
     {
         //if ((PlayerControler.instance.transform.position.x - transform.position.x < 0.1f && PlayerControler.instance.transform.position.x - transform.position.x > -0.1f))
         if (Physics.Raycast(raycastPos.position, -raycastPos.transform.right, out hit, viewingDistance, playerMask))
@@ -101,15 +106,18 @@ public class Enemy : MonoBehaviour
             float distObject = Vector3.Distance(hit.transform.position, transform.position);
             if (!Physics.Raycast(raycastPos.position, -raycastPos.transform.right, distObject, obstacleMask))
             {
-                playerFocus = true;
                 Debug.Log("Je vois le joueur !");
+                return true;
             }
-
+            else
+            {
+                return false;
+            }
         }
         else
         {
-            playerFocus = false;
             Debug.Log("Je ne vois pas le joueur");
+            return false;
         }
     }
 
