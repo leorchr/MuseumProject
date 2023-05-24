@@ -24,15 +24,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Attack",
-                    "type": "Button",
-                    "id": "981dac84-8faa-4579-ba4f-89324efa94d7",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "974f2a18-99ba-43f4-a3ab-e75bd784b47e",
@@ -63,6 +54,15 @@
                     "name": "Crouch",
                     "type": "Button",
                     "id": "90729c69-6781-4a23-8846-b7142a20cb31",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Mask",
+                    "type": "Button",
+                    "id": "21f208ad-4ec7-40c4-bdb3-d054663a62ca",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -171,28 +171,6 @@
                 },
                 {
                     "name": "",
-                    "id": "46cd182d-8db0-47b4-92a8-9b54e6970d07",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "602ab909-ec1a-4f44-8398-9240a5c104fe",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "7d2dacd4-dae3-4b12-a95d-9438876dca71",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -238,11 +216,22 @@
                 {
                     "name": "",
                     "id": "bcd40686-a97d-4cc9-aa30-12c572f15437",
-                    "path": "<Keyboard>/ctrl",
+                    "path": "<Keyboard>/s",
                     "interactions": "Hold(duration=0.1)",
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d6691320-6d16-485f-acba-8a7975568c09",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Mask",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

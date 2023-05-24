@@ -440,7 +440,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980799588}
-  m_Material: {fileID: 13400000, guid: 0b50c159837d4c14fa5d34c25789905f, type: 2}
+  m_Material: {fileID: 13400000, guid: f5a95233587932f4b8dd9e11d7e4cb6a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -759,13 +759,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5447403845026826369, guid: 4cb99fb5c63c74b448f4c2c091db942f,
         type: 3}
+      propertyPath: jumpVelocity
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5447403845026826369, guid: 4cb99fb5c63c74b448f4c2c091db942f,
+        type: 3}
       propertyPath: upMultiplier
       value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 5447403845026826369, guid: 4cb99fb5c63c74b448f4c2c091db942f,
         type: 3}
+      propertyPath: holdJumpForce
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5447403845026826369, guid: 4cb99fb5c63c74b448f4c2c091db942f,
+        type: 3}
       propertyPath: fallMultiplier
-      value: 3
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 5447403845026826369, guid: 4cb99fb5c63c74b448f4c2c091db942f,
         type: 3}
