@@ -936,6 +936,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1701934102, guid: 4cb99fb5c63c74b448f4c2c091db942f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5447403844041956784, guid: 4cb99fb5c63c74b448f4c2c091db942f,
         type: 3}
       propertyPath: field of view
