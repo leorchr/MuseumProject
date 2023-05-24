@@ -1,63 +1,79 @@
-using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Mask : MonoBehaviour
 {
-    public static Mask instance;
 
     [Space]
     [Header("Plateform\n--------------")]
     public bool isActivate;
-    public GameObject platerforms;
+    public GameObject[] plateforms;
+    int length = 0;
 
+    public Material material;
+    private float timeToFade = 3f;
+    private float matAlpha;
 
-    public float timeActivation;
-    public float duration;
+    public Slider slider;
+    private float timeActivation;
+    private float duration = 1f;
 
-    private void Awake()
-    {
-        if (instance) Destroy(this);
-        instance = this;
-    }
+    public float timeSlider;
 
     void Start()
     {
-        isActivate = false;
-        platerforms.SetActive(false);
+        PlateformOff();
+        length = plateforms.Length;
     }
 
     void Update()
     {
+        Debug.Log("Time Activation = " + timeActivation);
         if (isActivate)
         {
-            if(timeActivation + duration < Time.time)
+            //timeSlider = duration - Time.time;
+            timeSlider = duration - (Time.time - timeActivation);
+            slider.value = timeSlider;
+            if (timeActivation + duration < Time.time)
             {
+                Debug.Log("frefkelmrk");
                 PlateformOff();
             }
         }
     }
+    
+
 
     public void PlateformOn()
     {
-
         isActivate = true;
-        platerforms.SetActive(true);
+
+        for (int i = 0; i < length; i++)
+        {
+            
+            plateforms[i].SetActive(true);
+        }
+        //material.color = new Color(0.5f, 0.7f, 0.8f, 1f);
     }
 
     public void PlateformOff()
     {
+
         isActivate = false;
-        platerforms.SetActive(false); 
+        //material.color = new Color(0.5f, 0.7f, 0.8f, -1f); 
+        for (int i = 0; i < length; i++)
+        {
+            plateforms[i].SetActive(false);
+        }
+        //material.color = new Color(0.5f, 0.7f, 0.8f, -1f);
     }
 
     public void UseMask(InputAction.CallbackContext context)
     {
+        //matAlpha = Time.time * timeToFade;
         timeActivation = Time.time;
-        isActivate = true;
-        platerforms.SetActive(true);
+        PlateformOn();
     }
 }
 
