@@ -58,13 +58,9 @@ public class PlayerControler : MonoBehaviour
     [Space]
     [Header("Crouch\n----------")]
 
-
-
     [HideInInspector]
     public Vector3 respawnPosition;
     
-
-
     private void Awake()
     {
         instance = this;
@@ -111,9 +107,13 @@ public class PlayerControler : MonoBehaviour
 
         jumpBufferGrounded -= Time.deltaTime;
 
-
-
+       
     }
+
+    //public bool OnWall()
+    //{
+       // return Physics.OverlapSphere(wallCheck.position, 0.2f, wallLayer);
+    //}
     private void FixedUpdate()
     {
         AddJumpForce();
@@ -122,9 +122,6 @@ public class PlayerControler : MonoBehaviour
         currentMovementInput = Vector2.SmoothDamp(currentMovementInput, direction, ref smoothInputSmoothVelocity, smoothTime);
         rb.velocity = new Vector2(currentMovementInput.x * moveSpeed, rb.velocity.y);
        
-
-
-
 
     }
 
@@ -177,6 +174,17 @@ public class PlayerControler : MonoBehaviour
 
     }
 
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+
+
+            isGrounded = true;
+        }
+    }
+
     public void AddJumpForce()
     {
         if (isHolding)
@@ -200,13 +208,7 @@ public class PlayerControler : MonoBehaviour
         }
     }
 
-    private void isWalled()
-    {
-       Physics.OverlapSphere(wallCheck.position, 0.2f, wallLayer);
-    }
-
-  
-
+   
 
     public void Crouch(InputAction.CallbackContext context)
     {
@@ -216,13 +218,7 @@ public class PlayerControler : MonoBehaviour
 
 
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
-    }
+  
 
 
 

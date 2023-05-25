@@ -5,14 +5,21 @@ using UnityEngine;
 public class WallSlide : MonoBehaviour
 {
 
-    private Rigidbody rb;
-    // Start is called before the first frame update
+    [Space]
+    [Header("Wall Slide\n----------")]
+    [SerializeField] private Transform wallCheck;
+    [SerializeField] private LayerMask wallLayer;
+    private bool isWallSliding;
+
+
+    
+ 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+       
     }
 
-    // Update is called once per frame
+ 
     void Update()
     {
         
@@ -22,7 +29,7 @@ public class WallSlide : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("wallSlide"))
         {
-            //lancer anim
+            
         }
     }
 
