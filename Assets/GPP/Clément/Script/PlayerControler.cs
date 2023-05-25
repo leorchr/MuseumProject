@@ -22,11 +22,16 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float walkSpeed;
     [Range(1f, 10f)]
     [SerializeField] private float sprintSpeed;
-    [Range(1f, 10f)]
+    [HideInInspector]
+    public Vector2 currentMovementInput;
+    private Vector2 smoothedMovementInput;
+    private Vector2 smoothInputSmoothVelocity;
+    [SerializeField] public float smoothTime;
     private bool isGrounded = true;
     private float moveSpeed;    
     private Vector2 direction;
     private Vector3 movementForce;
+
   
     [Space]
     [Header("Jump\n----------")]
@@ -42,6 +47,13 @@ public class PlayerControler : MonoBehaviour
     private float jumpBufferGrounded = 0f;
     private float coyoteTimeGrounded = 0f;
     private bool isHolding = false;
+
+    [Space]
+    [Header("Wall Slide\n----------")]
+    [SerializeField] private Transform wallCheck;
+    [SerializeField] private LayerMask wallLayer;
+    private bool isWallSliding;
+    private float wallSlidingSpeed = 2f;
 
     [Space]
     [Header("Crouch\n----------")]
@@ -66,12 +78,7 @@ public class PlayerControler : MonoBehaviour
     }
     void Update()
     {
-
-        //Move
-        //transform.position += moveSpeed * Time.deltaTime * new Vector3(direction.x, 0, 0);
-        
-       
-
+        Debug.Log(currentMovementInput.x);
         //flip
         if (direction.x < 0)
             {
@@ -111,7 +118,13 @@ public class PlayerControler : MonoBehaviour
     {
         AddJumpForce();
         //move
-        rb.velocity = new Vector2(direction.x * moveSpeed, rb.velocity.y);
+
+        currentMovementInput = Vector2.SmoothDamp(currentMovementInput, direction, ref smoothInputSmoothVelocity, smoothTime);
+        rb.velocity = new Vector2(currentMovementInput.x * moveSpeed, rb.velocity.y);
+       
+
+
+
 
     }
 
@@ -130,13 +143,15 @@ public class PlayerControler : MonoBehaviour
 
     }
 
+
+
     public void Move(InputAction.CallbackContext context)
     {
         direction = context.ReadValue<Vector2>();
-        Debug.Log(direction);
+        
     }
 
-    public void Jump(InputAction.CallbackContext context)
+        public void Jump(InputAction.CallbackContext context)
     {
 
         if ((jumpBufferGrounded > 0f) && coyoteTimeGrounded > 0f)
@@ -185,17 +200,20 @@ public class PlayerControler : MonoBehaviour
         }
     }
 
-
-    public void SlowSpeed()
+    private void isWalled()
     {
-        
+       Physics.OverlapSphere(wallCheck.position, 0.2f, wallLayer);
     }
+
+  
 
 
     public void Crouch(InputAction.CallbackContext context)
     {
 
     }
+
+
 
 
     private void OnCollisionEnter(Collision collision)
@@ -205,6 +223,7 @@ public class PlayerControler : MonoBehaviour
             isGrounded = true;
         }
     }
+
 
 
 }
