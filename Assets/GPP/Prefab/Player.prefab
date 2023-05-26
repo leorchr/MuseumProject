@@ -302,7 +302,19 @@ MonoBehaviour:
     m_ActionId: 974f2a18-99ba-43f4-a3ab-e75bd784b47e
     m_ActionName: Player/New action
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5447403845026826369}
+        m_TargetAssemblyTypeName: PlayerControler, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b890798e-4b76-43b8-9ecc-c9c9bf58c37c
     m_ActionName: PlayerActions/Interact[/Keyboard/e]
   - m_PersistentCalls:
@@ -322,7 +334,19 @@ MonoBehaviour:
     m_ActionId: a96216d2-8cdd-410c-8422-fbad18f9f61a
     m_ActionName: PlayerActions/Sprint[/Keyboard/shift]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5447403845026826369}
+        m_TargetAssemblyTypeName: PlayerControler, Assembly-CSharp
+        m_MethodName: Crouch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 90729c69-6781-4a23-8846-b7142a20cb31
     m_ActionName: PlayerActions/Crouch[/Keyboard/s]
   - m_PersistentCalls:
