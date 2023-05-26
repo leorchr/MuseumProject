@@ -56,8 +56,6 @@ public class PlayerControler : MonoBehaviour
     [Space]
     [Header("Wall Slide\n----------")]
     [SerializeField] private float wallSlidingSpeed;
-    //[SerializeField] private Transform wallCheck;
-    //[SerializeField] private LayerMask wallLayer;
     private bool isWallSliding = false;
 
     #endregion
