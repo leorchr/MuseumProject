@@ -58530,6 +58530,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7835575041832138278, guid: 4cb99fb5c63c74b448f4c2c091db942f,
         type: 3}
+      propertyPath: plateformsOn.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7835575041832138278, guid: 4cb99fb5c63c74b448f4c2c091db942f,
+        type: 3}
       propertyPath: plateforms.Array.data[0]
       value: 
       objectReference: {fileID: 1833146561}
@@ -58546,6 +58551,31 @@ PrefabInstance:
     - target: {fileID: 7835575041832138278, guid: 4cb99fb5c63c74b448f4c2c091db942f,
         type: 3}
       propertyPath: plateforms.Array.data[3]
+      value: 
+      objectReference: {fileID: 1574819974}
+    - target: {fileID: 7835575041832138278, guid: 4cb99fb5c63c74b448f4c2c091db942f,
+        type: 3}
+      propertyPath: plateformsOff.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7835575041832138278, guid: 4cb99fb5c63c74b448f4c2c091db942f,
+        type: 3}
+      propertyPath: plateformsOn.Array.data[0]
+      value: 
+      objectReference: {fileID: 1833146561}
+    - target: {fileID: 7835575041832138278, guid: 4cb99fb5c63c74b448f4c2c091db942f,
+        type: 3}
+      propertyPath: plateformsOn.Array.data[1]
+      value: 
+      objectReference: {fileID: 876165699}
+    - target: {fileID: 7835575041832138278, guid: 4cb99fb5c63c74b448f4c2c091db942f,
+        type: 3}
+      propertyPath: plateformsOff.Array.data[0]
+      value: 
+      objectReference: {fileID: 207967370}
+    - target: {fileID: 7835575041832138278, guid: 4cb99fb5c63c74b448f4c2c091db942f,
+        type: 3}
+      propertyPath: plateformsOff.Array.data[1]
       value: 
       objectReference: {fileID: 1574819974}
     m_RemovedComponents: []
