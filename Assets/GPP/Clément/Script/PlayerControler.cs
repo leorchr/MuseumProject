@@ -59,12 +59,13 @@ public class PlayerControler : MonoBehaviour
     //[SerializeField] private Transform wallCheck;
     //[SerializeField] private LayerMask wallLayer;
     private bool isWallSliding = false;
-    
+
     #endregion
 
+    #region Crouch
     [Space]
     [Header("Crouch\n----------")]
-
+    #endregion
     [HideInInspector]
     public Vector3 respawnPosition;
     
@@ -142,12 +143,6 @@ public class PlayerControler : MonoBehaviour
     }
 
 
-    public void Interact(InputAction.CallbackContext context)
-    {
-
-    }
-
-
 
     public void Move(InputAction.CallbackContext context)
     {
@@ -202,6 +197,16 @@ public class PlayerControler : MonoBehaviour
         }
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("wallSlide") && !isGrounded && rb.velocity.y != 0)
+        {
+            isWallSliding = false;
+            
+
+        }
+    }
+
     private void WallSlide()
     {
         if (isWallSliding && direction.x > 0)
@@ -251,12 +256,20 @@ public class PlayerControler : MonoBehaviour
     public void Crouch(InputAction.CallbackContext context)
     {
 
+
+
+
+    }
+
+    public void Interact(InputAction.CallbackContext context)
+    {
+
     }
 
 
 
 
-  
+
 
 
 

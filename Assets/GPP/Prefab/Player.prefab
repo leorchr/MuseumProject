@@ -134,7 +134,7 @@ Transform:
   m_Children:
   - {fileID: 1701934103}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5447403845026826381
 MeshFilter:
@@ -197,8 +197,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.1356277, y: 1, z: 1}
+  m_Center: {x: 0.06781387, y: 0, z: 0}
 --- !u!54 &5447403845026826371
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -230,17 +230,14 @@ MonoBehaviour:
   walkSpeed: 5
   sprintSpeed: 8
   currentMovementInput: {x: 0, y: 0}
-  smoothTime: 0.097
+  smoothTime: 0.098
   jumpVelocity: 5.5
   holdJumpForce: 0.2
   jumpBufferTime: 0.3
   fallMultiplier: 3.2
   upMultiplier: 2.2
   coyoteTime: 0.2
-  wallCheck: {fileID: 0}
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  wallSlidingSpeed: 3
   respawnPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &5447403845026826370
 MonoBehaviour:
@@ -349,7 +346,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e420066ca6553c4fb350bc1f99011c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallCheck: {fileID: 0}
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 0
