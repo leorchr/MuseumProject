@@ -12,4 +12,12 @@ public class ChangingScene : MonoBehaviour
     {
         SceneManager.LoadScene(targetScene);
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            GoTo();
+        }
+    }
 }
