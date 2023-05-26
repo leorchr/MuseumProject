@@ -282,7 +282,19 @@ MonoBehaviour:
     m_ActionId: 5ff63947-f12d-481d-a98a-61538f074cdb
     m_ActionName: Player/Move
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 34436255-e2df-4025-8aa2-5d143a9d554a
     m_ActionName: Player/Menu[/Keyboard/escape]
   - m_PersistentCalls:
