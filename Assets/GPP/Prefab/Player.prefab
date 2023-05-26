@@ -112,7 +112,6 @@ GameObject:
   - component: {fileID: 5447403845026826371}
   - component: {fileID: 5447403845026826369}
   - component: {fileID: 5447403845026826370}
-  - component: {fileID: 1814688358}
   - component: {fileID: 7835575041832138278}
   m_Layer: 3
   m_Name: Player
@@ -135,7 +134,7 @@ Transform:
   m_Children:
   - {fileID: 1701934103}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5447403845026826381
 MeshFilter:
@@ -371,18 +370,6 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerActions
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1814688358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5447403845026826376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e420066ca6553c4fb350bc1f99011c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7835575041832138278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,7 +382,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 333e0193ec7003949ab87226001ed904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plateforms: []
+  plateformsOn: []
+  plateformsOff: []
   duration: 5
   cooldown: 2
   timeRemaining: 0
