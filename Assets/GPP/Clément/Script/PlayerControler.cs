@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 
 public class PlayerControler : MonoBehaviour
 {
+    #region Player Infos
     public static PlayerControler instance;
   
     [Space]
@@ -14,8 +15,9 @@ public class PlayerControler : MonoBehaviour
     [Range(1f, 10f)]
     private Rigidbody rb;
     private InputAction controls;
-    
+    #endregion
 
+    #region Movement
     [Space]
     [Header("Movement\n----------")]
     [Range(1f, 10f)]
@@ -31,8 +33,9 @@ public class PlayerControler : MonoBehaviour
     private float moveSpeed;    
     private Vector2 direction;
     private Vector3 movementForce;
+    #endregion
 
-  
+    #region Jump
     [Space]
     [Header("Jump\n----------")]
     [Range(1f, 10f)]
@@ -47,13 +50,17 @@ public class PlayerControler : MonoBehaviour
     private float jumpBufferGrounded = 0f;
     private float coyoteTimeGrounded = 0f;
     private bool isHolding = false;
+    #endregion
 
+    #region Wall Slide
     [Space]
     [Header("Wall Slide\n----------")]
-    [SerializeField] private Transform wallCheck;
-    [SerializeField] private LayerMask wallLayer;
-    private bool isWallSliding;
-    private float wallSlidingSpeed = 2f;
+    [SerializeField] private float wallSlidingSpeed;
+    //[SerializeField] private Transform wallCheck;
+    //[SerializeField] private LayerMask wallLayer;
+    private bool isWallSliding = false;
+    
+    #endregion
 
     [Space]
     [Header("Crouch\n----------")]
@@ -74,7 +81,7 @@ public class PlayerControler : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(currentMovementInput.x);
+       
         //flip
         if (direction.x < 0)
             {
@@ -110,13 +117,13 @@ public class PlayerControler : MonoBehaviour
        
     }
 
-    //public bool OnWall()
-    //{
-       // return Physics.OverlapSphere(wallCheck.position, 0.2f, wallLayer);
-    //}
+    
     private void FixedUpdate()
     {
         AddJumpForce();
+        WallSlide();
+
+        
         //move
 
         currentMovementInput = Vector2.SmoothDamp(currentMovementInput, direction, ref smoothInputSmoothVelocity, smoothTime);
@@ -179,9 +186,40 @@ public class PlayerControler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-
-
             isGrounded = true;
+           
+        }
+
+        if (collision.gameObject.CompareTag("wallSlide") && !isGrounded && rb.velocity.y != 0)
+        {
+            isWallSliding = true;
+            Debug.Log("collision");
+
+        }
+        else
+        {
+            isWallSliding = false;
+        }
+    }
+
+    private void WallSlide()
+    {
+        if (isWallSliding && direction.x > 0)
+        {
+            //lancer anime de droite 
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+            Debug.Log("anim droite");
+            
+        }
+        if(isWallSliding && direction.x < 0)
+        {
+            //lancer anim de gauche
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+            Debug.Log("anim gauche");
+        }
+        else if(!isWallSliding)
+        {
+            Debug.Log("detaché");
         }
     }
 

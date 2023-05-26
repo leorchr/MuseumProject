@@ -149,6 +149,17 @@
                 },
                 {
                     "name": "",
+                    "id": "0fd1026a-5f59-4318-9c03-ac1635028f7d",
+                    "path": "<Gamepad>/dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "59790ecf-7dc6-4817-b11e-90ab6a96af3d",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
@@ -215,6 +226,17 @@
                 },
                 {
                     "name": "",
+                    "id": "c7de574a-5f54-474c-9f80-c894beccce74",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "Hold(duration=0.1)",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "bcd40686-a97d-4cc9-aa30-12c572f15437",
                     "path": "<Keyboard>/s",
                     "interactions": "Hold(duration=0.1)",
@@ -226,11 +248,33 @@
                 },
                 {
                     "name": "",
+                    "id": "6741b37a-d581-454a-aebe-15da5422dfab",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "Hold(duration=0.1)",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d6691320-6d16-485f-acba-8a7975568c09",
                     "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
+                    "action": "Mask",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "03584dc1-e7f1-41af-9f76-7ed4d96e0c2f",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
                     "action": "Mask",
                     "isComposite": false,
                     "isPartOfComposite": false

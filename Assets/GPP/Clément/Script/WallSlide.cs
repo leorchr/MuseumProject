@@ -5,11 +5,7 @@ using UnityEngine;
 public class WallSlide : MonoBehaviour
 {
 
-    [Space]
-    [Header("Wall Slide\n----------")]
-    [SerializeField] private Transform wallCheck;
-    [SerializeField] private LayerMask wallLayer;
-    private bool isWallSliding;
+
 
 
     
