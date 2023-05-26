@@ -12,7 +12,8 @@ public class Mask : MonoBehaviour
 {
     public static Mask instance;
 
-    [SerializeField] private GameObject[] plateforms;
+    [SerializeField] private GameObject[] plateformsOn;
+    [SerializeField] private GameObject[] plateformsOff;
     private int length;
 
     private float timeActivation;
@@ -41,7 +42,6 @@ public class Mask : MonoBehaviour
         maskStatus = MaskStatus.Full;
         timeRemaining = duration;
         ableToUse = true;
-        length = plateforms.Length;
         PlateformOff();
     }
 
@@ -86,17 +86,25 @@ public class Mask : MonoBehaviour
         timeActivation = Time.time;
         currentTimeRemaining = timeRemaining;
         maskStatus = MaskStatus.Using;
-        for (int i = 0; i < length; i++)
+        for (int i = 0; i < plateformsOn.Length; i++)
         {
-            plateforms[i].SetActive(true);
+            plateformsOn[i].SetActive(true);
+        }
+        for (int i = 0; i < plateformsOff.Length; i++)
+        {
+            plateformsOff[i].SetActive(false);
         }
     }
 
     public void PlateformOff()
     {
-        for (int i = 0; i < length; i++)
+        for (int i = 0; i < plateformsOn.Length; i++)
         {
-            plateforms[i].SetActive(false);
+            plateformsOn[i].SetActive(false);
+        }
+        for (int i = 0; i < plateformsOff.Length; i++)
+        {
+            plateformsOff[i].SetActive(true);
         }
     }
 

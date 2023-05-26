@@ -39,6 +39,7 @@ public class Menu : MonoBehaviour
     {
         Buttons.SetActive(false);
         OptionsWindow.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(OptionsWindow.transform.GetChild(2).gameObject);
     }
 
     public void Back()
@@ -46,5 +47,6 @@ public class Menu : MonoBehaviour
 
         OptionsWindow.SetActive(false);
         Buttons.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(Buttons.transform.GetChild(0).gameObject);
     }
 }
