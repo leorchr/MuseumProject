@@ -29807,6 +29807,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: STATUEDECIMATED
       objectReference: {fileID: 0}
+    - target: {fileID: 3725021399473526130, guid: 130ddb4d2116ed346818a57dc226b183,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 7605792779696668132, guid: b7f8bf4b63150ce4f99f5feefc57155b,
+        type: 3}
     - target: {fileID: 8123465531750103720, guid: 130ddb4d2116ed346818a57dc226b183,
         type: 3}
       propertyPath: m_Enabled
