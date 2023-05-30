@@ -310,7 +310,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 509853774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.2, y: -38.4, z: -11.19}
+  m_LocalPosition: {x: -11.2, y: 33.66, z: -11.19}
   m_LocalScale: {x: 3.9107804, y: 107.884285, z: 5.505648}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -466,7 +466,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a70f948de8caecf45ae0c1bdcb857d5b, type: 2}
+  - {fileID: 2100000, guid: dc57edd5661cd0a43bd8757676e1b7d5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -563,7 +563,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a70f948de8caecf45ae0c1bdcb857d5b, type: 2}
+  - {fileID: 2100000, guid: f643d5ca490a6874d90f006b4fff0d09, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -720,7 +720,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086571856}
   m_LocalRotation: {x: 0.1363378, y: -0, z: -0, w: 0.99066246}
-  m_LocalPosition: {x: -33.09, y: 13.28, z: -41.49}
+  m_LocalPosition: {x: -41.19, y: 13.28, z: -41.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -913,7 +913,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a70f948de8caecf45ae0c1bdcb857d5b, type: 2}
+  - {fileID: 2100000, guid: dc57edd5661cd0a43bd8757676e1b7d5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1010,7 +1010,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a70f948de8caecf45ae0c1bdcb857d5b, type: 2}
+  - {fileID: 2100000, guid: dc57edd5661cd0a43bd8757676e1b7d5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1048,8 +1048,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1976127814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -47.37, y: 9.29, z: -12.01}
-  m_LocalScale: {x: 5.4934845, y: 1, z: 9.15}
+  m_LocalPosition: {x: -47.37, y: 9.25, z: -12.01}
+  m_LocalScale: {x: 5.4934845, y: 1.2159652, z: 9.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1063,6 +1063,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5447403845026826369, guid: 4cb99fb5c63c74b448f4c2c091db942f,
+        type: 3}
+      propertyPath: wallSlidingSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5447403845026826376, guid: 4cb99fb5c63c74b448f4c2c091db942f,
         type: 3}
       propertyPath: m_Name

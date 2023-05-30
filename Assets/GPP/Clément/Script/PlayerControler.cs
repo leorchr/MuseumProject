@@ -64,6 +64,7 @@ public class PlayerControler : MonoBehaviour
     [Space]
     [Header("Crouch\n----------")]
     #endregion
+
     [HideInInspector]
     public Vector3 respawnPosition;
     
@@ -145,6 +146,14 @@ public class PlayerControler : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         direction = context.ReadValue<Vector2>();
+        if (context.performed && isGrounded)
+        {
+            //play anim
+        }
+        if(context.canceled)
+        {
+            //end anim
+        }
         
     }
 
@@ -186,7 +195,7 @@ public class PlayerControler : MonoBehaviour
         if (collision.gameObject.CompareTag("wallSlide") && !isGrounded && rb.velocity.y != 0)
         {
             isWallSliding = true;
-            Debug.Log("collision");
+           
 
         }
         else
