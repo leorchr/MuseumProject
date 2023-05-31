@@ -56,7 +56,7 @@ public class EnemyMovement : MonoBehaviour
         if (target[currentTarget].transform.position.x - transform.position.x < 0.1f && target[currentTarget].transform.position.x - transform.position.x > -0.1f)
         {
             SelectNextTarget();
-            FlipSprite(target[currentTarget].transform.position);
+            //FlipSprite(target[currentTarget].transform.position);
         }
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(target[currentTarget].position.x, target[currentTarget].position.y, transform.position.z), speed * Time.deltaTime);
     }
