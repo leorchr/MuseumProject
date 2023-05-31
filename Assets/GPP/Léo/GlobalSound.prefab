@@ -144,3 +144,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 4a134edfbb20adf48b540140b9ce53c5, type: 2}
   slider: {fileID: 0}
+  audioSource: {fileID: 3087473835102573698}
+  timeWanted: 81

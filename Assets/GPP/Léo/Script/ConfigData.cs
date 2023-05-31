@@ -24,6 +24,10 @@ public class ConfigData
         {
             volume = PauseMenu.instance.PauseVolume;
         }
+        else
+        {
+            volume = PauseMenu.instance.PauseVolume;
+        }
     }
 
     public void Load()
@@ -37,8 +41,10 @@ public class ConfigData
         else if (currentScene == 1)
         {
             PauseMenu.instance.PauseVolume = volume;
-            //Appliquer le son
-            //GlobalSound.instance.SetVolume(volume);
+        }
+        else
+        {
+            PauseMenu.instance.PauseVolume = volume;
         }
     }
 }
