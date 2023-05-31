@@ -15,6 +15,12 @@ public class PauseMenu : MonoBehaviour
     public GameObject resume;
     public GameObject volumeSlider;
 
+    public float PauseVolume
+    {
+        get { return volumeSlider.GetComponent<Slider>().value; }
+        set { volumeSlider.GetComponent<Slider>().value = value; }
+    }
+
     private void Awake()
     {
         if (instance) Destroy(this);
@@ -23,7 +29,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
-        pauseMenuUI.SetActive(false);        
+        pauseMenuUI.SetActive(false);
     }
 
     void Paused()
@@ -66,15 +72,5 @@ public class PauseMenu : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
-    }
-
-    public float GetVolume()
-    {
-        return volumeSlider.GetComponent<Slider>().value;
-    }
-
-    public void SetVolume(float volume)
-    {
-        volumeSlider.GetComponent<Slider>().value = volume;
     }
 }

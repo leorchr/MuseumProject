@@ -18,11 +18,11 @@ public class ConfigData
 
         if (currentScene == 0)
         {
-            volume = Menu.instance.GetVolume();
+            volume = Menu.instance.MenuVolume;
         }
         else if (currentScene == 1)
         {
-            volume = PauseMenu.instance.GetVolume();
+            volume = PauseMenu.instance.PauseVolume;
         }
     }
 
@@ -32,11 +32,11 @@ public class ConfigData
 
         if (currentScene == 0)
         {
-            Menu.instance.SetVolume(volume);
+            Menu.instance.MenuVolume = volume;
         }
         else if (currentScene == 1)
         {
-            PauseMenu.instance.SetVolume(volume);
+            PauseMenu.instance.PauseVolume = volume;
             // appliquer le son
             //GlobalSound.instance.SetVolume(volume);
         }

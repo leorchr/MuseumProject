@@ -13,7 +13,7 @@ public class CheckPoint : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && !check)
         {
-            Debug.Log("New Checkpoint set to : " + transform.position);
+            //Debug.Log("New Checkpoint set to : " + transform.position);
             PlayerControler.instance.respawnPosition = transform.position;
             startMesh.material = materialDone;
             //mettre un sfx

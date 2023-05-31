@@ -12,7 +12,11 @@ public class Menu : MonoBehaviour
     public GameObject buttons;
     public GameObject settingsWindow;
     public GameObject volumeSlider;
-
+    public float MenuVolume
+    {
+        get { return volumeSlider.GetComponent<Slider>().value; }
+        set { volumeSlider.GetComponent<Slider>().value = value; }
+    }
     private void Awake()
     {
         if (instance) Destroy(this);
@@ -53,15 +57,5 @@ public class Menu : MonoBehaviour
         settingsWindow.SetActive(false);
         buttons.SetActive(true);
         EventSystem.current.SetSelectedGameObject(buttons.transform.GetChild(0).gameObject);
-    }
-
-    public float GetVolume()
-    {
-        return volumeSlider.GetComponent<Slider>().value;
-    }
-
-    public void SetVolume(float volume)
-    {
-        volumeSlider.GetComponent<Slider>().value = volume;
     }
 }
