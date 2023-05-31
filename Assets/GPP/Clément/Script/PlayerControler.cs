@@ -24,14 +24,17 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float walkSpeed;
     [Range(1f, 10f)]
     [SerializeField] private float sprintSpeed;
+    [SerializeField] private float smoothTime;
     [HideInInspector]
     public Vector2 currentMovementInput;
     private Vector2 smoothedMovementInput;
     private Vector2 smoothInputSmoothVelocity;
-    [SerializeField] public float smoothTime;
-    private bool isGrounded = true;
-    private float moveSpeed;    
-    private Vector2 direction;
+    [HideInInspector]
+    public bool isGrounded = true;
+    [HideInInspector]
+    public float moveSpeed;
+    [HideInInspector]
+    public Vector2 direction;
     private Vector3 movementForce;
     #endregion
 
@@ -49,14 +52,15 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float coyoteTime;
     private float jumpBufferGrounded = 0f;
     private float coyoteTimeGrounded = 0f;
-    private bool isHolding = false;
+    [HideInInspector] public bool isHolding = false;
     #endregion
 
     #region Wall Slide
     [Space]
     [Header("Wall Slide\n----------")]
     [SerializeField] private float wallSlidingSpeed;
-    private bool isWallSliding = false;
+    [HideInInspector]
+    public bool isWallSliding = false;
 
     #endregion
 
@@ -114,6 +118,7 @@ public class PlayerControler : MonoBehaviour
 
         jumpBufferGrounded -= Time.deltaTime;
 
+       
        
     }
 
@@ -210,7 +215,6 @@ public class PlayerControler : MonoBehaviour
         {
             isWallSliding = false;
             
-
         }
     }
 
@@ -248,13 +252,14 @@ public class PlayerControler : MonoBehaviour
     {
         if (context.started && isGrounded)
         {
-            
+            //anim sprint
             moveSpeed = sprintSpeed;
         }
         if (context.canceled)
         {
             
             moveSpeed = walkSpeed;
+            
         }
     }
 
