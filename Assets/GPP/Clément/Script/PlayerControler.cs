@@ -122,7 +122,7 @@ public class PlayerControler : MonoBehaviour
        
     }
 
-    
+
     private void FixedUpdate()
     {
         AddJumpForce();
@@ -207,6 +207,19 @@ public class PlayerControler : MonoBehaviour
         {
             isWallSliding = false;
         }
+        //if (collision.gameObject.CompareTag("roof") && rb.velocity.y > 0)
+        //{
+           //jumpVelocity -= jumpVelocity;
+        //}
+        //else
+        //{
+            //jumpVelocity = 5.5f;
+        //}
+        
+        
+       
+
+        
     }
 
     private void OnCollisionExit(Collision collision)
@@ -224,14 +237,14 @@ public class PlayerControler : MonoBehaviour
         {
             //lancer anime de droite 
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
-            Debug.Log("anim droite");
+            
             
         }
         if(isWallSliding && direction.x < 0)
         {
             //lancer anim de gauche
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
-            Debug.Log("anim gauche");
+            
         }
         else if(!isWallSliding)
         {
@@ -273,16 +286,6 @@ public class PlayerControler : MonoBehaviour
 
     }
 
-    public void Interact(InputAction.CallbackContext context)
-    {
-
-    }
-
-
-
-
-
-
-
+ 
 
 }

@@ -43,8 +43,38 @@ public class PlayerAnimation : MonoBehaviour
     {
         if (playerControler.isWallSliding)
         {
-
+            //anim wallslide = true;
         }
+    }
+
+    public void Idle()
+    {
+        if (playerControler.isGrounded)
+        {
+            //idle
+            //if (animator.GetBool("isFalling"))
+            //{
+               // animator.SetBool("isFalling", false);
+            //}
+        }
+    }
+
+    //public void Falling()
+    //{
+        //if (_animator.GetBool("IsJumping"))
+        //{
+            //if (_playerController.rb.velocity.y < 0)
+            //{
+                //_animator.SetBool("IsJumping", false);
+                //_animator.SetBool("IsFalling", true);
+            //}
+       // }
+    //}
+
+    public void wallSlideOn()
+    {
+        //wallSlide anim = true
+        //isFalling = false
     }
 
 
