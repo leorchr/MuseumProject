@@ -37,7 +37,7 @@ public class ConfigData
         else if (currentScene == 1)
         {
             PauseMenu.instance.PauseVolume = volume;
-            // appliquer le son
+            //Appliquer le son
             //GlobalSound.instance.SetVolume(volume);
         }
     }
