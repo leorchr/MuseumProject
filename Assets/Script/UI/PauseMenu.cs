@@ -4,24 +4,32 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
+    public static PauseMenu instance;
+
     public static bool gameIsPaused = false;
     public GameObject pauseMenuUI;
-    public GameObject Buttons;
+    public GameObject resume;
+    public GameObject volumeSlider;
+
+    private void Awake()
+    {
+        if (instance) Destroy(this);
+        else instance = this;
+    }
 
     private void Start()
     {
-        pauseMenuUI.SetActive(false);
-
-        
+        pauseMenuUI.SetActive(false);        
     }
 
     void Paused()
     {
         pauseMenuUI.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(Buttons);
+        EventSystem.current.SetSelectedGameObject(resume);
         Time.timeScale = 0;
         gameIsPaused = true;
     }
@@ -58,5 +66,15 @@ public class PauseMenu : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public float GetVolume()
+    {
+        return volumeSlider.GetComponent<Slider>().value;
+    }
+
+    public void SetVolume(float volume)
+    {
+        volumeSlider.GetComponent<Slider>().value = volume;
     }
 }

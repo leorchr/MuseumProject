@@ -3,26 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
-    public static Menu Instance;
+    public static Menu instance;
 
-    public GameObject Buttons;
-    public GameObject OptionsWindow;
+    public GameObject buttons;
+    public GameObject settingsWindow;
+    public GameObject volumeSlider;
+
+    private void Awake()
+    {
+        if (instance) Destroy(this);
+        else instance = this;
+    }
 
     private void Start()
     {
-        if (Instance) Destroy(this);
-        else Instance = this;
-
-        Buttons.SetActive(true);
-        OptionsWindow.SetActive(false);
+        buttons.SetActive(true);
+        settingsWindow.SetActive(false);
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
 
-        EventSystem.current.SetSelectedGameObject(Buttons.transform.GetChild(0).gameObject);
+        EventSystem.current.SetSelectedGameObject(buttons.transform.GetChild(0).gameObject);
     }
 
     public void StartGame()
@@ -37,16 +42,26 @@ public class Menu : MonoBehaviour
 
 	public void Options()
     {
-        Buttons.SetActive(false);
-        OptionsWindow.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(OptionsWindow.transform.GetChild(2).gameObject);
+        buttons.SetActive(false);
+        settingsWindow.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(settingsWindow.transform.GetChild(2).gameObject);
     }
 
     public void Back()
     {
 
-        OptionsWindow.SetActive(false);
-        Buttons.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(Buttons.transform.GetChild(0).gameObject);
+        settingsWindow.SetActive(false);
+        buttons.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(buttons.transform.GetChild(0).gameObject);
+    }
+
+    public float GetVolume()
+    {
+        return volumeSlider.GetComponent<Slider>().value;
+    }
+
+    public void SetVolume(float volume)
+    {
+        volumeSlider.GetComponent<Slider>().value = volume;
     }
 }
