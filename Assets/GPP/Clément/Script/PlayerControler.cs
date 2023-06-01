@@ -80,6 +80,7 @@ public class PlayerControler : MonoBehaviour
     }
     private void Start()
     {
+        respawnPosition = transform.position;
         moveSpeed = walkSpeed;
        
     }
