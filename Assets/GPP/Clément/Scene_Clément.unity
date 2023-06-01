@@ -720,7 +720,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086571856}
   m_LocalRotation: {x: 0.1363378, y: -0, z: -0, w: 0.99066246}
-  m_LocalPosition: {x: -46.17, y: 9.56, z: -28.22}
+  m_LocalPosition: {x: -24, y: 10.61, z: -33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -962,7 +962,7 @@ GameObject:
   - component: {fileID: 1753814407}
   m_Layer: 0
   m_Name: Cube (4)
-  m_TagString: roof
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1175,18 +1175,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5447403845026826380, guid: 4cb99fb5c63c74b448f4c2c091db942f,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.6075
+      objectReference: {fileID: 0}
+    - target: {fileID: 5447403845026826380, guid: 4cb99fb5c63c74b448f4c2c091db942f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.6075
+      objectReference: {fileID: 0}
+    - target: {fileID: 5447403845026826380, guid: 4cb99fb5c63c74b448f4c2c091db942f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.6075
+      objectReference: {fileID: 0}
+    - target: {fileID: 5447403845026826380, guid: 4cb99fb5c63c74b448f4c2c091db942f,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -48.85
+      value: -29.169
       objectReference: {fileID: 0}
     - target: {fileID: 5447403845026826380, guid: 4cb99fb5c63c74b448f4c2c091db942f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.46
+      value: 13.93
       objectReference: {fileID: 0}
     - target: {fileID: 5447403845026826380, guid: 4cb99fb5c63c74b448f4c2c091db942f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.2
+      value: -12.19
       objectReference: {fileID: 0}
     - target: {fileID: 5447403845026826380, guid: 4cb99fb5c63c74b448f4c2c091db942f,
         type: 3}
@@ -1223,6 +1238,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5447403845026826381, guid: 4cb99fb5c63c74b448f4c2c091db942f,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1062336467665037536, guid: ba2f9f179c52b02459e92d3eac238d81,
+        type: 3}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cb99fb5c63c74b448f4c2c091db942f, type: 3}

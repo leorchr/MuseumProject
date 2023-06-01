@@ -71,7 +71,7 @@ public class PlayerControler : MonoBehaviour
 
     [HideInInspector]
     public Vector3 respawnPosition;
-    
+
     private void Awake()
     {
         instance = this;
@@ -82,7 +82,6 @@ public class PlayerControler : MonoBehaviour
     {
         respawnPosition = transform.position;
         moveSpeed = walkSpeed;
-       
     }
     void Update()
     {
@@ -90,11 +89,12 @@ public class PlayerControler : MonoBehaviour
         //flip
         if (direction.x < 0)
             {
-                transform.rotation = new Quaternion(0,180,0,0);
+                transform.rotation = Quaternion.Euler(0,-90,0);
             }
             if (direction.x > 0)
             {
-                transform.rotation = new Quaternion(0, 0, 0, 0);
+                transform.rotation = Quaternion.Euler(0,90,0);
+            
             }
        
         //fallJump
@@ -152,14 +152,6 @@ public class PlayerControler : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         direction = context.ReadValue<Vector2>();
-        if (context.performed && isGrounded)
-        {
-            //play anim
-        }
-        if(context.canceled)
-        {
-            //end anim
-        }
        
     }
 
