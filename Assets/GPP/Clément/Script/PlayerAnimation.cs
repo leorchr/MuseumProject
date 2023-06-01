@@ -7,13 +7,12 @@ public class PlayerAnimation : MonoBehaviour
 
     [SerializeField] private Animator animator;
     [SerializeField] private PlayerControler playerControler;
+    public static PlayerAnimation instance;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        instance = this;
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -36,7 +35,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public void IsSprinting()
     {
-       
+        //animator.SetBool("IsSprinting", true);
     }
 
     public void IsWallSliding()
@@ -52,30 +51,30 @@ public class PlayerAnimation : MonoBehaviour
         if (playerControler.isGrounded)
         {
             //idle
-            //if (animator.GetBool("isFalling"))
-            //{
-               // animator.SetBool("isFalling", false);
-            //}
+           
         }
     }
 
-    //public void Falling()
-    //{
-        //if (_animator.GetBool("IsJumping"))
+    public void Falling()
+    {
+        //if (animator.GetBool("IsJumping"))
         //{
-            //if (_playerController.rb.velocity.y < 0)
+            //if (playerController.rb.velocity.y < 0)
             //{
-                //_animator.SetBool("IsJumping", false);
-                //_animator.SetBool("IsFalling", true);
+                //animator.SetBool("IsJumping", false);
+                //animator.SetBool("IsFalling", true);
             //}
        // }
-    //}
+    }
 
     public void wallSlideOn()
     {
+        
         //wallSlide anim = true
         //isFalling = false
     }
+
+
 
 
 

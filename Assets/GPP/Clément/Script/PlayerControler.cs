@@ -159,7 +159,7 @@ public class PlayerControler : MonoBehaviour
         {
             //end anim
         }
-        
+       
     }
 
         public void Jump(InputAction.CallbackContext context)
@@ -183,9 +183,7 @@ public class PlayerControler : MonoBehaviour
         if (context.canceled)
         {
             isHolding = false;
-        }
-        
-
+        }   
     }
 
 
@@ -200,13 +198,13 @@ public class PlayerControler : MonoBehaviour
         if (collision.gameObject.CompareTag("wallSlide") && !isGrounded && rb.velocity.y != 0)
         {
             isWallSliding = true;
-           
-
+       
         }
         else
         {
             isWallSliding = false;
         }
+
         //if (collision.gameObject.CompareTag("roof") && rb.velocity.y > 0)
         //{
            //jumpVelocity -= jumpVelocity;
@@ -265,14 +263,16 @@ public class PlayerControler : MonoBehaviour
     {
         if (context.started && isGrounded)
         {
-            //anim sprint
+            //PlayerAnimation.instance.IsSprinting();
             moveSpeed = sprintSpeed;
         }
         if (context.canceled)
         {
             
             moveSpeed = walkSpeed;
-            
+            //PlayerAnimation.instance.isRunning();
+
+
         }
     }
 
