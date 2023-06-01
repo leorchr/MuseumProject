@@ -5,16 +5,30 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
+
+public enum PlayerStatus
+{
+    Idle,
+    Run,
+    Sprint,
+    WallSlide,
+    Jump,
+    Fall,
+    Crouch
+}
 public class PlayerControler : MonoBehaviour
 {
     #region Player Infos
     public static PlayerControler instance;
-  
+    public PlayerStatus playerStatus;
+
+
     [Space]
     [Header("Player info\n----------")]
     [Range(1f, 10f)]
     private Rigidbody rb;
     private InputAction controls;
+    
     #endregion
 
     #region Movement
@@ -85,22 +99,29 @@ public class PlayerControler : MonoBehaviour
     }
     void Update()
     {
-       
+        Idle();
         //flip
         if (direction.x < 0)
             {
                 transform.rotation = Quaternion.Euler(0,-90,0);
-            }
-            if (direction.x > 0)
+         
+            if (isGrounded) playerStatus = PlayerStatus.Run;
+
+        }
+        if (direction.x > 0)
             {
                 transform.rotation = Quaternion.Euler(0,90,0);
-            
-            }
-       
+            if (isGrounded) playerStatus = PlayerStatus.Run;
+
+
+
+        }
+
         //fallJump
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+
         }
         if(rb.velocity.y > 0)
         {
@@ -147,24 +168,33 @@ public class PlayerControler : MonoBehaviour
         controls.Disable();
     }
 
-
+    public void Idle()
+    {
+        
+        if(rb.velocity.x < 0.2f && rb.velocity.x > -0.2f && isGrounded)
+        {
+            playerStatus = PlayerStatus.Idle;
+        }
+    }
 
     public void Move(InputAction.CallbackContext context)
     {
         direction = context.ReadValue<Vector2>();
-       
+        
     }
 
         public void Jump(InputAction.CallbackContext context)
     {
 
-        if ((jumpBufferGrounded > 0f) && coyoteTimeGrounded > 0f)
+        if ((jumpBufferGrounded > 0f) && coyoteTimeGrounded > 0f )
         {
             isHolding = true;
             jumpBufferGrounded = 0;
             coyoteTimeGrounded = 0f;
             rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
             isGrounded = false;
+            
+            playerStatus = PlayerStatus.Jump;
 
         }
 
@@ -191,6 +221,7 @@ public class PlayerControler : MonoBehaviour
         if (collision.gameObject.CompareTag("wallSlide") && !isGrounded && rb.velocity.y != 0)
         {
             isWallSliding = true;
+            playerStatus = PlayerStatus.WallSlide;
        
         }
         else

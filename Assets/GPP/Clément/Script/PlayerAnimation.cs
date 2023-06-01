@@ -21,7 +21,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public void isRunning()
     {
-        if(playerControler.direction.x != 0)
+        if(playerControler.direction.x != 0 && !playerControler.isWallSliding)
         {
             //anim run
         }
