@@ -46,9 +46,10 @@ public class EnemyMovement : MonoBehaviour
 
     private void FlipSprite(Vector3 target)
     {
-        Vector2 dir = new Vector2(target.x - transform.position.x, 0);
-        float angle = dir.x > 0f ? 180f : 0f;
-        transform.rotation = new Quaternion(0, angle, 0, 0);
+        Vector3 targetDirection = target - transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection, -Vector3.forward);
+        transform.rotation = targetRotation;
+
     }
 
     private void Movements()
@@ -56,7 +57,7 @@ public class EnemyMovement : MonoBehaviour
         if (target[currentTarget].transform.position.x - transform.position.x < 0.1f && target[currentTarget].transform.position.x - transform.position.x > -0.1f)
         {
             SelectNextTarget();
-            //FlipSprite(target[currentTarget].transform.position);
+            FlipSprite(target[currentTarget].transform.position);
         }
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(target[currentTarget].position.x, target[currentTarget].position.y, transform.position.z), speed * Time.deltaTime);
     }
