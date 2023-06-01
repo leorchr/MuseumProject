@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -54,7 +55,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Movements()
     {
-        if (target[currentTarget].transform.position.x - transform.position.x < 0.1f && target[currentTarget].transform.position.x - transform.position.x > -0.1f)
+        if (Vector3.Distance(target[currentTarget].transform.position, transform.position) < 0.1f && Vector3.Distance(target[currentTarget].transform.position, transform.position) > -0.1f)
         {
             SelectNextTarget();
             FlipSprite(target[currentTarget].transform.position);
