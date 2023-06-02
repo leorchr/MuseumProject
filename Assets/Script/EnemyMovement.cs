@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -26,7 +27,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerControler.instance.transform.position = PlayerControler.instance.respawnPosition;
+            PlayerControler.instance.GetComponent<Rigidbody>().position = PlayerControler.instance.respawnPosition;
         }
     }
 
@@ -46,14 +47,15 @@ public class EnemyMovement : MonoBehaviour
 
     private void FlipSprite(Vector3 target)
     {
-        Vector2 dir = new Vector2(target.x - transform.position.x, 0);
-        float angle = dir.x > 0f ? 180f : 0f;
-        transform.rotation = new Quaternion(0, angle, 0, 0);
+        Vector3 targetDirection = target - transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection, -Vector3.forward);
+        transform.rotation = targetRotation;
+
     }
 
     private void Movements()
     {
-        if (target[currentTarget].transform.position.x - transform.position.x < 0.1f && target[currentTarget].transform.position.x - transform.position.x > -0.1f)
+        if (Vector3.Distance(target[currentTarget].transform.position, transform.position) < 0.1f && Vector3.Distance(target[currentTarget].transform.position, transform.position) > -0.1f)
         {
             SelectNextTarget();
             FlipSprite(target[currentTarget].transform.position);

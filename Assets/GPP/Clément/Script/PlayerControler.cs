@@ -5,16 +5,30 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
+
+public enum PlayerStatus
+{
+    Idle,
+    Run,
+    Sprint,
+    WallSlide,
+    Jump,
+    Fall,
+    Crouch
+}
 public class PlayerControler : MonoBehaviour
 {
     #region Player Infos
     public static PlayerControler instance;
-  
+    public PlayerStatus playerStatus;
+
+
     [Space]
     [Header("Player info\n----------")]
     [Range(1f, 10f)]
     private Rigidbody rb;
     private InputAction controls;
+    
     #endregion
 
     #region Movement
@@ -24,14 +38,17 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float walkSpeed;
     [Range(1f, 10f)]
     [SerializeField] private float sprintSpeed;
+    [SerializeField] private float smoothTime;
     [HideInInspector]
     public Vector2 currentMovementInput;
     private Vector2 smoothedMovementInput;
     private Vector2 smoothInputSmoothVelocity;
-    [SerializeField] public float smoothTime;
-    private bool isGrounded = true;
-    private float moveSpeed;    
-    private Vector2 direction;
+    [HideInInspector]
+    public bool isGrounded = true;
+    [HideInInspector]
+    public float moveSpeed;
+    [HideInInspector]
+    public Vector2 direction;
     private Vector3 movementForce;
     #endregion
 
@@ -49,14 +66,15 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float coyoteTime;
     private float jumpBufferGrounded = 0f;
     private float coyoteTimeGrounded = 0f;
-    private bool isHolding = false;
+    [HideInInspector] public bool isHolding = false;
     #endregion
 
     #region Wall Slide
     [Space]
     [Header("Wall Slide\n----------")]
     [SerializeField] private float wallSlidingSpeed;
-    private bool isWallSliding = false;
+    [HideInInspector]
+    public bool isWallSliding = false;
 
     #endregion
 
@@ -67,7 +85,7 @@ public class PlayerControler : MonoBehaviour
 
     [HideInInspector]
     public Vector3 respawnPosition;
-    
+
     private void Awake()
     {
         instance = this;
@@ -76,26 +94,34 @@ public class PlayerControler : MonoBehaviour
     }
     private void Start()
     {
+        respawnPosition = transform.position;
         moveSpeed = walkSpeed;
-       
     }
     void Update()
     {
-       
+        Idle();
         //flip
         if (direction.x < 0)
             {
-                transform.rotation = new Quaternion(0,180,0,0);
-            }
-            if (direction.x > 0)
+                transform.rotation = Quaternion.Euler(0,-90,0);
+         
+            if (isGrounded) playerStatus = PlayerStatus.Run;
+
+        }
+        if (direction.x > 0)
             {
-                transform.rotation = new Quaternion(0, 0, 0, 0);
-            }
-       
+                transform.rotation = Quaternion.Euler(0,90,0);
+            if (isGrounded) playerStatus = PlayerStatus.Run;
+
+
+
+        }
+
         //fallJump
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+
         }
         if(rb.velocity.y > 0)
         {
@@ -115,9 +141,10 @@ public class PlayerControler : MonoBehaviour
         jumpBufferGrounded -= Time.deltaTime;
 
        
+       
     }
 
-    
+
     private void FixedUpdate()
     {
         AddJumpForce();
@@ -141,32 +168,33 @@ public class PlayerControler : MonoBehaviour
         controls.Disable();
     }
 
-
+    public void Idle()
+    {
+        
+        if(rb.velocity.x < 0.2f && rb.velocity.x > -0.2f && isGrounded)
+        {
+            playerStatus = PlayerStatus.Idle;
+        }
+    }
 
     public void Move(InputAction.CallbackContext context)
     {
         direction = context.ReadValue<Vector2>();
-        if (context.performed && isGrounded)
-        {
-            //play anim
-        }
-        if(context.canceled)
-        {
-            //end anim
-        }
         
     }
 
         public void Jump(InputAction.CallbackContext context)
     {
 
-        if ((jumpBufferGrounded > 0f) && coyoteTimeGrounded > 0f)
+        if ((jumpBufferGrounded > 0f) && coyoteTimeGrounded > 0f )
         {
             isHolding = true;
             jumpBufferGrounded = 0;
             coyoteTimeGrounded = 0f;
             rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
             isGrounded = false;
+            
+            playerStatus = PlayerStatus.Jump;
 
         }
 
@@ -178,9 +206,7 @@ public class PlayerControler : MonoBehaviour
         if (context.canceled)
         {
             isHolding = false;
-        }
-        
-
+        }   
     }
 
 
@@ -195,13 +221,27 @@ public class PlayerControler : MonoBehaviour
         if (collision.gameObject.CompareTag("wallSlide") && !isGrounded && rb.velocity.y != 0)
         {
             isWallSliding = true;
-           
-
+            playerStatus = PlayerStatus.WallSlide;
+       
         }
         else
         {
             isWallSliding = false;
         }
+
+        //if (collision.gameObject.CompareTag("roof") && rb.velocity.y > 0)
+        //{
+           //jumpVelocity -= jumpVelocity;
+        //}
+        //else
+        //{
+            //jumpVelocity = 5.5f;
+        //}
+        
+        
+       
+
+        
     }
 
     private void OnCollisionExit(Collision collision)
@@ -210,7 +250,6 @@ public class PlayerControler : MonoBehaviour
         {
             isWallSliding = false;
             
-
         }
     }
 
@@ -220,14 +259,14 @@ public class PlayerControler : MonoBehaviour
         {
             //lancer anime de droite 
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
-            Debug.Log("anim droite");
+            
             
         }
         if(isWallSliding && direction.x < 0)
         {
             //lancer anim de gauche
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
-            Debug.Log("anim gauche");
+            
         }
         else if(!isWallSliding)
         {
@@ -248,13 +287,16 @@ public class PlayerControler : MonoBehaviour
     {
         if (context.started && isGrounded)
         {
-            
+            //PlayerAnimation.instance.IsSprinting();
             moveSpeed = sprintSpeed;
         }
         if (context.canceled)
         {
             
             moveSpeed = walkSpeed;
+            //PlayerAnimation.instance.isRunning();
+
+
         }
     }
 
@@ -268,16 +310,6 @@ public class PlayerControler : MonoBehaviour
 
     }
 
-    public void Interact(InputAction.CallbackContext context)
-    {
-
-    }
-
-
-
-
-
-
-
+ 
 
 }

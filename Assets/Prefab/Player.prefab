@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 7835575041832138278}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5447403845026826381
 MeshFilter:
@@ -129,17 +129,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f654bbbdec04048ad2b23f7fd13fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 5
+  walkSpeed: 4.5
   sprintSpeed: 8
+  smoothTime: 0.16
   currentMovementInput: {x: 0, y: 0}
-  smoothTime: 0.098
-  jumpVelocity: 5.5
+  isGrounded: 1
+  moveSpeed: 0
+  direction: {x: 0, y: 0}
+  jumpVelocity: 7
   holdJumpForce: 0.2
-  jumpBufferTime: 0.3
-  fallMultiplier: 3.2
-  upMultiplier: 2.2
+  jumpBufferTime: 0.5
+  fallMultiplier: 5
+  upMultiplier: 2.3
   coyoteTime: 0.2
+  isHolding: 0
   wallSlidingSpeed: 3
+  isWallSliding: 0
   respawnPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &5447403845026826370
 MonoBehaviour:
