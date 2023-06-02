@@ -12,6 +12,21 @@ public class Mask : MonoBehaviour
 {
     public static Mask instance;
 
+    public Material materialPlateformOn;
+    public Material materialPlateformOff;
+    //public MeshRenderer meshRenderer;
+    public float currentValueOn;
+    public float currentValueOff;
+    public float increaseSpeed;
+
+    public bool platOnBool;
+    public bool platOffBool;
+
+
+    [SerializeField] private GameObject[] plateformsOn;
+    [SerializeField] private GameObject[] plateformsOff;
+    private int length;
+
     private float timeActivation;
     public float duration;
 
@@ -27,9 +42,8 @@ public class Mask : MonoBehaviour
     private float currentTimeRemaining;
     private MaskStatus maskStatus = MaskStatus.Full;
 
+    public bool opacity = false;
 
-    PlatformVisibility[] allPlatforms;
-    bool maskPlatforms = true;
     private void Awake()
     {
         if (instance) Destroy(this);
@@ -38,15 +52,12 @@ public class Mask : MonoBehaviour
 
     private void Start()
     {
-        allPlatforms = FindObjectsOfType<PlatformVisibility>();
-        foreach(PlatformVisibility platform in allPlatforms)
-        {
-            platform.ShowMaskPlatforms(maskPlatforms);
-        }
+        //meshRenderer = GetComponent<MeshRenderer>();
         maskStatus = MaskStatus.Full;
         timeRemaining = duration;
         ableToUse = true;
-
+        PlateformOff();
+        opacity = false;
     }
     
 
@@ -55,8 +66,8 @@ public class Mask : MonoBehaviour
         switch (maskStatus)
         {
             case MaskStatus.Using:
-                timeRemaining = duration - (duration - currentTimeRemaining) - (Time.time - timeActivation);
-                if (timeRemaining <= 0)
+                timeRemaining = duration - (duration-currentTimeRemaining) - (Time.time - timeActivation);
+                if(timeRemaining <= 0)
                 {
                     PlateformOff();
                     maskStatus = MaskStatus.Empty;
@@ -66,15 +77,15 @@ public class Mask : MonoBehaviour
                 break;
             case MaskStatus.Empty:
                 cooldownRemaining = cooldown - (Time.time - cooldownActivation);
-                if (cooldownRemaining <= 0)
+                if(cooldownRemaining <= 0)
                 {
                     rechargingActivation = Time.time;
-                    maskStatus = MaskStatus.Charging;
+                    maskStatus= MaskStatus.Charging;
                 }
                 break;
             case MaskStatus.Charging:
                 timeRemaining = Time.time - rechargingActivation;
-                if (timeRemaining >= duration)
+                if(timeRemaining >= duration)
                 {
                     timeRemaining = duration;
                     maskStatus = MaskStatus.Full;
@@ -89,28 +100,36 @@ public class Mask : MonoBehaviour
 
     public void PlateformOn()
     {
-
         timeActivation = Time.time;
         currentTimeRemaining = timeRemaining;
         maskStatus = MaskStatus.Using;
-        maskPlatforms = !maskPlatforms;
-        foreach (PlatformVisibility platform in allPlatforms)
+        for (int i = 0; i < plateformsOn.Length; i++)
         {
-            platform.ShowMaskPlatforms(maskPlatforms);
+            //SetOpacity(currentValueOn, materialPlateformOn);
+            plateformsOn[i].SetActive(true);
         }
-        
+        for (int i = 0; i < plateformsOff.Length; i++)
+        {
+            plateformsOff[i].SetActive(false);
+            //SetOpacity(currentValueOff, materialPlateformOff);
+        }
     }
 
     public void PlateformOff()
     {
-        maskPlatforms = !maskPlatforms;
-        foreach (PlatformVisibility platform in allPlatforms)
+        for (int i = 0; i < plateformsOn.Length; i++)
         {
-            platform.ShowMaskPlatforms(maskPlatforms);
+            plateformsOn[i].SetActive(false);
+            //SetOpacity(currentValueOn, materialPlateformOn);
+        }
+        for (int i = 0; i < plateformsOff.Length; i++)
+        {
+            plateformsOff[i].SetActive(true);
+            //SetOpacity(currentValueOff, materialPlateformOff);
         }
     }
-    
-public void UseMask(InputAction.CallbackContext context)
+
+    public void UseMask(InputAction.CallbackContext context)
     {
         if (context.started)
         {
@@ -129,4 +148,30 @@ public void UseMask(InputAction.CallbackContext context)
             }
         }
     }
+
+    /*public void SetOpacity(float opacity, Material mat)
+    {
+ 
+        if (currentValueOff == 0)
+        {
+            currentValueOff = Mathf.Lerp(currentValueOff, 255, increaseSpeed * Time.time);
+        }
+        else if (currentValueOff == 1)
+        {
+            currentValueOff = Mathf.Lerp(currentValueOff, 0, increaseSpeed * Time.time);
+        }
+
+        if (currentValueOn == 0)
+        {
+            currentValueOn = Mathf.Lerp(currentValueOn, 255, increaseSpeed * Time.time);
+        }
+        else if (currentValueOn == 1)
+        {
+            currentValueOn = Mathf.Lerp(currentValueOn, 0, increaseSpeed * Time.time);
+        }
+
+        Color color = mat.color;
+        color.a = opacity;
+        mat.color = color;
+    }*/
 }
