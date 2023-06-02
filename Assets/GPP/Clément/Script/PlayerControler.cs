@@ -14,7 +14,8 @@ public enum PlayerStatus
     WallSlide,
     Jump,
     Fall,
-    Crouch
+    Crouch,
+    CrouchRun
 }
 public class PlayerControler : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class PlayerControler : MonoBehaviour
     [Range(1f, 10f)]
     private Rigidbody rb;
     private InputAction controls;
-    
+
     #endregion
 
     #region Movement
@@ -39,16 +40,18 @@ public class PlayerControler : MonoBehaviour
     [Range(1f, 10f)]
     [SerializeField] private float sprintSpeed;
     [SerializeField] private float smoothTime;
+    [SerializeField] private LayerMask groundMask;
     [HideInInspector]
     public Vector2 currentMovementInput;
     private Vector2 smoothedMovementInput;
     private Vector2 smoothInputSmoothVelocity;
-    [HideInInspector]
     public bool isGrounded = true;
     [HideInInspector]
     public float moveSpeed;
     [HideInInspector]
     public Vector2 direction;
+    [HideInInspector]
+    public bool isRunning = false;
     private Vector3 movementForce;
     #endregion
 
@@ -76,17 +79,20 @@ public class PlayerControler : MonoBehaviour
     [HideInInspector]
     public bool isWallSliding = false;
 
+
     #endregion
 
     #region Crouch
-    [Space]
-    [Header("Crouch\n----------")]
+    [HideInInspector]
+    public bool isCrouching = false;
+    public bool isCrouchRunning = false;
     #endregion
 
     [HideInInspector]
     public Vector3 respawnPosition;
     [HideInInspector]
     public bool isSprinting = false;
+
 
     private void Awake()
     {
@@ -103,18 +109,36 @@ public class PlayerControler : MonoBehaviour
     {
         Idle();
         SprintEnum();
+        CrouchEnum();
+
         //flip
         if (direction.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, -90, 0);
+
+            if (isGrounded && !isSprinting)
             {
-                transform.rotation = Quaternion.Euler(0,-90,0);
-         
-            if (isGrounded) playerStatus = PlayerStatus.Run;
+                playerStatus = PlayerStatus.Run;
+                isRunning = true;
+            }
+            else
+            {
+                isRunning = false;
+            }
 
         }
         if (direction.x > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 90, 0);
+            if (isGrounded && !isSprinting)
             {
-                transform.rotation = Quaternion.Euler(0,90,0);
-            if (isGrounded) playerStatus = PlayerStatus.Run;
+                playerStatus = PlayerStatus.Run;
+                isRunning = true;
+            }
+            else
+            {
+                isRunning = false;
+            }
 
 
 
@@ -126,7 +150,7 @@ public class PlayerControler : MonoBehaviour
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
 
         }
-        if(rb.velocity.y > 0)
+        if (rb.velocity.y > 0)
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (upMultiplier - 1) * Time.deltaTime;
         }
@@ -142,13 +166,12 @@ public class PlayerControler : MonoBehaviour
         }
 
         jumpBufferGrounded -= Time.deltaTime;
-
         //fall anim
-       if(rb.velocity.y < 0 && !isGrounded && !isWallSliding)
+        if (rb.velocity.y < 0 && !isGrounded && !isWallSliding)
         {
             playerStatus = PlayerStatus.Fall;
         }
-       
+
     }
 
 
@@ -157,12 +180,12 @@ public class PlayerControler : MonoBehaviour
         AddJumpForce();
         WallSlide();
 
-        
+
         //move
 
         currentMovementInput = Vector2.SmoothDamp(currentMovementInput, direction, ref smoothInputSmoothVelocity, smoothTime);
         rb.velocity = new Vector2(currentMovementInput.x * moveSpeed, rb.velocity.y);
-       
+
 
     }
 
@@ -177,8 +200,8 @@ public class PlayerControler : MonoBehaviour
 
     public void Idle()
     {
-        
-        if(rb.velocity.x < 0.2f && rb.velocity.x > -0.2f && isGrounded)
+
+        if (rb.velocity.x < 0.2f && rb.velocity.x > -0.2f && isGrounded)
         {
             playerStatus = PlayerStatus.Idle;
         }
@@ -187,20 +210,20 @@ public class PlayerControler : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         direction = context.ReadValue<Vector2>();
-        
+
     }
 
-        public void Jump(InputAction.CallbackContext context)
+    public void Jump(InputAction.CallbackContext context)
     {
 
-        if ((jumpBufferGrounded > 0f) && coyoteTimeGrounded > 0f )
+        if ((jumpBufferGrounded > 0f) && coyoteTimeGrounded > 0f)
         {
             isHolding = true;
             jumpBufferGrounded = 0;
             coyoteTimeGrounded = 0f;
             rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
             isGrounded = false;
-            
+
             playerStatus = PlayerStatus.Jump;
 
         }
@@ -213,7 +236,7 @@ public class PlayerControler : MonoBehaviour
         if (context.canceled)
         {
             isHolding = false;
-        }   
+        }
     }
 
 
@@ -221,15 +244,16 @@ public class PlayerControler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = true;
-           
+            isGrounded = Physics.Raycast(transform.position, -transform.up, 2.25f, groundMask);
+
+
         }
 
         if (collision.gameObject.CompareTag("wallSlide") && !isGrounded && rb.velocity.y != 0)
         {
             isWallSliding = true;
             playerStatus = PlayerStatus.WallSlide;
-       
+
         }
         else
         {
@@ -238,17 +262,17 @@ public class PlayerControler : MonoBehaviour
 
         if (collision.gameObject.CompareTag("roof") && rb.velocity.y > 0)
         {
-           jumpVelocity -= jumpVelocity;
+            jumpVelocity -= jumpVelocity;
         }
         else
         {
             jumpVelocity = 5.5f;
         }
-        
-        
-       
 
-        
+
+
+
+
     }
 
     private void OnCollisionExit(Collision collision)
@@ -256,7 +280,7 @@ public class PlayerControler : MonoBehaviour
         if (collision.gameObject.CompareTag("wallSlide") && !isGrounded && rb.velocity.y != 0)
         {
             isWallSliding = false;
-            
+
         }
     }
 
@@ -264,10 +288,10 @@ public class PlayerControler : MonoBehaviour
     {
         if (isWallSliding && direction.x > 0)
         {
-            
+
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
-            
-            
+
+
         }
         if (isWallSliding && direction.x < 0)
         {
@@ -309,20 +333,39 @@ public class PlayerControler : MonoBehaviour
             playerStatus = PlayerStatus.Sprint;
         }
     }
-   
+
 
     public void Crouch(InputAction.CallbackContext context)
     {
-        if(context.started && isGrounded)
+        if (context.started && isGrounded)
+        {
+            isCrouching = true;
+            
+          
+        }
+        if (context.canceled)
+        {
+            isCrouching = false;
+           
+           
+        }
+
+    }
+
+    public void CrouchEnum()
+    {
+        if (isCrouching && isGrounded && !isRunning)
         {
             playerStatus = PlayerStatus.Crouch;
+
+        }
+        if (isCrouchRunning && isRunning && isGrounded)
+        {
+            playerStatus = PlayerStatus.CrouchRun;
 
         }
 
 
 
     }
-
- 
-
 }

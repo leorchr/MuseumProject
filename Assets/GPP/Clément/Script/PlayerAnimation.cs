@@ -28,6 +28,7 @@ public class PlayerAnimation : MonoBehaviour
 
             case PlayerStatus.Sprint:
 
+
                 break;
 
             case PlayerStatus.WallSlide:
@@ -39,6 +40,9 @@ public class PlayerAnimation : MonoBehaviour
                 break;
 
             case PlayerStatus.Crouch:
+
+                break;
+            case PlayerStatus.CrouchRun:
 
                 break;
 
