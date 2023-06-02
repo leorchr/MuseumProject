@@ -359,11 +359,11 @@ public class PlayerControler : MonoBehaviour
             playerStatus = PlayerStatus.Crouch;
 
         }
-        if (isCrouchRunning && isRunning && isGrounded)
-        {
-            playerStatus = PlayerStatus.CrouchRun;
+        //if (isCrouchRunning && isRunning && isGrounded)
+        //{
+            
 
-        }
+        //}
 
 
 
