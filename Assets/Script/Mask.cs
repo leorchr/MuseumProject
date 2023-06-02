@@ -11,6 +11,7 @@ public enum MaskStatus
 public class Mask : MonoBehaviour
 {
     public static Mask instance;
+    private bool isInsidePlat;
 
     private float timeActivation;
     public float duration;
@@ -86,7 +87,6 @@ public class Mask : MonoBehaviour
         }
 
     }
-
     public void PlateformOn()
     {
 
@@ -110,11 +110,11 @@ public class Mask : MonoBehaviour
         }
     }
     
-public void UseMask(InputAction.CallbackContext context)
+    public void UseMask(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            if (ableToUse)
+            if (ableToUse && !isInsidePlat)
             {
                 if (maskStatus == MaskStatus.Full || maskStatus == MaskStatus.Charging)
                 {
@@ -127,6 +127,22 @@ public void UseMask(InputAction.CallbackContext context)
                     maskStatus = MaskStatus.Charging;
                 }
             }
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Platform")
+        {
+            isInsidePlat = true;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.tag == "Platform")
+        {
+            isInsidePlat = false;
         }
     }
 }

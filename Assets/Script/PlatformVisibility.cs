@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlatformVisibility : MonoBehaviour
 {
     [SerializeField] private bool maskPlatform;
-    [SerializeField] static float speed = 1.0f;
+    [SerializeField] float speed = 1.0f;
     Material material;
     float currentAlpha = 0;
     int alphaTarget = 0;
@@ -30,7 +30,9 @@ public class PlatformVisibility : MonoBehaviour
             color.a = currentAlpha;
             material.color = color;
         }
-        GetComponent<Collider>().enabled = currentAlpha > 0.5f;
+        GetComponent<Collider>().isTrigger = currentAlpha < 0.5f;
+        
+        
         
     }
 
