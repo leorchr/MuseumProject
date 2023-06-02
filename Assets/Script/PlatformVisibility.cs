@@ -30,7 +30,9 @@ public class PlatformVisibility : MonoBehaviour
             color.a = currentAlpha;
             material.color = color;
         }
-        GetComponent<Collider>().enabled = currentAlpha > 0.5f;
+        GetComponent<Collider>().isTrigger = currentAlpha < 0.5f;
+        
+        
         
     }
 
