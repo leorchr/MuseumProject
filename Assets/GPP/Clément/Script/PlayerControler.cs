@@ -85,6 +85,8 @@ public class PlayerControler : MonoBehaviour
 
     [HideInInspector]
     public Vector3 respawnPosition;
+    [HideInInspector]
+    public bool isSprinting = false;
 
     private void Awake()
     {
@@ -100,6 +102,7 @@ public class PlayerControler : MonoBehaviour
     void Update()
     {
         Idle();
+        
         //flip
         if (direction.x < 0)
             {
@@ -140,7 +143,11 @@ public class PlayerControler : MonoBehaviour
 
         jumpBufferGrounded -= Time.deltaTime;
 
-       
+        //fall anim
+       if(rb.velocity.y < 0 && !isGrounded && !isWallSliding)
+        {
+            playerStatus = PlayerStatus.Fall;
+        }
        
     }
 
@@ -255,22 +262,12 @@ public class PlayerControler : MonoBehaviour
 
     private void WallSlide()
     {
-        if (isWallSliding && direction.x > 0)
+        if (isWallSliding)
         {
-            //lancer anime de droite 
+            
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
             
             
-        }
-        if(isWallSliding && direction.x < 0)
-        {
-            //lancer anim de gauche
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
-            
-        }
-        else if(!isWallSliding)
-        {
-            Debug.Log("detaché");
         }
     }
 
@@ -287,24 +284,33 @@ public class PlayerControler : MonoBehaviour
     {
         if (context.started && isGrounded)
         {
-            //PlayerAnimation.instance.IsSprinting();
+            isSprinting = true;
             moveSpeed = sprintSpeed;
+
         }
         if (context.canceled)
         {
-            
             moveSpeed = walkSpeed;
-            //PlayerAnimation.instance.isRunning();
-
-
+          
         }
     }
 
+    public void SprintEnum()
+    {
+        if (isSprinting && isGrounded)
+        {
+            playerStatus = PlayerStatus.Sprint;
+        }
+    }
    
 
     public void Crouch(InputAction.CallbackContext context)
     {
+        if(context.started && isGrounded)
+        {
+            playerStatus = PlayerStatus.Crouch;
 
+        }
 
 
 
