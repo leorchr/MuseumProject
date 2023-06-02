@@ -102,7 +102,7 @@ public class PlayerControler : MonoBehaviour
     void Update()
     {
         Idle();
-        
+        SprintEnum();
         //flip
         if (direction.x < 0)
             {
@@ -236,14 +236,14 @@ public class PlayerControler : MonoBehaviour
             isWallSliding = false;
         }
 
-        //if (collision.gameObject.CompareTag("roof") && rb.velocity.y > 0)
-        //{
-           //jumpVelocity -= jumpVelocity;
-        //}
-        //else
-        //{
-            //jumpVelocity = 5.5f;
-        //}
+        if (collision.gameObject.CompareTag("roof") && rb.velocity.y > 0)
+        {
+           jumpVelocity -= jumpVelocity;
+        }
+        else
+        {
+            jumpVelocity = 5.5f;
+        }
         
         
        
@@ -262,12 +262,19 @@ public class PlayerControler : MonoBehaviour
 
     private void WallSlide()
     {
-        if (isWallSliding)
+        if (isWallSliding && direction.x > 0)
         {
             
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
             
             
+        }
+        if (isWallSliding && direction.x < 0)
+        {
+
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+
+
         }
     }
 
@@ -291,7 +298,7 @@ public class PlayerControler : MonoBehaviour
         if (context.canceled)
         {
             moveSpeed = walkSpeed;
-          
+            isSprinting = false;
         }
     }
 
