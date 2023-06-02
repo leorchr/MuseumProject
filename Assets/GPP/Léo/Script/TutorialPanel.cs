@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TutorialPanel : MonoBehaviour
 {
@@ -13,8 +14,9 @@ public class TutorialPanel : MonoBehaviour
     [Space]
     [Range(0f, 10f)][SerializeField] private float distance;
     [SerializeField] private Transform detection;
-    private bool check;
-    [SerializeField] private GameObject panel;
+
+    [SerializeField] private GameObject panelKeyboard;
+    [SerializeField] private GameObject panelController;
 
     #endregion
 
@@ -30,23 +32,38 @@ public class TutorialPanel : MonoBehaviour
 
     private void Start()
     {
-        check = false;
+        panelController.SetActive(false);
+        panelKeyboard.SetActive(false);
     }
 
     private void Update()
     {
         if(Vector3.Distance(PlayerControler.instance.transform.position, detection.position) < distance)
         {
-            check = true;
-            panel.SetActive(true);
+            SetControls();
         }
-        else if (check)
+        else
         {
-            panel.SetActive(false);
-            gameObject.GetComponent<TutorialPanel>().enabled = false;
+            panelController.SetActive(false);
+            panelKeyboard.SetActive(false);
         }
-        else panel.SetActive(false);
     }
+
+    private void SetControls()
+    {
+        if (PlayerControler.instance.GetComponent<PlayerInput>().currentControlScheme == "Keyboard")
+        {
+            panelKeyboard.SetActive(true);
+            panelController.SetActive(false);
+
+        }
+        else if (PlayerControler.instance.GetComponent<PlayerInput>().currentControlScheme == "Controller")
+        {
+            panelController.SetActive(true);
+            panelKeyboard.SetActive(false);
+        }
+    }
+
 
 #if UNITY_EDITOR
 
