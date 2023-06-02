@@ -14,7 +14,10 @@ public class EnemyMovement : MonoBehaviour
     [Space]
     [SerializeField] private Transform[] target;
     private int currentTarget;
+    
     [SerializeField] private float speed;
+    //[SerializeField] private float smoothTime = 0.1f;
+    //private Vector3 currentVelocity;
 
     #endregion
 
@@ -60,6 +63,7 @@ public class EnemyMovement : MonoBehaviour
             SelectNextTarget();
             FlipSprite(target[currentTarget].transform.position);
         }
+        //transform.position = Vector3.SmoothDamp(transform.position, target[currentTarget].position, ref currentVelocity, smoothTime);
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(target[currentTarget].position.x, target[currentTarget].position.y, transform.position.z), speed * Time.deltaTime);
     }
 }
