@@ -16,63 +16,40 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    public void isRunning()
-    {
-        if(playerControler.direction.x != 0 && !playerControler.isWallSliding)
+        switch (playerControler.playerStatus)
         {
-            //anim run
-        }
-        else
-        {
-            //anim idle
-        }
-    }
+            case PlayerStatus.Idle:
 
- 
+                break;
 
-    public void IsSprinting()
-    {
-        //animator.SetBool("IsSprinting", true);
-    }
+            case PlayerStatus.Run:
 
-    public void IsWallSliding()
-    {
-        if (playerControler.isWallSliding)
-        {
-            //anim wallslide = true;
-        }
-    }
+                break;
 
-    public void Idle()
-    {
-        if (playerControler.isGrounded)
-        {
-            //idle
-           
+            case PlayerStatus.Sprint:
+
+
+                break;
+
+            case PlayerStatus.WallSlide:
+
+                break;
+
+            case PlayerStatus.Fall:
+                
+                break;
+
+            case PlayerStatus.Crouch:
+
+                break;
+            case PlayerStatus.CrouchRun:
+
+                break;
+
         }
     }
 
-    public void Falling()
-    {
-        //if (animator.GetBool("IsJumping"))
-        //{
-            //if (playerController.rb.velocity.y < 0)
-            //{
-                //animator.SetBool("IsJumping", false);
-                //animator.SetBool("IsFalling", true);
-            //}
-       // }
-    }
-
-    public void wallSlideOn()
-    {
-        
-        //wallSlide anim = true
-        //isFalling = false
-    }
+  
 
 
 
