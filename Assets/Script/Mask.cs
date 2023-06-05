@@ -28,6 +28,8 @@ public class Mask : MonoBehaviour
     private float currentTimeRemaining;
     private MaskStatus maskStatus = MaskStatus.Full;
 
+    public float speedReduction;
+
 
     PlatformVisibility[] allPlatforms;
     bool maskPlatforms = true;
@@ -67,9 +69,11 @@ public class Mask : MonoBehaviour
                 break;
             case MaskStatus.Empty:
                 cooldownRemaining = cooldown - (Time.time - cooldownActivation);
+                PlayerControler.instance.sprintSpeed = speedReduction;
+                PlayerControler.instance.walkSpeed = speedReduction;
+                PlayerControler.instance.moveSpeed = PlayerControler.instance.walkSpeed;
                 if (cooldownRemaining <= 0)
                 {
-
                     rechargingActivation = Time.time;
                     maskStatus = MaskStatus.Charging;
                 }
@@ -81,10 +85,18 @@ public class Mask : MonoBehaviour
                     timeRemaining = duration;
                     maskStatus = MaskStatus.Full;
                     ableToUse = true;
+                    PlayerControler.instance.sprintSpeed = 8f;
+                    PlayerControler.instance.walkSpeed = 4.5f;
+                    PlayerControler.instance.moveSpeed = PlayerControler.instance.walkSpeed;
                 }
                 break;
             case MaskStatus.Full:
                 break;
+        }
+
+        if (ableToUse)
+        {
+
         }
 
     }
