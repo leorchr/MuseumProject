@@ -166,6 +166,7 @@ public class PlayerControler : MonoBehaviour
         }
 
         jumpBufferGrounded -= Time.deltaTime;
+
         //fall anim
         if (rb.velocity.y < 0 && !isGrounded && !isWallSliding)
         {
@@ -340,12 +341,14 @@ public class PlayerControler : MonoBehaviour
         if (context.started && isGrounded)
         {
             isCrouching = true;
+         
             
           
         }
         if (context.canceled)
         {
             isCrouching = false;
+            
            
            
         }
@@ -354,7 +357,7 @@ public class PlayerControler : MonoBehaviour
 
     public void CrouchEnum()
     {
-        if (isCrouching && isGrounded && !isRunning)
+        if (isCrouching)
         {
             playerStatus = PlayerStatus.Crouch;
 
