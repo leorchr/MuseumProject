@@ -238,7 +238,7 @@
                 {
                     "name": "",
                     "id": "bcd40686-a97d-4cc9-aa30-12c572f15437",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/ctrl",
                     "interactions": "Hold(duration=0.1)",
                     "processors": "",
                     "groups": "Keyboard",
