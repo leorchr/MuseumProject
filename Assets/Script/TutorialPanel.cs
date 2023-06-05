@@ -38,7 +38,7 @@ public class TutorialPanel : MonoBehaviour
 
     private void Update()
     {
-        if(Vector3.Distance(PlayerControler.instance.transform.position, detection.position) < distance)
+        if(Vector3.Distance(PlayerController.instance.transform.position, detection.position) < distance)
         {
             SetControls();
         }
@@ -51,13 +51,13 @@ public class TutorialPanel : MonoBehaviour
 
     private void SetControls()
     {
-        if (PlayerControler.instance.GetComponent<PlayerInput>().currentControlScheme == "Keyboard")
+        if (PlayerController.instance.GetComponent<PlayerInput>().currentControlScheme == "Keyboard")
         {
             panelKeyboard.SetActive(true);
             panelController.SetActive(false);
 
         }
-        else if (PlayerControler.instance.GetComponent<PlayerInput>().currentControlScheme == "Controller")
+        else if (PlayerController.instance.GetComponent<PlayerInput>().currentControlScheme == "Controller")
         {
             panelController.SetActive(true);
             panelKeyboard.SetActive(false);
