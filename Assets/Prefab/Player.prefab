@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 5447403845026826376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.88, y: 4.46, z: -12.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.6075, y: 3.6075, z: 3.6075}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -45,7 +45,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5447403845026826376}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 1062336467665037536, guid: ba2f9f179c52b02459e92d3eac238d81, type: 3}
 --- !u!23 &5447403845026826382
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -99,8 +99,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1356277, y: 1, z: 1}
-  m_Center: {x: 0.06781387, y: 0, z: 0}
+  m_Size: {x: 0.7098556, y: 1.0555215, z: 0.19803524}
+  m_Center: {x: 0.012328504, y: -0.0018585745, z: 0.0010688272}
 --- !u!54 &5447403845026826371
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -129,13 +129,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f654bbbdec04048ad2b23f7fd13fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStatus: 0
   walkSpeed: 4.5
   sprintSpeed: 8
   smoothTime: 0.16
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 128
   currentMovementInput: {x: 0, y: 0}
   isGrounded: 1
   moveSpeed: 0
   direction: {x: 0, y: 0}
+  isRunning: 0
   jumpVelocity: 7
   holdJumpForce: 0.2
   jumpBufferTime: 0.5
@@ -145,7 +150,10 @@ MonoBehaviour:
   isHolding: 0
   wallSlidingSpeed: 3
   isWallSliding: 0
+  isCrouching: 0
+  isCrouchRunning: 0
   respawnPosition: {x: 0, y: 0, z: 0}
+  isSprinting: 0
 --- !u!114 &5447403845026826370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,19 +229,7 @@ MonoBehaviour:
     m_ActionId: 974f2a18-99ba-43f4-a3ab-e75bd784b47e
     m_ActionName: Player/New action
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5447403845026826369}
-        m_TargetAssemblyTypeName: PlayerControler, Assembly-CSharp
-        m_MethodName: Interact
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: b890798e-4b76-43b8-9ecc-c9c9bf58c37c
     m_ActionName: PlayerActions/Interact[/Keyboard/e]
   - m_PersistentCalls:
@@ -301,8 +297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 333e0193ec7003949ab87226001ed904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plateformsOn: []
-  plateformsOff: []
   duration: 5
   cooldown: 2
   timeRemaining: 0
