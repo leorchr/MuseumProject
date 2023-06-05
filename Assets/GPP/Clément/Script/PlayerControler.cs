@@ -30,6 +30,7 @@ public class PlayerControler : MonoBehaviour
     [HideInInspector]
     public Rigidbody rb;
     private InputAction controls;
+    private bool isIdle = false;
 
     #endregion
 
@@ -47,13 +48,12 @@ public class PlayerControler : MonoBehaviour
     private Vector2 smoothedMovementInput;
     private Vector2 smoothInputSmoothVelocity;
     public bool isGrounded = true;
-    //[HideInInspector]
+    [HideInInspector]
     public float moveSpeed;
     [HideInInspector]
     public Vector2 direction;
     [HideInInspector]
     public bool isRunning = false;
-    private Vector3 movementForce;
     #endregion
 
     #region Jump
@@ -206,6 +206,7 @@ public class PlayerControler : MonoBehaviour
         if (rb.velocity.x < 0.2f && rb.velocity.x > -0.2f && isGrounded)
         {
             playerStatus = PlayerStatus.Idle;
+            isIdle = true;
         }
     }
 
@@ -337,7 +338,7 @@ public class PlayerControler : MonoBehaviour
 
     public void SprintEnum()
     {
-        if (isSprinting && isGrounded)
+        if (isSprinting && isGrounded && !isIdle)
         {
             playerStatus = PlayerStatus.Sprint;
         }
@@ -375,8 +376,10 @@ public class PlayerControler : MonoBehaviour
             
 
         //}
+    }
 
-
-
+    public void CrouchRunEnum()
+    {
+       
     }
 }
