@@ -1273,46 +1273,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5447403845026826369, guid: 4cb99fb5c63c74b448f4c2c091db942f,
-        type: 3}
-      propertyPath: rotation.w
-      value: -0.70710677
-      objectReference: {fileID: 0}
-    - target: {fileID: 5447403845026826369, guid: 4cb99fb5c63c74b448f4c2c091db942f,
-        type: 3}
-      propertyPath: rotation.y
-      value: 0.70710677
-      objectReference: {fileID: 0}
-    - target: {fileID: 5447403845026826369, guid: 4cb99fb5c63c74b448f4c2c091db942f,
-        type: 3}
-      propertyPath: rotation2.w
-      value: 0.70710677
-      objectReference: {fileID: 0}
-    - target: {fileID: 5447403845026826369, guid: 4cb99fb5c63c74b448f4c2c091db942f,
-        type: 3}
-      propertyPath: rotation2.y
-      value: 0.70710677
-      objectReference: {fileID: 0}
-    - target: {fileID: 5447403845026826369, guid: 4cb99fb5c63c74b448f4c2c091db942f,
-        type: 3}
-      propertyPath: groundMask.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 5447403845026826370, guid: 4cb99fb5c63c74b448f4c2c091db942f,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5447403845026826371, guid: 4cb99fb5c63c74b448f4c2c091db942f,
-        type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5447403845026826371, guid: 4cb99fb5c63c74b448f4c2c091db942f,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 120
-      objectReference: {fileID: 0}
     - target: {fileID: 5447403845026826376, guid: 4cb99fb5c63c74b448f4c2c091db942f,
         type: 3}
       propertyPath: m_Name
@@ -1322,21 +1282,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5447403845026826380, guid: 4cb99fb5c63c74b448f4c2c091db942f,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3.6075
-      objectReference: {fileID: 0}
-    - target: {fileID: 5447403845026826380, guid: 4cb99fb5c63c74b448f4c2c091db942f,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3.6075
-      objectReference: {fileID: 0}
-    - target: {fileID: 5447403845026826380, guid: 4cb99fb5c63c74b448f4c2c091db942f,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 3.6075
       objectReference: {fileID: 0}
     - target: {fileID: 5447403845026826380, guid: 4cb99fb5c63c74b448f4c2c091db942f,
         type: 3}
@@ -1387,42 +1332,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5447403845026826381, guid: 4cb99fb5c63c74b448f4c2c091db942f,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1062336467665037536, guid: ba2f9f179c52b02459e92d3eac238d81,
-        type: 3}
-    - target: {fileID: 5447403845026826383, guid: 4cb99fb5c63c74b448f4c2c091db942f,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.7098556
-      objectReference: {fileID: 0}
-    - target: {fileID: 5447403845026826383, guid: 4cb99fb5c63c74b448f4c2c091db942f,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.0555215
-      objectReference: {fileID: 0}
-    - target: {fileID: 5447403845026826383, guid: 4cb99fb5c63c74b448f4c2c091db942f,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 0.19803524
-      objectReference: {fileID: 0}
-    - target: {fileID: 5447403845026826383, guid: 4cb99fb5c63c74b448f4c2c091db942f,
-        type: 3}
-      propertyPath: m_Center.x
-      value: 0.012328504
-      objectReference: {fileID: 0}
-    - target: {fileID: 5447403845026826383, guid: 4cb99fb5c63c74b448f4c2c091db942f,
-        type: 3}
-      propertyPath: m_Center.y
-      value: -0.0018585745
-      objectReference: {fileID: 0}
-    - target: {fileID: 5447403845026826383, guid: 4cb99fb5c63c74b448f4c2c091db942f,
-        type: 3}
-      propertyPath: m_Center.z
-      value: 0.0010688272
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

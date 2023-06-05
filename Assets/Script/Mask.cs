@@ -69,6 +69,7 @@ public class Mask : MonoBehaviour
                 cooldownRemaining = cooldown - (Time.time - cooldownActivation);
                 if (cooldownRemaining <= 0)
                 {
+
                     rechargingActivation = Time.time;
                     maskStatus = MaskStatus.Charging;
                 }
