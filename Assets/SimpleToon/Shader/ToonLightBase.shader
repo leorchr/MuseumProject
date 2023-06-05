@@ -2,7 +2,7 @@ Shader "Lpk/LightModel/ToonLightBase"
 {
     Properties
     {
-        _BaseMap            ("Texture", 2D)                       = "white" {}
+        _BaseMap            ("Texture", 2D)                       = "" {}
         _BaseColor          ("Color", Color)                      = (0.5,0.5,0.5,1)
         
         [Space]
