@@ -27,7 +27,8 @@ public class PlayerControler : MonoBehaviour
     [Space]
     [Header("Player info\n----------")]
     [Range(1f, 10f)]
-    private Rigidbody rb;
+    [HideInInspector]
+    public Rigidbody rb;
     private InputAction controls;
 
     #endregion
@@ -214,10 +215,9 @@ public class PlayerControler : MonoBehaviour
         {
             moveSpeed = walkSpeed;
         }
-        else
-        {
-            moveSpeed = 0;
-        }
+        
+            
+        
         direction = context.ReadValue<Vector2>();
 
     }
