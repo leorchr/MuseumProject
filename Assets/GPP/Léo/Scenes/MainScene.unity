@@ -20595,7 +20595,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1145600315699548954, guid: ae9addde42c546046a1668f0fd55353e,
         type: 3}
-      insertIndex: 0
+      insertIndex: -1
       addedObject: {fileID: 1696474369}
   m_SourcePrefab: {fileID: 100100000, guid: ae9addde42c546046a1668f0fd55353e, type: 3}
 --- !u!1 &1384988078
@@ -30257,6 +30257,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: STATUEDECIMATED
       objectReference: {fileID: 0}
+    - target: {fileID: 1465104140178416056, guid: 130ddb4d2116ed346818a57dc226b183,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465104140178416056, guid: 130ddb4d2116ed346818a57dc226b183,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 69bc3eaa67877ae4a9e11311e54cf844, type: 2}
+    - target: {fileID: 1465104140178416056, guid: 130ddb4d2116ed346818a57dc226b183,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 311313efa011949e98b6761d652ad13c, type: 2}
+    - target: {fileID: 1465104140178416056, guid: 130ddb4d2116ed346818a57dc226b183,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 311313efa011949e98b6761d652ad13c, type: 2}
     - target: {fileID: 3725021399473526130, guid: 130ddb4d2116ed346818a57dc226b183,
         type: 3}
       propertyPath: m_Mesh
