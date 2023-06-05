@@ -35,9 +35,9 @@ public class PlayerControler : MonoBehaviour
     [Space]
     [Header("Movement\n----------")]
     [Range(1f, 10f)]
-    [SerializeField] private float walkSpeed;
+    [SerializeField] public float walkSpeed;
     [Range(1f, 10f)]
-    [SerializeField] private float sprintSpeed;
+    [SerializeField] public float sprintSpeed;
     [SerializeField] private float smoothTime;
     [HideInInspector]
     public Vector2 currentMovementInput;
