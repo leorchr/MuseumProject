@@ -46,7 +46,7 @@ public class PlayerControler : MonoBehaviour
     private Vector2 smoothedMovementInput;
     private Vector2 smoothInputSmoothVelocity;
     public bool isGrounded = true;
-    [HideInInspector]
+    //[HideInInspector]
     public float moveSpeed;
     [HideInInspector]
     public Vector2 direction;
@@ -103,7 +103,7 @@ public class PlayerControler : MonoBehaviour
     private void Start()
     {
         respawnPosition = transform.position;
-        moveSpeed = walkSpeed;
+        moveSpeed = 0;
     }
     void Update()
     {
@@ -210,6 +210,14 @@ public class PlayerControler : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
+        if (context.performed)
+        {
+            moveSpeed = walkSpeed;
+        }
+        else
+        {
+            moveSpeed = 0;
+        }
         direction = context.ReadValue<Vector2>();
 
     }
