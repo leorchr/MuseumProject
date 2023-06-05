@@ -30,7 +30,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerControler.instance.GetComponent<Rigidbody>().position = PlayerControler.instance.respawnPosition;
+            
         }
     }
 

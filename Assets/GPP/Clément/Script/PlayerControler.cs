@@ -27,8 +27,10 @@ public class PlayerControler : MonoBehaviour
     [Space]
     [Header("Player info\n----------")]
     [Range(1f, 10f)]
-    private Rigidbody rb;
+    [HideInInspector]
+    public Rigidbody rb;
     private InputAction controls;
+    private bool isIdle = false;
 
     #endregion
 
@@ -52,7 +54,6 @@ public class PlayerControler : MonoBehaviour
     public Vector2 direction;
     [HideInInspector]
     public bool isRunning = false;
-    private Vector3 movementForce;
     #endregion
 
     #region Jump
@@ -103,7 +104,7 @@ public class PlayerControler : MonoBehaviour
     private void Start()
     {
         respawnPosition = transform.position;
-        moveSpeed = walkSpeed;
+        moveSpeed = 0;
     }
     void Update()
     {
@@ -166,6 +167,7 @@ public class PlayerControler : MonoBehaviour
         }
 
         jumpBufferGrounded -= Time.deltaTime;
+
         //fall anim
         if (rb.velocity.y < 0 && !isGrounded && !isWallSliding)
         {
@@ -204,11 +206,19 @@ public class PlayerControler : MonoBehaviour
         if (rb.velocity.x < 0.2f && rb.velocity.x > -0.2f && isGrounded)
         {
             playerStatus = PlayerStatus.Idle;
+            isIdle = true;
         }
     }
 
     public void Move(InputAction.CallbackContext context)
     {
+        if (context.performed)
+        {
+            moveSpeed = walkSpeed;
+        }
+        
+            
+        
         direction = context.ReadValue<Vector2>();
 
     }
@@ -328,7 +338,7 @@ public class PlayerControler : MonoBehaviour
 
     public void SprintEnum()
     {
-        if (isSprinting && isGrounded)
+        if (isSprinting && isGrounded && !isIdle)
         {
             playerStatus = PlayerStatus.Sprint;
         }
@@ -340,12 +350,14 @@ public class PlayerControler : MonoBehaviour
         if (context.started && isGrounded)
         {
             isCrouching = true;
+         
             
           
         }
         if (context.canceled)
         {
             isCrouching = false;
+            
            
            
         }
@@ -354,7 +366,7 @@ public class PlayerControler : MonoBehaviour
 
     public void CrouchEnum()
     {
-        if (isCrouching && isGrounded && !isRunning)
+        if (isCrouching)
         {
             playerStatus = PlayerStatus.Crouch;
 
@@ -364,8 +376,10 @@ public class PlayerControler : MonoBehaviour
             
 
         //}
+    }
 
-
-
+    public void CrouchRunEnum()
+    {
+       
     }
 }
