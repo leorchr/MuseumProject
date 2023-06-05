@@ -67,9 +67,10 @@ public class Mask : MonoBehaviour
                 break;
             case MaskStatus.Empty:
                 cooldownRemaining = cooldown - (Time.time - cooldownActivation);
+                PlayerControler.instance.moveSpeed = 2f;
+                PlayerControler.instance.sprintSpeed = 3f;
                 if (cooldownRemaining <= 0)
                 {
-
                     rechargingActivation = Time.time;
                     maskStatus = MaskStatus.Charging;
                 }
@@ -84,6 +85,8 @@ public class Mask : MonoBehaviour
                 }
                 break;
             case MaskStatus.Full:
+                PlayerControler.instance.moveSpeed = 4.5f;
+                PlayerControler.instance.sprintSpeed = 8f;
                 break;
         }
 
