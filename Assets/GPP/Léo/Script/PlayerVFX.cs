@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class PlayerVFX : MonoBehaviour
 {
-    /*[SerializeField] private ParticleSystem particles;
+    [SerializeField] private ParticleSystem particles;
+    private bool particlesStarted;
 
     private void Start()
     {
-        particles.Pause();
+        particles.Play();
+        particlesStarted = false;
     }
     private void Update()
     {
@@ -18,25 +20,24 @@ public class PlayerVFX : MonoBehaviour
         {
             case PlayerStatus.Idle:
                 particles.Stop();
+                particlesStarted = false;
                 break;
             case PlayerStatus.Run:
                 mainModule.startSpeed = 1f;
-                particles.Play();
+                if (!particlesStarted)
+                {
+                    particles.Play();
+                    particlesStarted = true;
+                }
                 break;
             case PlayerStatus.Sprint:
                 mainModule.startSpeed = 2f;
-                particles.Play();
-                break;
-            case PlayerStatus.WallSlide:
-                break;
-            case PlayerStatus.Jump:
-                break;
-            case PlayerStatus.Fall:
-                break;
-            case PlayerStatus.Crouch:
-                break;
-            case PlayerStatus.CrouchRun:
+                if (!particlesStarted)
+                {
+                    particles.Play();
+                    particlesStarted = true;
+                }
                 break;
         }
-    }*/
+    }
 }
