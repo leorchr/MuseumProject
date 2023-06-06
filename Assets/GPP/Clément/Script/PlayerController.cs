@@ -108,8 +108,10 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        Idle();
         SprintEnum();
+        Fall();
+        WallSlide();
+        Idle();
         CrouchEnum();
 
         //flip
@@ -169,10 +171,7 @@ public class PlayerController : MonoBehaviour
         jumpBufferGrounded -= Time.deltaTime;
 
         //fall anim
-        if (rb.velocity.y < 0 && !isGrounded && !isWallSliding)
-        {
-            playerStatus = PlayerStatus.Fall;
-        }
+       
 
     }
 
@@ -180,7 +179,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         AddJumpForce();
-        WallSlide();
+        
 
 
         //move
@@ -206,6 +205,14 @@ public class PlayerController : MonoBehaviour
         if (rb.velocity.x < 0.2f && rb.velocity.x > -0.2f && isGrounded)
         {
             playerStatus = PlayerStatus.Idle;
+        }
+    }
+
+    public void Fall()
+    {
+        if (rb.velocity.y < 0 && !isGrounded && !isWallSliding)
+        {
+            playerStatus = PlayerStatus.Fall;
         }
     }
 
@@ -261,27 +268,13 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("wallSlide") && !isGrounded && rb.velocity.y != 0)
         {
             isWallSliding = true;
-            playerStatus = PlayerStatus.WallSlide;
+           
 
         }
         else
         {
             isWallSliding = false;
         }
-
-        if (collision.gameObject.CompareTag("roof") && rb.velocity.y > 0)
-        {
-            jumpVelocity -= jumpVelocity;
-        }
-        else
-        {
-            jumpVelocity = 5.5f;
-        }
-
-
-
-
-
     }
 
     private void OnCollisionExit(Collision collision)
@@ -299,6 +292,7 @@ public class PlayerController : MonoBehaviour
         {
 
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+            playerStatus = PlayerStatus.WallSlide;
 
 
         }
@@ -306,6 +300,7 @@ public class PlayerController : MonoBehaviour
         {
 
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+            playerStatus = PlayerStatus.WallSlide;
 
 
         }
@@ -337,7 +332,7 @@ public class PlayerController : MonoBehaviour
 
     public void SprintEnum()
     {
-        if (isSprinting && isGrounded)
+        if (isSprinting)
         {
             playerStatus = PlayerStatus.Sprint;
         }
