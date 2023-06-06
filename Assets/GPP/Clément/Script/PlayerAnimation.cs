@@ -6,7 +6,7 @@ public class PlayerAnimation : MonoBehaviour
 {
 
     [SerializeField] private Animator animator;
-    [SerializeField] private PlayerControler playerControler;
+    [SerializeField] private PlayerController playerControler;
     public static PlayerAnimation instance;
 
     private void Awake()

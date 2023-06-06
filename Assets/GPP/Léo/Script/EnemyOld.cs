@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerControler.instance.transform.position = PlayerControler.instance.respawnPosition;
+            PlayerController.instance.transform.position = PlayerController.instance.respawnPosition;
         }
     }
 
@@ -82,8 +82,8 @@ public class Enemy : MonoBehaviour
 
         if (DetectPlayer() && Vector3.Distance(transform.position, centralPos.position) < maxTravelDistance)
         {
-            FlipSprite(PlayerControler.instance.transform.position);
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(PlayerControler.instance.transform.position.x, transform.position.y, transform.position.z), speed * Time.deltaTime);
+            FlipSprite(PlayerController.instance.transform.position);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(PlayerController.instance.transform.position.x, transform.position.y, transform.position.z), speed * Time.deltaTime);
         }
         // Deplacement standard entre deux points
         else

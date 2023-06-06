@@ -18,12 +18,13 @@ public class DeathPlayer : MonoBehaviour
     {
         if(other.gameObject.tag == "Void" || other.gameObject.tag == "Enemy")
         {
+            Debug.Log("touché");
             Death();
         }
     }
 
     public void Respawn()
     {
-        PlayerControler.instance.GetComponent<Rigidbody>().position = PlayerControler.instance.respawnPosition;
+        PlayerController.instance.GetComponent<Rigidbody>().position = PlayerController.instance.respawnPosition;
     }
 }

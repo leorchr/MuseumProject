@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1358777272}
   - component: {fileID: 1358777271}
   - component: {fileID: 1358777270}
-  - component: {fileID: 1358777269}
   m_Layer: 5
   m_Name: Fade
   m_TagString: Untagged
@@ -90,23 +89,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &1358777269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1358777267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c55f49e0016aaab428a90dc95772bde9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 1358777270}
-  fadeIn: 0
-  fadeOut: 0
-  timeToFade: 3
-  timeBetweenFade: 2
 --- !u!1 &6417557272899594686
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,6 +346,7 @@ GameObject:
   - component: {fileID: 6417557273963427296}
   - component: {fileID: 6417557273963427300}
   - component: {fileID: 210901718}
+  - component: {fileID: 4342173710322803277}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -484,6 +467,24 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 6468004573211327626}
   resume: {fileID: 6468004572764009800}
   volumeSlider: {fileID: 6468004573305095390}
+--- !u!114 &4342173710322803277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6417557273963427297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55f49e0016aaab428a90dc95772bde9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageFade: {fileID: 1358777267}
+  canvasGroup: {fileID: 1358777270}
+  fadeIn: 0
+  fadeOut: 0
+  timeToFade: 3
+  timeBetweenFade: 2
 --- !u!1 &6417557274235403643
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,7 +845,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6468004572579050336}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameplayUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -866,7 +867,7 @@ Transform:
   - {fileID: 6417557273963427301}
   - {fileID: 6468004571495188128}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6468004572595337338
 GameObject:
