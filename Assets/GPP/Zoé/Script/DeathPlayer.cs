@@ -10,6 +10,7 @@ public class DeathPlayer : MonoBehaviour
         Invoke("Respawn", timeToRespawn);
         Mask.instance.timeRemaining = Mask.instance.duration;
         FadeInFadeOut.instance.FadeIn();
+        Mask.instance.maskStatus = MaskStatus.Full;
         //SFX
 
     }
