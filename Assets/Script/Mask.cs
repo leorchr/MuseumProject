@@ -26,7 +26,7 @@ public class Mask : MonoBehaviour
 
     [HideInInspector] public float timeRemaining;
     private float currentTimeRemaining;
-    private MaskStatus maskStatus = MaskStatus.Full;
+    [HideInInspector] public MaskStatus maskStatus = MaskStatus.Full;
 
     public float speedReduction;
 

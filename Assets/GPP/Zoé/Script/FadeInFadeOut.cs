@@ -5,14 +5,15 @@ using UnityEngine;
 public class FadeInFadeOut : MonoBehaviour
 {
     public static FadeInFadeOut instance;
+
     public GameObject imageFade;
 
     public CanvasGroup canvasGroup;
     public bool fadeIn = false;
-    public bool fadeOut = false;
+    public bool fadeOutChangingScene = false;
+    public bool fadeOutDeath;
 
-    public float timeToFade;
-    public float timeBetweenFade;
+    public float speedToFade;
 
     private void Awake()
     {
@@ -23,8 +24,7 @@ public class FadeInFadeOut : MonoBehaviour
     private void Start()
     {
         imageFade.SetActive(true);
-        canvasGroup.alpha = 1;
-        FadeOut();
+        canvasGroup.alpha = 0;
     }
     void Update()
     {
@@ -32,34 +32,66 @@ public class FadeInFadeOut : MonoBehaviour
         {
             if (canvasGroup.alpha < 1)
             {
-                canvasGroup.alpha += timeToFade * Time.deltaTime;
+                if (DeathPlayer.instance.isDead)
+                {
+                    canvasGroup.alpha += DeathPlayer.instance.speedFade * Time.time;
+                }
+                else if (ChangingScene.instance.isChanging)
+                {
+                    canvasGroup.alpha += ChangingScene.instance.speedFade * Time.time;
+                }
                 if (canvasGroup.alpha >= 1)
                 {
                     fadeIn = false;
                 }
             }
         }
-        if (fadeOut == true)
+        if (fadeOutChangingScene == true)
         {
             if (canvasGroup.alpha >= 0)
             {
-                canvasGroup.alpha -= timeToFade * Time.deltaTime;
+                canvasGroup.alpha -= speedToFade * Time.time;
                 if (canvasGroup.alpha == 0)
                 {
-                    fadeOut = false;
+                    fadeOutChangingScene = false;
+                }
+            }
+        }
+        if(fadeOutDeath == true)
+        {
+            if (canvasGroup.alpha >= 0)
+            {
+                canvasGroup.alpha -= speedToFade * Time.time;
+                if (canvasGroup.alpha == 0)
+                {
+                    fadeOutDeath = false;
                 }
             }
         }
     }
 
-    public void FadeIn()
+    public void FadeIn(float timeBetweenFade)
     {
-        fadeIn = true;
-        Invoke("FadeOut", timeBetweenFade);
+        if (DeathPlayer.instance.isDead)
+        {
+            fadeIn = true;
+            Invoke("FadeOutDeath", timeBetweenFade);
+        }
+        else if (ChangingScene.instance.isChanging)
+        {
+            fadeIn = true;
+            Invoke("FadeOutChangingScene", timeBetweenFade);
+        }
     }
-    public void FadeOut()
+    public void FadeOutChangingScene()
     {
-        fadeOut = true;
+        fadeOutChangingScene = true;
+    }
+
+    public void FadeOutDeath()
+    {
+        fadeOutDeath = true;
+        DeathPlayer.instance.Respawn();
     }
 
 }

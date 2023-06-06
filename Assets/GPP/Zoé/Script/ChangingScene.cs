@@ -6,8 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class ChangingScene : MonoBehaviour
 {
+    public static ChangingScene instance;
+
     public string targetScene;
 
+    [HideInInspector] public bool isChanging;
+
+    public float timeBetweenFade;
+    public float speedFade;
+
+    private void Awake()
+    {
+        if (instance) Destroy(this);
+        else instance = this;
+    }
     public void GoTo()
     {
         SceneManager.LoadScene(targetScene);
@@ -17,8 +29,9 @@ public class ChangingScene : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            FadeInFadeOut.instance.FadeIn();
-            Invoke("GoTo", FadeInFadeOut.instance.timeToFade - 1f);
+            isChanging = true;
+            FadeInFadeOut.instance.FadeIn(timeBetweenFade);
+            Invoke("GoTo", timeBetweenFade - 1f);
         }
     }
 }
