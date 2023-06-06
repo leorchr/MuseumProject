@@ -5,7 +5,7 @@ using UnityEngine;
 public class FadeInFadeOut : MonoBehaviour
 {
     public static FadeInFadeOut instance;
-
+    public GameObject imageFade;
 
     public CanvasGroup canvasGroup;
     public bool fadeIn = false;
@@ -22,6 +22,7 @@ public class FadeInFadeOut : MonoBehaviour
 
     private void Start()
     {
+        imageFade.SetActive(true);
         canvasGroup.alpha = 1;
         FadeOut();
     }

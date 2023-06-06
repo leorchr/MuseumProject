@@ -26,14 +26,6 @@ public class EnemyMovement : MonoBehaviour
         currentTarget = 0;
     }
 
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            
-        }
-    }
-
     private void Update()
     {
         Movements();
