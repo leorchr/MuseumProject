@@ -108,55 +108,45 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        SprintEnum();
-        Fall();
-        WallSlide();
-        Idle();
-        CrouchEnum();
 
+        CheckState();
+        
+
+        int dirSign = direction.x < 0 ? -1 : 1;
         //flip
-        if (direction.x < 0)
+        if (direction.x != 0)
         {
-            transform.rotation = Quaternion.Euler(0, -90, 0);
+            transform.rotation = Quaternion.Euler(0, dirSign * 90, 0);
 
             if (isGrounded && !isSprinting)
             {
-                playerStatus = PlayerStatus.Run;
-                isRunning = true;
+               
+                if (playerStatus == PlayerStatus.Crouch)
+                {
+                    playerStatus = PlayerStatus.CrouchRun;
+                } else
+                {
+                    playerStatus = PlayerStatus.Run;
+                }
             }
-            else
-            {
-                isRunning = false;
-            }
+            
+            
+                
+            
 
         }
-        if (direction.x > 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 90, 0);
-            if (isGrounded && !isSprinting)
-            {
-                playerStatus = PlayerStatus.Run;
-                isRunning = true;
-            }
-            else
-            {
-                isRunning = false;
-            }
-
-
-
-        }
+        
 
         //fallJump
-        if (rb.velocity.y < 0)
-        {
-            rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        if (rb.velocity.y < 0) rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
 
-        }
-        if (rb.velocity.y > 0)
-        {
-            rb.velocity += Vector3.up * Physics.gravity.y * (upMultiplier - 1) * Time.deltaTime;
-        }
+
+
+
+        if (rb.velocity.y > 0) rb.velocity += Vector3.up * Physics.gravity.y * (upMultiplier - 1) * Time.deltaTime;
+
+
+
 
         //timer for coyote time
         if (isGrounded)
@@ -170,17 +160,14 @@ public class PlayerController : MonoBehaviour
 
         jumpBufferGrounded -= Time.deltaTime;
 
-        //fall anim
-       
 
+        
     }
 
 
     private void FixedUpdate()
     {
         AddJumpForce();
-        
-
 
         //move
 
@@ -199,21 +186,35 @@ public class PlayerController : MonoBehaviour
         controls.Disable();
     }
 
+    private void CheckState()
+    {
+        if (isWallSliding)
+        {
+            WallSlide();
+        }
+        else if (rb.velocity.y < 0 && !isGrounded && !isWallSliding)
+        {
+            Fall();
+        }
+        else if (isCrouching)
+            CrouchEnum();
+        else if (isCrouchRunning) 
+            CrouchRunEnum();
+        else if (rb.velocity.x < 0.2f && rb.velocity.x > -0.2f && isGrounded)
+        {
+            Idle();
+        } 
+    }
+
     public void Idle()
     {
 
-        if (rb.velocity.x < 0.2f && rb.velocity.x > -0.2f && isGrounded)
-        {
-            playerStatus = PlayerStatus.Idle;
-        }
+        playerStatus = PlayerStatus.Idle;
     }
 
     public void Fall()
     {
-        if (rb.velocity.y < 0 && !isGrounded && !isWallSliding)
-        {
-            playerStatus = PlayerStatus.Fall;
-        }
+        playerStatus = PlayerStatus.Fall;
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -261,7 +262,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = Physics.Raycast(transform.position, -transform.up, 2.25f, groundMask);
-
+            if(isGrounded)Debug.Log("GROUNDED ON COLLISION");
 
         }
 
@@ -279,6 +280,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = Physics.Raycast(transform.position, -transform.up, 2.15f, groundMask);
+
+
+        }
         if (collision.gameObject.CompareTag("wallSlide") && !isGrounded && rb.velocity.y != 0)
         {
             isWallSliding = false;
@@ -321,6 +328,7 @@ public class PlayerController : MonoBehaviour
         {
             isSprinting = true;
             moveSpeed = sprintSpeed;
+            SprintEnum();
 
         }
         if (context.canceled)
@@ -344,13 +352,19 @@ public class PlayerController : MonoBehaviour
         if (context.started && isGrounded)
         {
             isCrouching = true;
-         
-            
+            if(isCrouching && playerStatus == PlayerStatus.Run)
+            {
+                isCrouchRunning = true;
+            }
           
         }
+              
+            
+        
         if (context.canceled)
         {
             isCrouching = false;
+            isCrouchRunning = false;
             
            
            
@@ -365,13 +379,10 @@ public class PlayerController : MonoBehaviour
             playerStatus = PlayerStatus.Crouch;
 
         }
-        //if (isCrouchRunning && isRunning && isGrounded)
-        //{
-            
+    }
 
-        //}
-
-
-
+    public void CrouchRunEnum()
+    {
+        if (isCrouchRunning) playerStatus = PlayerStatus.CrouchRun;
     }
 }
