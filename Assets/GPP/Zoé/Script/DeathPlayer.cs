@@ -18,6 +18,7 @@ public class DeathPlayer : MonoBehaviour
     {
         if(other.gameObject.tag == "Void" || other.gameObject.tag == "Enemy")
         {
+            Debug.Log("touché");
             Death();
         }
     }
