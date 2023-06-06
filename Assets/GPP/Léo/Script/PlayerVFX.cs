@@ -7,8 +7,9 @@ public class PlayerVFX : MonoBehaviour
 {
     public static PlayerVFX instance;
 
-    [SerializeField] private ParticleSystem particles;
+    [SerializeField] private ParticleSystem movementsParticles;
     private bool particlesStarted;
+    private Vector3 particlesStartLocalPos;
 
     [SerializeField] private ParticleSystem deathParticles;
 
@@ -21,17 +22,24 @@ public class PlayerVFX : MonoBehaviour
     private void Start()
     {
         particlesStarted = false;
+        particlesStartLocalPos = movementsParticles.transform.localPosition;
     }
     private void Update()
     {
-        ParticleSystem.MainModule mainModule = particles.main;
+        MovementsParticles();
+    }
+
+    public void MovementsParticles()
+    {
+        ParticleSystem.MainModule mainModule = movementsParticles.main;
         switch (PlayerController.instance.playerStatus)
         {
             case PlayerStatus.Run:
                 mainModule.startSpeed = 1f;
                 if (!particlesStarted)
                 {
-                    particles.Play();
+                    SetUpMovementParticlesPos();
+                    movementsParticles.Play();
                     particlesStarted = true;
                 }
                 break;
@@ -39,15 +47,24 @@ public class PlayerVFX : MonoBehaviour
                 mainModule.startSpeed = 2f;
                 if (!particlesStarted)
                 {
-                    particles.Play();
+                    SetUpMovementParticlesPos();
+                    movementsParticles.Play();
                     particlesStarted = true;
                 }
                 break;
             default:
-                particles.Stop();
+                movementsParticles.gameObject.transform.parent = null;
+                movementsParticles.Stop();
                 particlesStarted = false;
                 break;
         }
+    }
+
+    private void SetUpMovementParticlesPos()
+    {
+        movementsParticles.gameObject.transform.parent = gameObject.transform;
+        movementsParticles.gameObject.transform.localPosition = particlesStartLocalPos;
+        movementsParticles.gameObject.transform.rotation = PlayerController.instance.transform.rotation * Quaternion.Euler(0,180,0);
     }
 
     public void DeathParticles()
