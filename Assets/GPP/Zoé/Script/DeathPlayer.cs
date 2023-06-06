@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class DeathPlayer : MonoBehaviour
 {
+    public static DeathPlayer instance;
+
+    public float timeBetweenFade;
     public float timeToRespawn;
+    public float speedFade;
+    [HideInInspector] public bool isDead;
+
+    private void Awake()
+    {
+        if (instance) Destroy(this);
+        else instance = this;
+    }
     public void Death()
     {
-        Invoke("Respawn", timeToRespawn);
+        isDead = true;
         Mask.instance.timeRemaining = Mask.instance.duration;
-        FadeInFadeOut.instance.FadeIn();
+        FadeInFadeOut.instance.FadeIn(timeBetweenFade);
         Mask.instance.maskStatus = MaskStatus.Full;
         //SFX
 
@@ -28,5 +39,6 @@ public class DeathPlayer : MonoBehaviour
     {
         PlayerController.instance.GetComponent<Rigidbody>().position = PlayerController.instance.respawnPosition;
         PlayerVFX.instance.DeathParticles();
+        isDead = false;
     }
 }
