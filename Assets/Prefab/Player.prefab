@@ -316,6 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc709eb17ff6eec48b07884274015fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles: {fileID: 3384249770776491801}
 --- !u!1001 &6257013364388339093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -402,7 +403,7 @@ PrefabInstance:
     - target: {fileID: 8656522925564163052, guid: e509867be4f82f246a95eca1ee5a2d61,
         type: 3}
       propertyPath: m_Name
-      value: CFXR Smoke Source 3D
+      value: Smoke
       objectReference: {fileID: 0}
     - target: {fileID: 8656522925583160108, guid: e509867be4f82f246a95eca1ee5a2d61,
         type: 3}
@@ -484,9 +485,16 @@ PrefabInstance:
       propertyPath: InitialModule.gravityModifier.scalar
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114979979335704276, guid: e509867be4f82f246a95eca1ee5a2d61, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: e509867be4f82f246a95eca1ee5a2d61, type: 3}
+--- !u!198 &3384249770776491801 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8656522925583198860, guid: e509867be4f82f246a95eca1ee5a2d61,
+    type: 3}
+  m_PrefabInstance: {fileID: 6257013364388339093}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3384249770795889241 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8656522925563801548, guid: e509867be4f82f246a95eca1ee5a2d61,
