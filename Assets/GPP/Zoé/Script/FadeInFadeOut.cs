@@ -11,7 +11,7 @@ public class FadeInFadeOut : MonoBehaviour
     public bool fadeIn = false;
     public bool fadeOut = false;
 
-    public float timeToFade;
+    public float speedToFade;
     public float timeBetweenFade;
 
     private void Awake()
@@ -32,7 +32,8 @@ public class FadeInFadeOut : MonoBehaviour
         {
             if (canvasGroup.alpha < 1)
             {
-                canvasGroup.alpha += timeToFade * Time.deltaTime;
+                canvasGroup.alpha += speedToFade * Time.time;
+                Debug.Log(canvasGroup.alpha);
                 if (canvasGroup.alpha >= 1)
                 {
                     fadeIn = false;
@@ -43,7 +44,7 @@ public class FadeInFadeOut : MonoBehaviour
         {
             if (canvasGroup.alpha >= 0)
             {
-                canvasGroup.alpha -= timeToFade * Time.deltaTime;
+                canvasGroup.alpha -= speedToFade * Time.time;
                 if (canvasGroup.alpha == 0)
                 {
                     fadeOut = false;

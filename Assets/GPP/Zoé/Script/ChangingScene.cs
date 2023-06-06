@@ -18,7 +18,7 @@ public class ChangingScene : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             FadeInFadeOut.instance.FadeIn();
-            Invoke("GoTo", FadeInFadeOut.instance.timeToFade - 1f);
+            Invoke("GoTo", FadeInFadeOut.instance.speedToFade - 1f);
         }
     }
 }
