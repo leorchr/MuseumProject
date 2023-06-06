@@ -26,5 +26,6 @@ public class DeathPlayer : MonoBehaviour
     public void Respawn()
     {
         PlayerController.instance.GetComponent<Rigidbody>().position = PlayerController.instance.respawnPosition;
+        PlayerVFX.instance.DeathParticles();
     }
 }

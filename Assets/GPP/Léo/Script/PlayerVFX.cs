@@ -5,12 +5,21 @@ using UnityEngine;
 
 public class PlayerVFX : MonoBehaviour
 {
+    public static PlayerVFX instance;
+
     [SerializeField] private ParticleSystem particles;
     private bool particlesStarted;
 
+    [SerializeField] private ParticleSystem deathParticles;
+
+    private void Awake()
+    {
+        if (instance) Destroy(this);
+        else instance = this;
+    }
+
     private void Start()
     {
-        particles.Play();
         particlesStarted = false;
     }
     private void Update()
@@ -18,10 +27,6 @@ public class PlayerVFX : MonoBehaviour
         ParticleSystem.MainModule mainModule = particles.main;
         switch (PlayerController.instance.playerStatus)
         {
-            case PlayerStatus.Idle:
-                particles.Stop();
-                particlesStarted = false;
-                break;
             case PlayerStatus.Run:
                 mainModule.startSpeed = 1f;
                 if (!particlesStarted)
@@ -38,6 +43,15 @@ public class PlayerVFX : MonoBehaviour
                     particlesStarted = true;
                 }
                 break;
+            default:
+                particles.Stop();
+                particlesStarted = false;
+                break;
         }
+    }
+
+    public void DeathParticles()
+    {
+        deathParticles.Play();
     }
 }
