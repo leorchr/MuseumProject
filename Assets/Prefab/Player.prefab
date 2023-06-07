@@ -170,7 +170,6 @@ MonoBehaviour:
   rb: {fileID: 0}
   raycastPos: {fileID: 1234345174}
   distance: 0.1
-  sprite: {fileID: 5447403845026826376}
   walkSpeed: 4.5
   sprintSpeed: 8
   smoothTime: 0.16
