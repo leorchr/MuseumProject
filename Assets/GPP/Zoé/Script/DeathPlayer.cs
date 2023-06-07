@@ -20,10 +20,10 @@ public class DeathPlayer : MonoBehaviour
     {
         isDead = true;
         Mask.instance.timeRemaining = Mask.instance.duration;
-        FadeInFadeOut.instance.FadeIn(timeBetweenFade);
         Mask.instance.maskStatus = MaskStatus.Full;
+        //FadeInFadeOut.instance.FadeIn(timeBetweenFade);
         //SFX
-
+        Respawn();
     }
 
     public void OnTriggerEnter(Collider other)
