@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private InputAction controls;
     [SerializeField] private Transform raycastPos;
     [SerializeField] private float distance = 1f;
+    [SerializeField] private GameObject sprite;
 
     #endregion
 
@@ -378,14 +379,22 @@ public class PlayerController : MonoBehaviour
         {
             isCrouching = false;
             isCrouchRunning = false;
+            sprite.transform.localScale = new Vector3(2.0f, 2.0f, 2.0f);
         }
 
     }
 
     public void CrouchEnum()
     {
-        if (isCrouching) playerStatus = PlayerStatus.Crouch;
-
+        if (isCrouching)
+        {
+            playerStatus = PlayerStatus.Crouch;
+            sprite.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        }
+         
+        
+            
+        
     }
 
     public void CrouchRunEnum()
