@@ -247,7 +247,7 @@ public class PlayerController : MonoBehaviour
     public void Jump(InputAction.CallbackContext context)
     {
 
-        if ((jumpBufferGrounded > 0f) && coyoteTimeGrounded > 0f)
+        if ((jumpBufferGrounded > 0f) && coyoteTimeGrounded > 0f && !isCrouching)
         {
             isHolding = true;
             jumpBufferGrounded = 0;
