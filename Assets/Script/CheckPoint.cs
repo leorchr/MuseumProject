@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-    [SerializeField] private Material materialDone;
     [SerializeField] private MeshRenderer startMesh;
+    [SerializeField] private Material doneMaterial;
+
+    [SerializeField] private MeshRenderer signMesh;
+    [SerializeField] private Material signMaterial;
+
+
     [SerializeField] private bool onlyOnce = false;
     private bool check = false;
 
@@ -15,7 +20,8 @@ public class CheckPoint : MonoBehaviour
         {
             //Debug.Log("New Checkpoint set to : " + transform.position);
             PlayerController.instance.respawnPosition = transform.position;
-            startMesh.material = materialDone;
+            startMesh.material = doneMaterial;
+            signMesh.material = signMaterial;
             //mettre un sfx
             if (onlyOnce) check = true;
         }

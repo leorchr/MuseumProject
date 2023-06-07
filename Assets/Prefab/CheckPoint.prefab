@@ -198,8 +198,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4adeff24c87eb2b4e805d9c2c15fc2e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialDone: {fileID: 2100000, guid: a70f948de8caecf45ae0c1bdcb857d5b, type: 2}
   startMesh: {fileID: 1446265978674273916}
+  doneMaterial: {fileID: 2100000, guid: a70f948de8caecf45ae0c1bdcb857d5b, type: 2}
+  signMesh: {fileID: 4680923407932899228}
+  signMaterial: {fileID: 2100000, guid: 8a41461bbb5f45f4eb4ebf3738db18f4, type: 2}
   onlyOnce: 1
 --- !u!65 &105585065
 BoxCollider:
