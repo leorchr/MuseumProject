@@ -1,9 +1,11 @@
 
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 
 public enum PlayerStatus
@@ -30,6 +32,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public Rigidbody rb;
     private InputAction controls;
+    [SerializeField] private Transform raycastPos;
+    [SerializeField] private float distance = 1f;
 
     #endregion
 
@@ -54,6 +58,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool isRunning = false;
     private Vector3 movementForce;
+
     #endregion
 
     #region Jump
@@ -94,6 +99,14 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool isSprinting = false;
 
+    #region Debug
+
+    [SerializeField] private bool visualDebugging;
+    [SerializeField] private Color color = new Color(0f, 0f, 1f, 1f);
+
+
+    #endregion
+
 
     private void Awake()
     {
@@ -110,7 +123,7 @@ public class PlayerController : MonoBehaviour
     {
 
         CheckState();
-        
+
 
         int dirSign = direction.x < 0 ? -1 : 1;
         //flip
@@ -120,22 +133,23 @@ public class PlayerController : MonoBehaviour
 
             if (isGrounded && !isSprinting)
             {
-               
+
                 if (playerStatus == PlayerStatus.Crouch)
                 {
                     playerStatus = PlayerStatus.CrouchRun;
-                } else
+                }
+                else
                 {
                     playerStatus = PlayerStatus.Run;
                 }
             }
-            
-            
-                
-            
+
+
+
+
 
         }
-        
+
 
         //fallJump
         if (rb.velocity.y < 0) rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
@@ -161,7 +175,7 @@ public class PlayerController : MonoBehaviour
         jumpBufferGrounded -= Time.deltaTime;
 
 
-        
+
     }
 
 
@@ -198,12 +212,12 @@ public class PlayerController : MonoBehaviour
         }
         else if (isCrouching)
             CrouchEnum();
-        else if (isCrouchRunning) 
+        else if (isCrouchRunning)
             CrouchRunEnum();
         else if (rb.velocity.x < 0.2f && rb.velocity.x > -0.2f && isGrounded)
         {
             Idle();
-        } 
+        }
     }
 
     public void Idle()
@@ -223,9 +237,9 @@ public class PlayerController : MonoBehaviour
         {
             moveSpeed = walkSpeed;
         }
-        
-            
-        
+
+
+
         direction = context.ReadValue<Vector2>();
 
     }
@@ -261,15 +275,16 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = Physics.Raycast(transform.position, -transform.up, 2.25f, groundMask);
-            if(isGrounded)Debug.Log("GROUNDED ON COLLISION");
+            isGrounded = Physics.OverlapSphere(raycastPos.position,distance, groundMask).Length>0;
+            //if (isGrounded) Debug.Log("GROUNDED ON COLLISION");
+            //else Debug.Log("Not grounded");
 
         }
 
         if (collision.gameObject.CompareTag("wallSlide") && !isGrounded && rb.velocity.y != 0)
         {
             isWallSliding = true;
-           
+
 
         }
         else
@@ -282,7 +297,9 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = Physics.Raycast(transform.position, -transform.up, 2.15f, groundMask);
+            
+            isGrounded = Physics.OverlapSphere(raycastPos.position, distance, groundMask).Length > 0;
+            //if (isGrounded) Debug.Log("GROUNDED ON EXIT COLLISION");
 
 
         }
@@ -315,10 +332,8 @@ public class PlayerController : MonoBehaviour
 
     public void AddJumpForce()
     {
-        if (isHolding)
-        {
-            rb.AddForce(Vector3.up * holdJumpForce, ForceMode.Impulse);
-        }
+        if (isHolding) rb.AddForce(Vector3.up * holdJumpForce, ForceMode.Impulse);
+        
     }
 
 
@@ -340,10 +355,8 @@ public class PlayerController : MonoBehaviour
 
     public void SprintEnum()
     {
-        if (isSprinting)
-        {
-            playerStatus = PlayerStatus.Sprint;
-        }
+        if (isSprinting) playerStatus = PlayerStatus.Sprint;
+       
     }
 
 
@@ -352,37 +365,46 @@ public class PlayerController : MonoBehaviour
         if (context.started && isGrounded)
         {
             isCrouching = true;
-            if(isCrouching && playerStatus == PlayerStatus.Run)
+            if (isCrouching && playerStatus == PlayerStatus.Run)
             {
                 isCrouchRunning = true;
             }
-          
+
         }
-              
-            
-        
+
+
+
         if (context.canceled)
         {
             isCrouching = false;
             isCrouchRunning = false;
-            
-           
-           
         }
 
     }
 
     public void CrouchEnum()
     {
-        if (isCrouching)
-        {
-            playerStatus = PlayerStatus.Crouch;
+        if (isCrouching) playerStatus = PlayerStatus.Crouch;
 
-        }
     }
 
     public void CrouchRunEnum()
     {
         if (isCrouchRunning) playerStatus = PlayerStatus.CrouchRun;
     }
+
+
+#if UNITY_EDITOR
+
+    private void OnDrawGizmosSelected()
+    {
+        if (!visualDebugging)
+            return;
+        Gizmos.color = color;
+        if (visualDebugging) Gizmos.DrawWireSphere(raycastPos.position, distance);
+    
+    }
+
+#endif
+
 }
