@@ -19,7 +19,7 @@ public class PlayerAnimation : MonoBehaviour
         switch (playerControler.playerStatus)
         {
             case PlayerStatus.Idle:
-
+                
                 break;
 
             case PlayerStatus.Run:
