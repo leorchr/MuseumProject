@@ -58,7 +58,6 @@ public class PlayerController : MonoBehaviour
     public Vector2 direction;
     [HideInInspector]
     public bool isRunning = false;
-    private Vector3 movementForce;
 
     #endregion
 
@@ -142,6 +141,7 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     playerStatus = PlayerStatus.Run;
+                    
                 }
             }
 
@@ -340,8 +340,9 @@ public class PlayerController : MonoBehaviour
 
     public void Sprint(InputAction.CallbackContext context)
     {
-        if (context.started && isGrounded)
+        if (context.started && isGrounded && !isCrouching && !isCrouchRunning)
         {
+            Debug.Log("sprint");
             isSprinting = true;
             moveSpeed = sprintSpeed;
             SprintEnum();
@@ -363,7 +364,7 @@ public class PlayerController : MonoBehaviour
 
     public void Crouch(InputAction.CallbackContext context)
     {
-        if (context.started && isGrounded)
+        if (context.started && isGrounded && !isSprinting)
         {
             isCrouching = true;
             if (isCrouching && playerStatus == PlayerStatus.Run)
