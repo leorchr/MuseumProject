@@ -247,7 +247,7 @@ public class PlayerController : MonoBehaviour
     public void Jump(InputAction.CallbackContext context)
     {
 
-        if ((jumpBufferGrounded > 0f) && coyoteTimeGrounded > 0f)
+        if ((jumpBufferGrounded > 0f) && coyoteTimeGrounded > 0f && !isCrouching)
         {
             isHolding = true;
             jumpBufferGrounded = 0;
@@ -339,7 +339,7 @@ public class PlayerController : MonoBehaviour
 
     public void Sprint(InputAction.CallbackContext context)
     {
-        if (context.started && isGrounded)
+        if (context.started && isGrounded && !isCrouching && !isCrouchRunning)
         {
             isSprinting = true;
             moveSpeed = sprintSpeed;
@@ -362,7 +362,7 @@ public class PlayerController : MonoBehaviour
 
     public void Crouch(InputAction.CallbackContext context)
     {
-        if (context.started && isGrounded)
+        if (context.started && isGrounded && !isSprinting)
         {
             isCrouching = true;
             if (isCrouching && playerStatus == PlayerStatus.Run)
