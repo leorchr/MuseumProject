@@ -228,7 +228,7 @@
                     "name": "",
                     "id": "c7de574a-5f54-474c-9f80-c894beccce74",
                     "path": "<Gamepad>/rightTrigger",
-                    "interactions": "Hold(duration=0.1)",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "Controller",
                     "action": "Sprint",
