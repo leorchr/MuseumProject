@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1234345173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1234345174}
+  m_Layer: 3
+  m_Name: raycast
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1234345174
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234345173}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.01, y: -0.52, z: -0.008}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5447403845026826380}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5447403845026826376
 GameObject:
   m_ObjectHideFlags: 0
@@ -18,6 +49,7 @@ GameObject:
   - component: {fileID: 7835575041832138278}
   - component: {fileID: 7047101124286688437}
   - component: {fileID: 2566482896594684431}
+  - component: {fileID: 1369477505}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -34,11 +66,12 @@ Transform:
   m_GameObject: {fileID: 5447403845026826376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.88, y: 4.46, z: -12.2}
-  m_LocalScale: {x: 3.6075, y: 3.6075, z: 3.6075}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3384249770795889241}
   - {fileID: 3574425671502189571}
+  - {fileID: 1234345174}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -135,6 +168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStatus: 0
   rb: {fileID: 0}
+  raycastPos: {fileID: 1234345174}
+  distance: 0.1
   walkSpeed: 4.5
   sprintSpeed: 8
   smoothTime: 0.16
@@ -159,6 +194,8 @@ MonoBehaviour:
   isCrouchRunning: 0
   respawnPosition: {x: 0, y: 0, z: 0}
   isSprinting: 0
+  visualDebugging: 1
+  color: {r: 0, g: 0, b: 0.41509432, a: 1}
 --- !u!114 &5447403845026826370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,7 +357,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementsParticles: {fileID: 3384249770776491801}
-  jumpParticles: {fileID: 0}
   deathParticles: {fileID: 3574425671502189629}
 --- !u!114 &2566482896594684431
 MonoBehaviour:
@@ -334,7 +370,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 931f27d45f8315d46b6b7bc26ea0cf2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBetweenFade: 0
   timeToRespawn: 1
+  speedFade: 0
+  isDead: 0
+--- !u!95 &1369477505
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5447403845026826376}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 66d81a7d3a394c44fb17dbcdfaf552f1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2025590623153823089
 PrefabInstance:
   m_ObjectHideFlags: 0
