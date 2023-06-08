@@ -11,7 +11,8 @@ public class PlayerVFX : MonoBehaviour
     private bool particlesStarted;
     private Vector3 particlesStartLocalPos;
 
-    [SerializeField] private ParticleSystem deathParticles;
+    [SerializeField] private GameObject respawnParticles;
+    [HideInInspector] public Transform respawnParticlesPos;
 
     private void Awake()
     {
@@ -69,6 +70,6 @@ public class PlayerVFX : MonoBehaviour
 
     public void DeathParticles()
     {
-        deathParticles.Play();
+        Instantiate(respawnParticles, respawnParticlesPos.position, Quaternion.identity);
     }
 }

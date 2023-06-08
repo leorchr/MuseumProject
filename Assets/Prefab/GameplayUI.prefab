@@ -344,9 +344,10 @@ GameObject:
   - component: {fileID: 6417557273963427302}
   - component: {fileID: 6417557273963427303}
   - component: {fileID: 6417557273963427296}
+  - component: {fileID: 7887086475457100834}
+  - component: {fileID: 7604076719303115894}
   - component: {fileID: 6417557273963427300}
   - component: {fileID: 210901718}
-  - component: {fileID: 4342173710322803277}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -439,6 +440,38 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7887086475457100834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6417557273963427297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55c085c5f9e88234983f6cdbdb1e1644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageFade: {fileID: 1358777267}
+  canvasGroup: {fileID: 1358777270}
+  speedToFade: 2
+  timeBetweenFade: 1
+--- !u!114 &7604076719303115894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6417557273963427297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62dce27faa2f6534cab7f2c5a14d42eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageFade: {fileID: 1358777267}
+  canvasGroup: {fileID: 1358777270}
+  speedToFade: 2
+  timeBetweenFade: 2
 --- !u!114 &6417557273963427300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,24 +500,6 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 6468004573211327626}
   resume: {fileID: 6468004572764009800}
   volumeSlider: {fileID: 6468004573305095390}
---- !u!114 &4342173710322803277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6417557273963427297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c55f49e0016aaab428a90dc95772bde9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  imageFade: {fileID: 1358777267}
-  canvasGroup: {fileID: 1358777270}
-  fadeIn: 0
-  fadeOutChangingScene: 0
-  fadeOutDeath: 0
-  speedToFade: 1
 --- !u!1 &6417557274235403643
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,7 +882,7 @@ Transform:
   - {fileID: 6417557273963427301}
   - {fileID: 6468004571495188128}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6468004572595337338
 GameObject:

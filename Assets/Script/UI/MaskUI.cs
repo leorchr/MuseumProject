@@ -5,7 +5,15 @@ using UnityEngine.UI;
 
 public class MaskUI : MonoBehaviour
 {
-    [SerializeField] private Slider maskSlider;
+    public static MaskUI instance;
+    
+    public Slider maskSlider;
+    
+    private void Awake()
+    {
+        if (instance) Destroy(this);
+        else instance = this;
+    }
 
     private void Start()
     {

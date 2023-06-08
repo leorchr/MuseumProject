@@ -10,6 +10,8 @@ public class CheckPoint : MonoBehaviour
     [SerializeField] private MeshRenderer signMesh;
     [SerializeField] private Material signMaterial;
 
+    [SerializeField] private Transform respawnPos;
+    [SerializeField] private Transform respawnVfxPos;
 
     [SerializeField] private bool onlyOnce = false;
     private bool check = false;
@@ -19,7 +21,8 @@ public class CheckPoint : MonoBehaviour
         if (other.gameObject.tag == "Player" && !check)
         {
             //Debug.Log("New Checkpoint set to : " + transform.position);
-            PlayerController.instance.respawnPosition = transform.position;
+            PlayerController.instance.respawnPosition = respawnPos.position;
+            PlayerVFX.instance.respawnParticlesPos = respawnVfxPos;
             startMesh.material = doneMaterial;
             signMesh.material = signMaterial;
             //mettre un sfx
