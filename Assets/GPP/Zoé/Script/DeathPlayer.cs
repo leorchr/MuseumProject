@@ -13,6 +13,7 @@ public class DeathPlayer : MonoBehaviour
     }
     public void Death()
     {
+        Mask.instance.PlateformOff();
         Mask.instance.timeRemaining = Mask.instance.duration;
         Mask.instance.maskStatus = MaskStatus.Full;
         //bloqué les mouvements du joueur
