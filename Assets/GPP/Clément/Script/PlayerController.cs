@@ -91,7 +91,12 @@ public class PlayerController : MonoBehaviour
     #region Crouch
     [HideInInspector]
     public bool isCrouching = false;
+    [HideInInspector]
     public bool isCrouchRunning = false;
+
+    public bool headTouch = false;
+    [SerializeField] private Transform headRaycast;
+   
     #endregion
 
     [HideInInspector]
@@ -106,7 +111,6 @@ public class PlayerController : MonoBehaviour
 
 
     #endregion
-
 
     private void Awake()
     {
@@ -144,10 +148,6 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-
-
-
-
         }
 
 
@@ -173,8 +173,6 @@ public class PlayerController : MonoBehaviour
         }
 
         jumpBufferGrounded -= Time.deltaTime;
-
-
 
     }
 
@@ -233,15 +231,9 @@ public class PlayerController : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            moveSpeed = walkSpeed;
-        }
-
-
-
+        if (context.performed) moveSpeed = walkSpeed;
+        
         direction = context.ReadValue<Vector2>();
-
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -343,6 +335,7 @@ public class PlayerController : MonoBehaviour
         {
             isSprinting = true;
             moveSpeed = sprintSpeed;
+            Debug.Log("sprint");
             SprintEnum();
 
         }
@@ -365,6 +358,8 @@ public class PlayerController : MonoBehaviour
         if (context.started && isGrounded && !isSprinting)
         {
             isCrouching = true;
+            headTouch = Physics.OverlapSphere(headRaycast.position, distance, groundMask).Length > 0;
+
             if (isCrouching && playerStatus == PlayerStatus.Run)
             {
                 isCrouchRunning = true;
@@ -372,13 +367,16 @@ public class PlayerController : MonoBehaviour
 
         }
 
-
-
-        if (context.canceled)
+        if(headTouch == false)
         {
-            isCrouching = false;
-            isCrouchRunning = false;
+            if (context.canceled)
+            {
+                isCrouching = false;
+                isCrouchRunning = false;
+            }
         }
+
+       
 
     }
 
@@ -401,8 +399,11 @@ public class PlayerController : MonoBehaviour
         if (!visualDebugging)
             return;
         Gizmos.color = color;
-        if (visualDebugging) Gizmos.DrawWireSphere(raycastPos.position, distance);
-    
+        if (visualDebugging)
+        {
+            Gizmos.DrawWireSphere(raycastPos.position, distance);
+            Gizmos.DrawWireSphere(headRaycast.position, distance);
+        }
     }
 
 #endif
