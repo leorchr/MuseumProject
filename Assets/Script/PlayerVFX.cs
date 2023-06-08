@@ -8,8 +8,12 @@ public class PlayerVFX : MonoBehaviour
     public static PlayerVFX instance;
 
     [SerializeField] private ParticleSystem movementsParticles;
-    private bool particlesStarted;
-    private Vector3 particlesStartLocalPos;
+    private bool movementsStarted;
+    private Vector3 movementsStartLocalPos;
+
+    [SerializeField] private ParticleSystem slideParticles;
+    private bool slideStarted;
+    private Vector3 slideStartLocalPos;
 
     [SerializeField] private GameObject respawnParticles;
     [HideInInspector] public Transform respawnParticlesPos;
@@ -22,13 +26,18 @@ public class PlayerVFX : MonoBehaviour
 
     private void Start()
     {
-        particlesStarted = false;
-        particlesStartLocalPos = movementsParticles.transform.localPosition;
+        movementsStarted = false;
+        movementsStartLocalPos = movementsParticles.transform.localPosition;
+        slideStarted = false;
+        slideStartLocalPos = slideParticles.transform.localPosition;
     }
     private void Update()
     {
         MovementsParticles();
+        SlideParticles();
     }
+
+    #region Movements
 
     public void MovementsParticles()
     {
@@ -37,26 +46,26 @@ public class PlayerVFX : MonoBehaviour
         {
             case PlayerStatus.Run:
                 mainModule.startSpeed = 1f;
-                if (!particlesStarted)
+                if (!movementsStarted)
                 {
                     SetUpMovementParticlesPos();
                     movementsParticles.Play();
-                    particlesStarted = true;
+                    movementsStarted = true;
                 }
                 break;
             case PlayerStatus.Sprint:
                 mainModule.startSpeed = 2f;
-                if (!particlesStarted)
+                if (!movementsStarted)
                 {
                     SetUpMovementParticlesPos();
                     movementsParticles.Play();
-                    particlesStarted = true;
+                    movementsStarted = true;
                 }
                 break;
             default:
                 movementsParticles.gameObject.transform.parent = null;
                 movementsParticles.Stop();
-                particlesStarted = false;
+                movementsStarted = false;
                 break;
         }
     }
@@ -64,9 +73,43 @@ public class PlayerVFX : MonoBehaviour
     private void SetUpMovementParticlesPos()
     {
         movementsParticles.gameObject.transform.parent = gameObject.transform;
-        movementsParticles.gameObject.transform.localPosition = particlesStartLocalPos;
-        movementsParticles.gameObject.transform.rotation = PlayerController.instance.transform.rotation * Quaternion.Euler(0,180,0);
+        movementsParticles.gameObject.transform.localPosition = movementsStartLocalPos;
+        movementsParticles.gameObject.transform.rotation = PlayerController.instance.transform.rotation * Quaternion.Euler(0, 180, 0);
     }
+
+    #endregion
+
+    #region Wall Slide
+
+    public void SlideParticles()
+    {
+        ParticleSystem.MainModule mainModule = movementsParticles.main;
+        switch (PlayerController.instance.playerStatus)
+        {
+            case PlayerStatus.WallSlide:
+                if (!slideStarted)
+                {
+                    SetUpSlideParticlesPos();
+                    slideParticles.Play();
+                    slideStarted = true;
+                }
+                break;
+            default:
+                slideParticles.gameObject.transform.parent = null;
+                slideParticles.Stop();
+                slideStarted = false;
+                break;
+        }
+    }
+
+    private void SetUpSlideParticlesPos()
+    {
+        slideParticles.gameObject.transform.parent = gameObject.transform;
+        slideParticles.gameObject.transform.localPosition = slideStartLocalPos;
+        slideParticles.gameObject.transform.rotation = Quaternion.Euler(-90, 0, 0);
+    }
+
+    #endregion
 
     public void DeathParticles()
     {
