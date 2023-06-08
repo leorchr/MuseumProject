@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8656522925583198860}
   - component: {fileID: 8656522925583160108}
   m_Layer: 0
-  m_Name: Dust
+  m_Name: Slide
   m_TagString: FxTemporaire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -634,7 +634,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: -0.12, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 0.8, y: 0.26, z: 1}
+    m_Scale: {x: 0.4, y: 0.08, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
