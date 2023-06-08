@@ -19,11 +19,12 @@ public class PlayerAnimation : MonoBehaviour
         switch (playerControler.playerStatus)
         {
             case PlayerStatus.Idle:
-                
+                Debug.Log("Idle");
+                animator.SetTrigger("Idle");
                 break;
-
             case PlayerStatus.Run:
-
+                Debug.Log("Run");
+                animator.SetTrigger("Run");
                 break;
 
             case PlayerStatus.Sprint:
