@@ -30,6 +30,10 @@ public class Mask : MonoBehaviour
 
     public float speedReduction;
 
+    [Header("Sound")]
+    public AudioSource audioSource;
+    public AudioClip[] clip;
+
 
     PlatformVisibility[] allPlatforms;
     bool maskPlatforms = true;
@@ -59,6 +63,7 @@ public class Mask : MonoBehaviour
         {
             case MaskStatus.Using:
                 timeRemaining = duration - (duration - currentTimeRemaining) - (Time.time - timeActivation);
+                //AudioManager.instance.PlaySFX(clip[0], audioSource);
                 if (timeRemaining <= 0)
                 {
                     PlateformOff();
