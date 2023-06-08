@@ -28,7 +28,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        Movements();
+        if(target.Length > 1) Movements();
     }
 
     private void SelectNextTarget()

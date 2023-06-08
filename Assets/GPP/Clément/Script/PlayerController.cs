@@ -93,7 +93,6 @@ public class PlayerController : MonoBehaviour
     public bool isCrouching = false;
     [HideInInspector]
     public bool isCrouchRunning = false;
-
     public bool headTouch = false;
     [SerializeField] private Transform headRaycast;
    
