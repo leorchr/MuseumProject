@@ -6,11 +6,6 @@ public class DeathPlayer : MonoBehaviour
 {
     public static DeathPlayer instance;
 
-    public float timeBetweenFade;
-    public float timeToRespawn;
-    public float speedFade;
-    [HideInInspector] public bool isDead;
-
     private void Awake()
     {
         if (instance) Destroy(this);
@@ -18,12 +13,12 @@ public class DeathPlayer : MonoBehaviour
     }
     public void Death()
     {
-        isDead = true;
         Mask.instance.timeRemaining = Mask.instance.duration;
         Mask.instance.maskStatus = MaskStatus.Full;
-        //FadeInFadeOut.instance.FadeIn(timeBetweenFade);
+        //bloqué les mouvements du joueur
+        FadeDeath.instance.FadeIn();
         //SFX
-        Respawn();
+        //Respawn();
     }
 
     public void OnTriggerEnter(Collider other)
@@ -39,6 +34,5 @@ public class DeathPlayer : MonoBehaviour
     {
         PlayerController.instance.GetComponent<Rigidbody>().position = PlayerController.instance.respawnPosition;
         PlayerVFX.instance.DeathParticles();
-        isDead = false;
     }
 }

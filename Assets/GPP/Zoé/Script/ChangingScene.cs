@@ -10,8 +10,6 @@ public class ChangingScene : MonoBehaviour
 
     public string targetScene;
 
-    [HideInInspector] public bool isChanging;
-
     public float timeBetweenFade;
     public float speedFade;
 
@@ -29,9 +27,7 @@ public class ChangingScene : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            isChanging = true;
-            FadeInFadeOut.instance.FadeIn(timeBetweenFade);
-            Invoke("GoTo", timeBetweenFade - 1f);
+            FadeChangingScene.instance.FadeIn();
         }
     }
 }
