@@ -131,10 +131,11 @@ Transform:
   m_LocalScale: {x: 0.9, y: 0.5, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5192397756804907914}
   - {fileID: 3156251244648773922}
+  - {fileID: 7721938277053730119}
+  - {fileID: 2280177264579731706}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1446265978674273917
 MeshFilter:
@@ -202,6 +203,8 @@ MonoBehaviour:
   doneMaterial: {fileID: 2100000, guid: a70f948de8caecf45ae0c1bdcb857d5b, type: 2}
   signMesh: {fileID: 4680923407932899228}
   signMaterial: {fileID: 2100000, guid: 8a41461bbb5f45f4eb4ebf3738db18f4, type: 2}
+  respawnPos: {fileID: 7721938277053730119}
+  respawnVfxPos: {fileID: 2280177264579731706}
   onlyOnce: 1
 --- !u!65 &105585065
 BoxCollider:
@@ -234,7 +237,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!1 &3720402395314801221
+--- !u!1 &3236321740104727425
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -242,7 +245,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5192397756804907914}
+  - component: {fileID: 7721938277053730119}
   m_Layer: 0
   m_Name: RespawnPos
   m_TagString: Untagged
@@ -250,15 +253,46 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5192397756804907914
+--- !u!4 &7721938277053730119
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3720402395314801221}
+  m_GameObject: {fileID: 3236321740104727425}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.499998, z: -7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1446265978674273918}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3721934246467019418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2280177264579731706}
+  m_Layer: 0
+  m_Name: RespawnVfxPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2280177264579731706
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3721934246467019418}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -5, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
