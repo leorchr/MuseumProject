@@ -146,6 +146,10 @@ public class PlayerController : MonoBehaviour
                     playerStatus = PlayerStatus.Run;
                 }
             }
+            if(isSprinting && isGrounded)
+            {
+                playerStatus = PlayerStatus.Sprint;
+            }
 
         }
 
@@ -211,7 +215,7 @@ public class PlayerController : MonoBehaviour
             CrouchEnum();
         else if (isCrouchRunning)
             CrouchRunEnum();
-        else if (rb.velocity.x < 0.2f && rb.velocity.x > -0.2f && isGrounded)
+        else if (rb.velocity.x < 0.2f && rb.velocity.x > -0.2f && isGrounded && !isRunning)
         {
             Idle();
         }
@@ -236,6 +240,7 @@ public class PlayerController : MonoBehaviour
             if (isSprinting)
             {
                 moveSpeed = sprintSpeed;
+                playerStatus = PlayerStatus.Sprint;
             }
         }
             
@@ -342,7 +347,6 @@ public class PlayerController : MonoBehaviour
         {
             isSprinting = true;
             moveSpeed = sprintSpeed;
-            Debug.Log("sprint");
             SprintEnum();
 
         }

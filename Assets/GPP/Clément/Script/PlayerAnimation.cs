@@ -46,6 +46,7 @@ public class PlayerAnimation : MonoBehaviour
             case PlayerStatus.CrouchRun:
 
                 break;
+           
 
         }
     }
