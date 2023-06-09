@@ -10,6 +10,9 @@ public class MaskManager : MonoBehaviour
     private bool isActive = false;
     [SerializeField] private Mask mask;
 
+    [Header("SFX")]
+    public AudioClip audioClip;
+
     private void Start()
     {
         mask = GetComponent<Mask>();
@@ -42,6 +45,8 @@ public class MaskManager : MonoBehaviour
             {
                 mask.enabled = true;
                 MaskUI.instance.maskSlider.gameObject.SetActive(true);
+                AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+                AudioManager.instance.PlaySFX(audioClip, audioSource, 6.4f, 0.05f);
                 isActive = true;
             }
         }

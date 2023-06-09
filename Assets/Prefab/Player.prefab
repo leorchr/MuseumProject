@@ -379,6 +379,9 @@ MonoBehaviour:
   timeRemaining: 0
   maskStatus: 0
   speedReduction: 0
+  energies: 0
+  audioSource: {fileID: 0}
+  clip: []
 --- !u!114 &1740109258364519763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,6 +395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mask: {fileID: 7835575041832138278}
+  audioClip: {fileID: 8300000, guid: f71f47f8ea5f19842a5bf558bbe459ba, type: 3}
 --- !u!114 &7047101124286688437
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,10 +14,23 @@ public class AudioManager : MonoBehaviour
         else instance = this;
     }
 
-    public void PlaySFX(AudioClip clip, AudioSource source)
+    /// <summary>
+    /// Cette fonction joue un son à un moment spécifique
+    /// </summary>
+    public void PlaySFX(AudioClip clip, AudioSource source, float startTime = 0f, float volume = 1f)
     {
         source.clip = clip;
-        source.Play();
+        source.volume = volume;
+        if (startTime > source.clip.length)
+        {
+            Debug.LogWarning("Le son est plus court que " + startTime + " secondes");
+            source.Play();
+        }
+        else
+        {
+            source.time = startTime;
+            source.Play();
+        }
     }
 
     public void PlayRandomSFX(AudioClip[] clip, AudioSource source)
