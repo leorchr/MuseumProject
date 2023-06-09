@@ -7,6 +7,10 @@ public class StatueDetection : MonoBehaviour
 {
     [SerializeField] private GameObject statueEyes;
 
+    [Header("SFX")]
+    public AudioClip audioClip;
+    public AudioSource audioSource;
+
     private void Start()
     {
         statueEyes.SetActive(false);
@@ -18,6 +22,7 @@ public class StatueDetection : MonoBehaviour
         {
             statueEyes.SetActive(true);
             GetComponent<StatueDetection>().enabled = false;
+            AudioManager.instance.PlaySFX(audioClip, audioSource);
         }
     }
 }

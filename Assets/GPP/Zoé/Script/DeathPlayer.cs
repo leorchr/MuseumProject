@@ -5,17 +5,26 @@ using UnityEngine;
 public class DeathPlayer : MonoBehaviour
 {
     public static DeathPlayer instance;
+    private Mask mask;
 
     private void Awake()
     {
         if (instance) Destroy(this);
         else instance = this;
     }
+
+    private void Start()
+    {
+        mask = GetComponent<Mask>();
+    }
     public void Death()
     {
-        Mask.instance.PlateformOff();
-        Mask.instance.timeRemaining = Mask.instance.duration;
-        Mask.instance.maskStatus = MaskStatus.Full;
+        if (mask.enabled)
+        {
+            Mask.instance.PlateformOff();
+            Mask.instance.timeRemaining = Mask.instance.duration;
+            Mask.instance.maskStatus = MaskStatus.Full;
+        }
         //bloqué les mouvements du joueur
         FadeDeath.instance.FadeIn();
         //SFX

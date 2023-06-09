@@ -230,7 +230,15 @@ public class PlayerController : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        if (context.performed) moveSpeed = walkSpeed;
+        if (context.performed)
+        {
+            moveSpeed = walkSpeed;
+            if (isSprinting)
+            {
+                moveSpeed = sprintSpeed;
+            }
+        }
+            
         
         direction = context.ReadValue<Vector2>();
     }

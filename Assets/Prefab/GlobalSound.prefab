@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4932054561724326839}
   - component: {fileID: 3087473835102573698}
   - component: {fileID: 2258231350452576500}
+  - component: {fileID: 30969937}
   m_Layer: 0
   m_Name: GlobalSound
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &3087473835102573698
 AudioSource:
@@ -146,3 +147,15 @@ MonoBehaviour:
   slider: {fileID: 0}
   audioSource: {fileID: 3087473835102573698}
   timeWanted: 81
+--- !u!114 &30969937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6528675843880911387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb66605bd9d6dc48bd6fb4d2eeb33ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
