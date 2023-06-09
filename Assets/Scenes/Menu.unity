@@ -745,7 +745,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1472709085}
         m_TargetAssemblyTypeName: MenuSounds, Assembly-CSharp
-        m_MethodName: ButtonClickSound
+        m_MethodName: NavigationSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2232,8 +2232,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1472709086}
-  menuNavigation: {fileID: 8300000, guid: bc3d78ef008932f4cb8c89447a7f83f4, type: 3}
-  buttonClick: {fileID: 8300000, guid: f4c1be3f3e4e59f4e9b3bbc79898f91d, type: 3}
+  menuNavigation: {fileID: 8300000, guid: f4c1be3f3e4e59f4e9b3bbc79898f91d, type: 3}
+  buttonClick: {fileID: 8300000, guid: a52c586a38ad83e4fab0a5416863ce4b, type: 3}
 --- !u!82 &1472709086
 AudioSource:
   m_ObjectHideFlags: 0

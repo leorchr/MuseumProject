@@ -28,23 +28,24 @@ public class PlayerAnimation : MonoBehaviour
                 break;
 
             case PlayerStatus.Sprint:
-
-
+                animator.SetTrigger("Sprint");
                 break;
 
             case PlayerStatus.WallSlide:
-
+                animator.SetTrigger("WallSlide");
                 break;
-
+            case PlayerStatus.Jump:
+                animator.SetTrigger("Jump");
+                break;
             case PlayerStatus.Fall:
-                
+                animator.SetTrigger("Fall");
                 break;
 
             case PlayerStatus.Crouch:
-
+                animator.SetTrigger("Crouch");
                 break;
             case PlayerStatus.CrouchRun:
-
+                animator.SetTrigger("Crouch Run");
                 break;
            
 
