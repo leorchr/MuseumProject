@@ -20,4 +20,11 @@ public class AudioManager : MonoBehaviour
         source.clip = clip;
         source.Play();
     }
+
+    public void PlayRandomSFX(AudioClip[] clip, AudioSource source)
+    {
+        int i = Random.Range(0, clip.Length);
+        source.clip = clip[i];
+        source.Play();
+    }
 }
