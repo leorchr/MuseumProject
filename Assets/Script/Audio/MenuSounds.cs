@@ -6,20 +6,22 @@ using UnityEngine.EventSystems;
 public class MenuSounds : MonoBehaviour
 {
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioSource audioSource2;
     [SerializeField] private AudioClip menuNavigation;
     [SerializeField] private AudioClip buttonClick;
     private GameObject currentSelected;
+    private bool DoNotPlayNavigation;
 
     private void Start()
     {
+        DoNotPlayNavigation = false;
         currentSelected = EventSystem.current.currentSelectedGameObject;
     }
 
     private void Update()
     {
-        if (EventSystem.current.currentSelectedGameObject != currentSelected) NavigationSound();
+        if (EventSystem.current.currentSelectedGameObject != currentSelected && !DoNotPlayNavigation) NavigationSound();
         currentSelected = EventSystem.current.currentSelectedGameObject;
+        DoNotPlayNavigation = false;
     }
 
     public void NavigationSound()
@@ -29,6 +31,7 @@ public class MenuSounds : MonoBehaviour
 
     public void ButtonClickSound()
     {
-        AudioManager.instance.PlaySFX(buttonClick,audioSource2);
+        DoNotPlayNavigation = true;
+        AudioManager.instance.PlaySFX(buttonClick,audioSource);
     }
 }
