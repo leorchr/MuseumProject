@@ -16,7 +16,6 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFX(AudioClip clip, AudioSource source)
     {
-        Debug.Log("musique");
         source.clip = clip;
         source.Play();
     }

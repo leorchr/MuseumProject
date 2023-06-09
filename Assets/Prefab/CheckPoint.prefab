@@ -192,7 +192,7 @@ MonoBehaviour:
   respawnPos: {fileID: 7721938277053730119}
   respawnVfxPos: {fileID: 2280177264579731706}
   audioSource: {fileID: 3533342363116963122}
-  audioClip: {fileID: 8300000, guid: bc3d78ef008932f4cb8c89447a7f83f4, type: 3}
+  audioClip: {fileID: 8300000, guid: 34a1d827703e7cb44868b0b44afb504c, type: 3}
   onlyOnce: 1
 --- !u!65 &105585065
 BoxCollider:
@@ -234,7 +234,8 @@ AudioSource:
   m_GameObject: {fileID: 1446265978674273914}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5408978854418552846, guid: 4a134edfbb20adf48b540140b9ce53c5,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -281,7 +282,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

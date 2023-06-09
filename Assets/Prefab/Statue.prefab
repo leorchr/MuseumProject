@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c9353d3d8daba1343afa12f723e4c4d6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c9353d3d8daba1343afa12f723e4c4d6,
         type: 3}
@@ -105,39 +105,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 16, z: 23}
   m_Center: {x: -2.6, y: 1.5, z: 2.5}
---- !u!114 &4394508391917850628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1105039988563001453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 1
-  outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 5
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
---- !u!114 &8123465531750103720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1105039988563001453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eea2d7a73591ff46a64c2629d761b00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statueEyes: {fileID: 3335533053055213800}
-  audioClip: {fileID: 8300000, guid: bc3d78ef008932f4cb8c89447a7f83f4, type: 3}
-  audioSource: {fileID: 946601241281039029}
 --- !u!82 &946601241281039029
 AudioSource:
   m_ObjectHideFlags: 0
@@ -147,9 +114,10 @@ AudioSource:
   m_GameObject: {fileID: 1105039988563001453}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: bc3d78ef008932f4cb8c89447a7f83f4, type: 3}
-  m_PlayOnAwake: 1
+  OutputAudioMixerGroup: {fileID: 5408978854418552846, guid: 4a134edfbb20adf48b540140b9ce53c5,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -194,7 +162,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -234,6 +202,39 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4394508391917850628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105039988563001453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &8123465531750103720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105039988563001453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eea2d7a73591ff46a64c2629d761b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statueEyes: {fileID: 3335533053055213800}
+  audioClip: {fileID: 8300000, guid: f5b103582499ed94ebf92996a0b90126, type: 3}
+  audioSource: {fileID: 946601241281039029}
 --- !u!1001 &2489180467042131385
 PrefabInstance:
   m_ObjectHideFlags: 0
