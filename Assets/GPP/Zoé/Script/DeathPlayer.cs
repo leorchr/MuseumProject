@@ -25,10 +25,11 @@ public class DeathPlayer : MonoBehaviour
             Mask.instance.timeRemaining = Mask.instance.duration;
             Mask.instance.maskStatus = MaskStatus.Full;
         }
-        //bloqué les mouvements du joueur
+        PlayerController.instance.sprintSpeed = 0;
+        PlayerController.instance.walkSpeed = 0;
+        PlayerController.instance.moveSpeed = PlayerController.instance.walkSpeed;
         FadeDeath.instance.FadeIn();
         //SFX
-        //Respawn();
     }
 
     public void OnTriggerEnter(Collider other)
@@ -44,5 +45,8 @@ public class DeathPlayer : MonoBehaviour
     {
         PlayerController.instance.GetComponent<Rigidbody>().position = PlayerController.instance.respawnPosition;
         PlayerVFX.instance.DeathParticles();
+        PlayerController.instance.sprintSpeed = 8f;
+        PlayerController.instance.walkSpeed = 4.5f;
+        PlayerController.instance.moveSpeed = PlayerController.instance.walkSpeed;
     }
 }

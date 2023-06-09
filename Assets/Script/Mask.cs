@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public enum MaskStatus
 {
-    Full, Using, Empty, Charging
+    Full, Using, Empty
 }
 
 public class Mask : MonoBehaviour
@@ -29,6 +29,8 @@ public class Mask : MonoBehaviour
     [HideInInspector] public MaskStatus maskStatus = MaskStatus.Full;
 
     public float speedReduction;
+
+    public float energies;
 
     [Header("Sound")]
     public AudioSource audioSource;
@@ -73,35 +75,10 @@ public class Mask : MonoBehaviour
                 }
                 break;
             case MaskStatus.Empty:
-                cooldownRemaining = cooldown - (Time.time - cooldownActivation);
-                PlayerController.instance.sprintSpeed = speedReduction;
-                PlayerController.instance.walkSpeed = speedReduction;
-                PlayerController.instance.moveSpeed = PlayerController.instance.walkSpeed;
-                if (cooldownRemaining <= 0)
-                {
-                    rechargingActivation = Time.time;
-                    maskStatus = MaskStatus.Charging;
-                }
-                break;
-            case MaskStatus.Charging:
-                timeRemaining = Time.time - rechargingActivation;
-                if (timeRemaining >= duration)
-                {
-                    timeRemaining = duration;
-                    maskStatus = MaskStatus.Full;
-                    ableToUse = true;
-                    PlayerController.instance.sprintSpeed = 8f;
-                    PlayerController.instance.walkSpeed = 4.5f;
-                    PlayerController.instance.moveSpeed = PlayerController.instance.walkSpeed;
-                }
+                DeathPlayer.instance.Death();
                 break;
             case MaskStatus.Full:
                 break;
-        }
-
-        if (ableToUse)
-        {
-
         }
 
     }
@@ -134,15 +111,13 @@ public class Mask : MonoBehaviour
         {
             if (ableToUse && !isInsidePlat)
             {
-                if (maskStatus == MaskStatus.Full || maskStatus == MaskStatus.Charging)
+                if (maskStatus == MaskStatus.Full)
                 {
                     PlateformOn();
                 }
                 else if (maskStatus == MaskStatus.Using)
                 {
                     PlateformOff();
-                    rechargingActivation = Time.time - timeRemaining;
-                    maskStatus = MaskStatus.Charging;
                 }
             }
         }
@@ -153,6 +128,10 @@ public class Mask : MonoBehaviour
         if(other.gameObject.tag == "Platform")
         {
             isInsidePlat = true;
+        }
+        else if(other.gameObject.tag == "Energy")
+        {
+            timeRemaining += energies;
         }
     }
 
