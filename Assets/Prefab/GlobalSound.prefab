@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &3087473835102573698
 AudioSource:
@@ -46,8 +46,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 4a134edfbb20adf48b540140b9ce53c5,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: bc3d78ef008932f4cb8c89447a7f83f4, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.01
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 4a134edfbb20adf48b540140b9ce53c5, type: 2}
   slider: {fileID: 0}
-  audioSource: {fileID: 3087473835102573698}
+  mainMusic: {fileID: 3087473835102573698}
   timeWanted: 81
 --- !u!114 &30969937
 MonoBehaviour:

@@ -12,7 +12,7 @@ public class GlobalSound : MonoBehaviour
     [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private Slider slider;
 
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource mainMusic;
     [Range(0f, 180f)][SerializeField] private float timeWanted;
      
     private void Awake()
@@ -35,15 +35,15 @@ public class GlobalSound : MonoBehaviour
 
     private void PlaySoundSpecificTime()
     {
-        audioSource.time = timeWanted;
-        if(timeWanted > audioSource.clip.length)
+        mainMusic.time = timeWanted;
+        if(timeWanted > mainMusic.clip.length)
         {
-            audioSource.Play();
+            mainMusic.Play();
         }
         else
         {
-            audioSource.time = timeWanted;
-            audioSource.Play();
+            mainMusic.time = timeWanted;
+            mainMusic.Play();
         }
     }
 }
