@@ -27,7 +27,7 @@ public class FadeDeath : MonoBehaviour
         {
             if (canvasGroup.alpha < 1)
             {
-                Debug.Log(speedToFade * Time.deltaTime);
+                //Debug.Log(speedToFade * Time.deltaTime);
                 canvasGroup.alpha += speedToFade * Time.deltaTime;
             }
             if (canvasGroup.alpha >= 1)
