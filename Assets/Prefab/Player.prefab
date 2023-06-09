@@ -396,6 +396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mask: {fileID: 7835575041832138278}
   audioClip: {fileID: 8300000, guid: f71f47f8ea5f19842a5bf558bbe459ba, type: 3}
+  mixerGroup: {fileID: 24300002, guid: 4a134edfbb20adf48b540140b9ce53c5, type: 2}
 --- !u!114 &7047101124286688437
 MonoBehaviour:
   m_ObjectHideFlags: 0

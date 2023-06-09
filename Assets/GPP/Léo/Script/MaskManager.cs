@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class MaskManager : MonoBehaviour
@@ -11,7 +12,8 @@ public class MaskManager : MonoBehaviour
     [SerializeField] private Mask mask;
 
     [Header("SFX")]
-    public AudioClip audioClip;
+    [SerializeField] private AudioClip audioClip;
+    [SerializeField] private AudioMixerGroup mixerGroup;
 
     private void Start()
     {
@@ -46,7 +48,8 @@ public class MaskManager : MonoBehaviour
                 mask.enabled = true;
                 MaskUI.instance.maskSlider.gameObject.SetActive(true);
                 AudioSource audioSource = gameObject.AddComponent<AudioSource>();
-                AudioManager.instance.PlaySFX(audioClip, audioSource, 6.4f, 0.05f);
+                audioSource.outputAudioMixerGroup = mixerGroup;
+                AudioManager.instance.PlaySFX(audioClip, audioSource, 6.4f, 0.1f);
                 isActive = true;
             }
         }
