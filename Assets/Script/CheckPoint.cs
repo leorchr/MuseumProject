@@ -13,6 +13,9 @@ public class CheckPoint : MonoBehaviour
     [SerializeField] private Transform respawnPos;
     [SerializeField] private Transform respawnVfxPos;
 
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+
     [SerializeField] private bool onlyOnce = false;
     private bool check = false;
 
@@ -25,7 +28,7 @@ public class CheckPoint : MonoBehaviour
             PlayerVFX.instance.respawnParticlesPos = respawnVfxPos;
             startMesh.material = doneMaterial;
             signMesh.material = signMaterial;
-            //mettre un sfx
+            AudioManager.instance.PlaySFX(audioClip, audioSource);
             if (onlyOnce) check = true;
         }
     }
