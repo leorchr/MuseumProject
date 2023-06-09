@@ -21,7 +21,7 @@ public class StatueDetection : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             statueEyes.SetActive(true);
-            AudioManager.instance.PlaySFX(audioClip, audioSource);
+            AudioManager.instance.PlaySFX(audioClip, audioSource, 1f);
             Destroy(this);
         }
     }
