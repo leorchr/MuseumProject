@@ -9,6 +9,9 @@ TagManager:
   - CheckPoint
   - wallSlide
   - roof
+  - FxTemporaire
+  - Energy
+  - Platform
   layers:
   - Default
   - TransparentFX
