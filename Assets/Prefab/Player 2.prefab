@@ -687,8 +687,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce0d6f8341245a54eb17047b83c0d5f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - {fileID: 8300000, guid: dcfe0b45000357543b5358b809d9f6d4, type: 3}
+  step: {fileID: 8300000, guid: dcfe0b45000357543b5358b809d9f6d4, type: 3}
+  runSteps:
+  - {fileID: 8300000, guid: e71bc85fefb7cb74da3cd67191816f9a, type: 3}
+  - {fileID: 8300000, guid: 35b38db6accf150429e6a8398ecd141b, type: 3}
+  - {fileID: 8300000, guid: 2d85e6e0581f11342bdc7c6247945fbe, type: 3}
   source: {fileID: 6395324512006774563}
 --- !u!95 &5810090521664622321 stripped
 Animator:
