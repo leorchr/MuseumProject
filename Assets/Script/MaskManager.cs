@@ -49,7 +49,7 @@ public class MaskManager : MonoBehaviour
                 MaskUI.instance.maskSlider.gameObject.SetActive(true);
                 AudioSource audioSource = gameObject.AddComponent<AudioSource>();
                 audioSource.outputAudioMixerGroup = mixerGroup;
-                AudioManager.instance.PlaySFX(audioClip, audioSource, 6.4f, 0.1f);
+                AudioManager.instance.PlaySFX(audioClip, audioSource, 6.4f);
                 isActive = true;
             }
         }
