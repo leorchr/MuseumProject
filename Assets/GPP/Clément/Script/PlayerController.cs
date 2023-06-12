@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         AddJumpForce();
-        Debug.Log(rb.velocity.y);
+        
         //move
 
         currentMovementInput = Vector2.SmoothDamp(currentMovementInput, direction, ref smoothInputSmoothVelocity, smoothTime);
