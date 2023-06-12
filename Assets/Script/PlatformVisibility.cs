@@ -9,15 +9,25 @@ public class PlatformVisibility : MonoBehaviour
     Material material;
     float currentAlpha = 0;
     int alphaTarget = 0;
+    [SerializeField] private bool isShader;
 
     // Start is called before the first frame update
     void Awake()
     {
         material = GetComponent<Renderer>().material;
-        Color color = material.color;
-        color.a = maskPlatform ? 1 : 0;
-        currentAlpha = color.a;
-        material.color = color;
+        if (isShader)
+        {
+            float alpha = maskPlatform ? 1 : 0;
+            material.SetFloat("_Alpha", alpha);
+            currentAlpha = alpha;
+        }
+        else
+        {
+            Color color = material.color;
+            color.a = maskPlatform ? 1 : 0;
+            currentAlpha = color.a;
+            material.color = color;
+        }
     }
 
     // Update is called once per frame
@@ -26,9 +36,16 @@ public class PlatformVisibility : MonoBehaviour
         if(currentAlpha != alphaTarget)
         {
             currentAlpha = Mathf.Lerp(currentAlpha, alphaTarget, speed * Time.deltaTime);
-            Color color = material.color;
-            color.a = currentAlpha;
-            material.color = color;
+            if (isShader)
+            {
+                material.SetFloat("_Alpha", currentAlpha);
+            }
+            else
+            {
+                Color color = material.color;
+                color.a = currentAlpha;
+                material.color = color;
+            }
         }
         GetComponent<Collider>().isTrigger = currentAlpha < 0.5f;
         
