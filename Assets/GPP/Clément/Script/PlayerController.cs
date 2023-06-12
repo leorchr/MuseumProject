@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
     {
 
         CheckState();
-
+        headTouch = Physics.OverlapSphere(headRaycast.position, distance, groundMask).Length > 0;
 
         int dirSign = direction.x < 0 ? -1 : 1;
         //flip
@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         AddJumpForce();
-
+        
         //move
 
         currentMovementInput = Vector2.SmoothDamp(currentMovementInput, direction, ref smoothInputSmoothVelocity, smoothTime);
@@ -210,6 +210,7 @@ public class PlayerController : MonoBehaviour
         else if (rb.velocity.y < 0 && !isGrounded && !isWallSliding)
         {
             Fall();
+            
         }
         else if (isCrouching)
             CrouchEnum();
@@ -369,7 +370,8 @@ public class PlayerController : MonoBehaviour
         if (context.started && isGrounded && !isSprinting)
         {
             isCrouching = true;
-            headTouch = Physics.OverlapSphere(headRaycast.position, distance, groundMask).Length > 0;
+           
+
 
             if (isCrouching && playerStatus == PlayerStatus.Run)
             {

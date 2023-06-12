@@ -19,11 +19,11 @@ public class PlayerAnimation : MonoBehaviour
         switch (playerControler.playerStatus)
         {
             case PlayerStatus.Idle:
-                Debug.Log("Idle");
+                
                 animator.SetTrigger("Idle");
                 break;
             case PlayerStatus.Run:
-                Debug.Log("Run");
+                
                 animator.SetTrigger("Run");
                 break;
 
@@ -34,11 +34,11 @@ public class PlayerAnimation : MonoBehaviour
             case PlayerStatus.WallSlide:
                 animator.SetTrigger("WallSlide");
                 break;
-            case PlayerStatus.Jump:
-                animator.SetTrigger("Jump");
-                break;
             case PlayerStatus.Fall:
                 animator.SetTrigger("Fall");
+                break;
+            case PlayerStatus.Jump:
+                animator.SetTrigger("Jump");
                 break;
 
             case PlayerStatus.Crouch:
