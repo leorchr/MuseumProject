@@ -5,7 +5,8 @@ using UnityEngine.EventSystems;
 
 public class MenuSounds : MonoBehaviour
 {
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource navigationSource;
+    [SerializeField] private AudioSource validationSource;
     [SerializeField] private AudioClip menuNavigation;
     [SerializeField] private AudioClip buttonClick;
     private GameObject currentSelected;
@@ -26,12 +27,12 @@ public class MenuSounds : MonoBehaviour
 
     public void NavigationSound()
     {
-        AudioManager.instance.PlaySFX(menuNavigation,audioSource);
+        AudioManager.instance.PlaySFX(menuNavigation,navigationSource);
     }
 
     public void ButtonClickSound()
     {
         DoNotPlayNavigation = true;
-        AudioManager.instance.PlaySFX(buttonClick,audioSource);
+        AudioManager.instance.PlaySFX(buttonClick,validationSource);
     }
 }
