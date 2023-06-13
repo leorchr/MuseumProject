@@ -13,36 +13,30 @@ public enum MaskStatus
 public class Mask : MonoBehaviour
 {
     public static Mask instance;
-    private bool isInsidePlat;
 
-    private float timeActivation;
     public float duration;
-
-    //private float speedRecharging; // ajout de la speed plus tard
-    private float rechargingActivation;
+    [SerializeField] private float multiplicateurDecharging = 1f;
+    [SerializeField] private float multiplicateurRecharging = 1f;
+    [HideInInspector] public float timeRemaining;
+    private bool isInsidePlat;
 
     [SerializeField] private float cooldown;
     private float cooldownRemaining;
     private float cooldownActivation;
     private bool ableToUse;
+    public float playerSpeedReduction;
 
-    public float timeRemaining;
-    private float currentTimeRemaining;
     [HideInInspector] public MaskStatus maskStatus = MaskStatus.Full;
 
-    public float speedReduction;
+    public float addEnergy;
 
-    /*public float energy;
-    public bool isEnergy;
-    GameObject energyOrb;
-*/
-    [Header("Sound")]
+    /*[Header("Sound")]
     public AudioSource audioSource;
-    public AudioClip[] clip;
-
+    public AudioClip[] clip;*/
 
     PlatformVisibility[] allPlatforms;
     bool maskPlatforms = true;
+
     private void Awake()
     {
         if (instance) Destroy(this);
@@ -59,17 +53,14 @@ public class Mask : MonoBehaviour
         maskStatus = MaskStatus.Full;
         timeRemaining = duration;
         ableToUse = true;
-
     }
-    
 
     private void Update()
     {
-        //Debug.Log("TimeR :" + timeRemaining);
         switch (maskStatus)
         {
             case MaskStatus.Using:                
-                timeRemaining = duration - (duration - currentTimeRemaining) - (Time.time - timeActivation);
+                timeRemaining -= Time.deltaTime * multiplicateurDecharging;
                 //AudioManager.instance.PlaySFX(clip[0], audioSource);
                 if (timeRemaining <= 0)
                 {
@@ -83,36 +74,33 @@ public class Mask : MonoBehaviour
             case MaskStatus.Empty:
                 timeRemaining = 0;
                 cooldownRemaining = cooldown - (Time.time - cooldownActivation);
-                PlayerController.instance.sprintSpeed = speedReduction;
-                PlayerController.instance.walkSpeed = speedReduction;
+                PlayerController.instance.sprintSpeed = playerSpeedReduction;
+                PlayerController.instance.walkSpeed = playerSpeedReduction;
                 PlayerController.instance.moveSpeed = PlayerController.instance.walkSpeed;
                 if (cooldownRemaining <= 0)
                 {
-                    rechargingActivation = Time.time;
                     maskStatus = MaskStatus.Charging;
-                }
-                break;
-            case MaskStatus.Charging:
-                timeRemaining = Time.time - rechargingActivation;
-                if (timeRemaining >= duration)
-                {
-                    timeRemaining = duration;
-                    maskStatus = MaskStatus.Full;
                     ableToUse = true;
                     PlayerController.instance.sprintSpeed = 8f;
                     PlayerController.instance.walkSpeed = 4.5f;
                     PlayerController.instance.moveSpeed = PlayerController.instance.walkSpeed;
                 }
                 break;
+            case MaskStatus.Charging:
+                timeRemaining += Time.deltaTime * multiplicateurRecharging;
+                if (timeRemaining >= duration)
+                {
+                    timeRemaining = duration;
+                    maskStatus = MaskStatus.Full;
+                }
+                break;
             case MaskStatus.Full:
                 break;
         }
     }
+
     public void PlateformOn()
     {
-
-        timeActivation = Time.time;
-        currentTimeRemaining = timeRemaining;
         maskStatus = MaskStatus.Using;
         maskPlatforms = !maskPlatforms;
         foreach (PlatformVisibility platform in allPlatforms)
@@ -156,57 +144,46 @@ public class Mask : MonoBehaviour
                 else if (maskStatus == MaskStatus.Using)
                 {
                     PlateformOff();
-                    rechargingActivation = Time.time - timeRemaining;
                     maskStatus = MaskStatus.Charging;
                 }
             }
         }
     }
-
-    public void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Platform")
         {
             isInsidePlat = true;
         }
-        /*else if (other.gameObject.tag == "Energy")
+        if (other.gameObject.tag == "Energy")
         {
-            isEnergy = true;
-            Debug.Log(isEnergy);
-            energyOrb = other.gameObject;
-            //PlusEnergy();
-        }*/
+            PlusEnergy(other.gameObject);
+        }
     }
 
-    public void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Platform")
         {
             isInsidePlat = false;
         }
-        /*else if(other.gameObject.tag == "Energy")
-        {
-            isEnergy = false;
-        }*/
     }
 
-    /*public void PlusEnergy()
+    private void PlusEnergy(GameObject energy)
     {
-        if(timeRemaining < duration)
+        if(maskStatus == MaskStatus.Empty)
         {
-            timeRemaining = timeRemaining + energy;
-            
-            if (timeRemaining >= duration)
-            {
-                timeRemaining = duration;
-            }
-            Debug.Log(isEnergy);
-            isEnergy = false;
-            Destroy(energyOrb);
+            maskStatus = MaskStatus.Charging;
+            ableToUse = true;
+            PlayerController.instance.sprintSpeed = 8f;
+            PlayerController.instance.walkSpeed = 4.5f;
+            PlayerController.instance.moveSpeed = PlayerController.instance.walkSpeed;
         }
-        else if (timeRemaining == duration)
+        timeRemaining += addEnergy;
+        if (timeRemaining > duration)
         {
-            return;
+            timeRemaining = duration;
         }
-    }*/
+        energy.SetActive(false);
+    }
 }
