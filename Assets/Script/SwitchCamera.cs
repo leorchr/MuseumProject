@@ -14,12 +14,18 @@ public class SwitchCamera : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        cam1.SetActive(false);
-        cam2.SetActive(true);
+        if (other.CompareTag("Player"))
+        {
+            cam1.SetActive(false);
+            cam2.SetActive(true);
+        }
     }
     private void OnTriggerExit(Collider other)
     {
-        cam1.SetActive(true);
-        cam2.SetActive(false);
+        if (other.CompareTag("Player"))
+        {
+            cam1.SetActive(true);
+            cam2.SetActive(false);
+        }
     }
 }
