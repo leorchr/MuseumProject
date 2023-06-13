@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float walkSpeed;
     [Range(1f, 10f)]
     [SerializeField] public float sprintSpeed;
+    [SerializeField] public float crouchSpeed;
     [SerializeField] private float smoothTime;
     [SerializeField] private LayerMask groundMask;
     [HideInInspector]
@@ -374,12 +375,13 @@ public class PlayerController : MonoBehaviour
         if (context.started && isGrounded && !isSprinting)
         {
             isCrouching = true;
-           
+            moveSpeed = crouchSpeed;
 
 
             if (isCrouching && playerStatus == PlayerStatus.Run)
             {
                 isCrouchRunning = true;
+                moveSpeed = crouchSpeed;
             }
 
         }
@@ -390,6 +392,7 @@ public class PlayerController : MonoBehaviour
             {
                 isCrouching = false;
                 isCrouchRunning = false;
+                
             }
         }
 
