@@ -71,5 +71,6 @@ public class PlatformVisibility : MonoBehaviour
     public void ResetMaskPlatforms()
     {
         alphaTarget = 0;
+        Mask.instance.PlateformOff();
     }
 }

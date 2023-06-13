@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2324536961617841422
+--- !u!1 &4767292840595340618
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,50 +8,50 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2324536961617841417}
-  - component: {fileID: 2324536961617841419}
-  - component: {fileID: 2324536961617841416}
-  m_Layer: 4
-  m_Name: Directional Light (1)
+  - component: {fileID: 3872726698608901891}
+  - component: {fileID: 3798179171777662289}
+  - component: {fileID: 6422611127872573055}
+  m_Layer: 0
+  m_Name: Spot Light (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2324536961617841417
+--- !u!4 &3872726698608901891
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2324536961617841422}
+  m_GameObject: {fileID: 4767292840595340618}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 18.49, y: 10.04, z: -8.14}
+  m_LocalPosition: {x: 18.88, y: 27.6, z: -8.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!108 &2324536961617841419
+--- !u!108 &3798179171777662289
 Light:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2324536961617841422}
+  m_GameObject: {fileID: 4767292840595340618}
   m_Enabled: 1
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.89448303, g: 1, b: 0.41037738, a: 1}
-  m_Intensity: 1.5
-  m_Range: 13.7167425
-  m_SpotAngle: 32.21186
-  m_InnerSpotAngle: 24.013939
+  m_Color: {r: 0.8460704, g: 0.9245283, b: 0.5800107, a: 1}
+  m_Intensity: 550
+  m_Range: 48.504852
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -95,13 +95,13 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &2324536961617841416
+--- !u!114 &6422611127872573055
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2324536961617841422}
+  m_GameObject: {fileID: 4767292840595340618}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}

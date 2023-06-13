@@ -51,7 +51,7 @@ public class PauseMenu : MonoBehaviour
     public void LoadMainMenu()
     {
         Resume();
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Title Screen");
     }
 
     public void Pause(InputAction.CallbackContext context)

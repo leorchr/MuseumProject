@@ -19,7 +19,10 @@ public class DeathPlayer : MonoBehaviour
     }
     public void Death()
     {
-        mask.ResetPlatforms();
+        if (Mask.instance.allPlatforms.Length == 0)
+        {
+            mask.ResetPlatforms();
+        }
 
         PlayerController.instance.sprintSpeed = 0;
         PlayerController.instance.walkSpeed = 0;
