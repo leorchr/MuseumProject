@@ -34,7 +34,7 @@ public class Mask : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] clip;*/
 
-    PlatformVisibility[] allPlatforms;
+    public PlatformVisibility[] allPlatforms;
     bool maskPlatforms = true;
 
     private void Awake()
