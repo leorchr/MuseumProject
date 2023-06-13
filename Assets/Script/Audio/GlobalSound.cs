@@ -30,7 +30,7 @@ public class GlobalSound : MonoBehaviour
     {
         float value = slider.value;
         if (value <= 0f) value = 0.001f;  
-        audioMixer.SetFloat("Master", Mathf.Log10(value) * 20 * 1.5f);
+        audioMixer.SetFloat("Master", Mathf.Log10(value) * 20 * 0.1f);
     }
 
     private void PlaySoundSpecificTime()

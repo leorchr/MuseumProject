@@ -34,6 +34,6 @@ public class PlaySounds : MonoBehaviour
     {
         source.volume = Random.Range(0.6f, 0.8f);
         source.pitch = Random.Range(0.8f, 1.2f);
-        AudioManager.instance.PlaySFX(jump, source);
+        AudioManager.instance.PlaySFX(jump, source,0,0.3f);
     }
 }
