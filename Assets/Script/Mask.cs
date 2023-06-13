@@ -131,6 +131,18 @@ public class Mask : MonoBehaviour
         }
     }
 
+    public void ResetPlatforms()
+    {
+        timeRemaining = duration;
+        maskStatus = MaskStatus.Full;
+        foreach (PlatformVisibility platform in allPlatforms)
+        {
+            platform.ResetMaskPlatforms();
+        }
+        maskPlatforms = true;
+        ableToUse = true;
+    }
+
     public void UseMask(InputAction.CallbackContext context)
     {
         if (context.started)

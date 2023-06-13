@@ -19,12 +19,8 @@ public class DeathPlayer : MonoBehaviour
     }
     public void Death()
     {
-        if (mask.enabled)
-        {
-            Mask.instance.PlateformOff();
-            Mask.instance.timeRemaining = Mask.instance.duration;
-            Mask.instance.maskStatus = MaskStatus.Full;
-        }
+        mask.ResetPlatforms();
+
         PlayerController.instance.sprintSpeed = 0;
         PlayerController.instance.walkSpeed = 0;
         PlayerController.instance.moveSpeed = PlayerController.instance.walkSpeed;
