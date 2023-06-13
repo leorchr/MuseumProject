@@ -52,20 +52,6 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
---- !u!244 &-7633454491396220876
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: 9e213dce009e8fe49ac767e2b546b5a1
-  m_EffectName: Attenuation
-  m_MixLevel: d3379d08fe1403546931e164285e8468
-  m_Parameters: []
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
 --- !u!243 &-6964551782413852402
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -100,25 +86,6 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -8476370352107701267}
-  m_UserColorIndex: 0
-  m_Mute: 0
-  m_Solo: 0
-  m_BypassEffects: 0
---- !u!243 &-6277719952383536110
-AudioMixerGroupController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Walk
-  m_AudioMixer: {fileID: 24100000}
-  m_GroupID: 20b87650fdb21ba4fb1c1adefef30b56
-  m_Children: []
-  m_Volume: e63f27dd01761f845b4ebb76bdd502ea
-  m_Pitch: 87791f07e38501641a599cf2f0c1267e
-  m_Send: 00000000000000000000000000000000
-  m_Effects:
-  - {fileID: -7633454491396220876}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -220,7 +187,6 @@ AudioMixerController:
   - guids:
     - 0d630e26d07ce574f9cedebd23944810
     - 0eb1293121a85654b8ed95fffc189384
-    - 20b87650fdb21ba4fb1c1adefef30b56
     - 953522aed1247814f8bdfde8cb2b5e4c
     - ba1276ddf1d0e09459525b302769821a
     - 242edbf8fc17ce241abc5c737a5bd045
@@ -281,7 +247,7 @@ AudioMixerSnapshotController:
     3e963be066247514387934da6f2d0542: -6.133707
     0bc4ed02a3f67a64c991deea9c7b46ee: 20
     0a788453d8f1379419cfaae96f76b336: -19.928473
-    7c223535ed1968e4a89db83a22114106: -39.703533
+    7c223535ed1968e4a89db83a22114106: -24.895248
     e63f27dd01761f845b4ebb76bdd502ea: 9.925883
     7f7a27df6e72e754e9ecc1b012d4fa7f: -15.421314
   m_TransitionOverrides: {}
@@ -363,7 +329,6 @@ AudioMixerGroupController:
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 0eb1293121a85654b8ed95fffc189384
   m_Children:
-  - {fileID: -6277719952383536110}
   - {fileID: -6963785623041546196}
   - {fileID: -6964551782413852402}
   - {fileID: 3308041588302475849}
