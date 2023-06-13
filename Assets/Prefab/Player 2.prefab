@@ -154,6 +154,7 @@ MonoBehaviour:
   distance: 0.1
   walkSpeed: 4.5
   sprintSpeed: 8
+  crouchSpeed: 0
   smoothTime: 0.16
   groundMask:
     serializedVersion: 2
@@ -170,6 +171,7 @@ MonoBehaviour:
   upMultiplier: 2.3
   coyoteTime: 0.2
   isHolding: 0
+  isJumping: 0
   wallSlidingSpeed: 3
   isWallSliding: 0
   isCrouching: 0
@@ -312,12 +314,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 5
-  cooldown: 2
+  multiplicateurDecharging: 1
+  multiplicateurRecharging: 1
   timeRemaining: 0
+  cooldown: 2
+  playerSpeedReduction: 0
   maskStatus: 0
-  speedReduction: 0
-  audioSource: {fileID: 0}
-  clip: []
+  addEnergy: 0
 --- !u!114 &129200460524761755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,7 +596,7 @@ AudioSource:
   m_GameObject: {fileID: 939681067514891825}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6277719952383536110, guid: 4a134edfbb20adf48b540140b9ce53c5,
+  OutputAudioMixerGroup: {fileID: 5408978854418552846, guid: 4a134edfbb20adf48b540140b9ce53c5,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
@@ -698,7 +701,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e71bc85fefb7cb74da3cd67191816f9a, type: 3}
   - {fileID: 8300000, guid: 35b38db6accf150429e6a8398ecd141b, type: 3}
   - {fileID: 8300000, guid: 2d85e6e0581f11342bdc7c6247945fbe, type: 3}
-  crouch: {fileID: 0}
+  crouch: {fileID: 8300000, guid: 42ccff9f254fb7846a3d8f921611635d, type: 3}
+  jump: {fileID: 8300000, guid: 775c03db200b635479a626e310acb742, type: 3}
   source: {fileID: 6395324512006774563}
 --- !u!95 &5810090521664622321 stripped
 Animator:
