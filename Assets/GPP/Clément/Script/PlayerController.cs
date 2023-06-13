@@ -209,7 +209,7 @@ public class PlayerController : MonoBehaviour
         {
             WallSlide();
         }
-        else if (rb.velocity.y < 0 && !isGrounded && !isWallSliding && isJumping == false)
+        else if (rb.velocity.y < 0 && !isGrounded && !isWallSliding && isJumping == false && !isHolding)
         {
             Fall();
             
@@ -286,9 +286,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = Physics.OverlapSphere(raycastPos.position,distance, groundMask).Length>0;
-            //if (isGrounded) Debug.Log("GROUNDED ON COLLISION");
-            //else Debug.Log("Not grounded");
-
+           
         }
 
         if (collision.gameObject.CompareTag("wallSlide") && !isGrounded && rb.velocity.y != 0)
@@ -309,7 +307,7 @@ public class PlayerController : MonoBehaviour
         {
             
             isGrounded = Physics.OverlapSphere(raycastPos.position, distance, groundMask).Length > 0;
-            //if (isGrounded) Debug.Log("GROUNDED ON EXIT COLLISION");
+           
 
 
         }
