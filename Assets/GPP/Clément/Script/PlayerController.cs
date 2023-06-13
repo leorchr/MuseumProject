@@ -5,7 +5,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 
 public enum PlayerStatus
