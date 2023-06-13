@@ -553,6 +553,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8389660888856578605, guid: 7048a0973fc75fa41b60f347045f9500,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: e7961b7e93ae0654093851b9208b2e27,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: 7048a0973fc75fa41b60f347045f9500,
         type: 3}
       propertyPath: m_Name
@@ -692,6 +698,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e71bc85fefb7cb74da3cd67191816f9a, type: 3}
   - {fileID: 8300000, guid: 35b38db6accf150429e6a8398ecd141b, type: 3}
   - {fileID: 8300000, guid: 2d85e6e0581f11342bdc7c6247945fbe, type: 3}
+  crouch: {fileID: 0}
   source: {fileID: 6395324512006774563}
 --- !u!95 &5810090521664622321 stripped
 Animator:
