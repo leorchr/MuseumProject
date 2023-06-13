@@ -67,4 +67,9 @@ public class PlatformVisibility : MonoBehaviour
             alphaTarget = 0;
         }
     }
+
+    public void ResetMaskPlatforms()
+    {
+        alphaTarget = 0;
+    }
 }
