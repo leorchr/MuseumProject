@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
     private float jumpBufferGrounded = 0f;
     private float coyoteTimeGrounded = 0f;
     [HideInInspector] public bool isHolding = false;
+    [HideInInspector] public bool isJumping = false;
     #endregion
 
     #region Wall Slide
@@ -207,7 +208,7 @@ public class PlayerController : MonoBehaviour
         {
             WallSlide();
         }
-        else if (rb.velocity.y < 0 && !isGrounded && !isWallSliding)
+        else if (rb.velocity.y < 0 && !isGrounded && !isWallSliding && isJumping == false)
         {
             Fall();
             
@@ -255,6 +256,7 @@ public class PlayerController : MonoBehaviour
         if ((jumpBufferGrounded > 0f) && coyoteTimeGrounded > 0f && !isCrouching)
         {
             isHolding = true;
+            isJumping = true;
             jumpBufferGrounded = 0;
             coyoteTimeGrounded = 0f;
             rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
@@ -267,11 +269,13 @@ public class PlayerController : MonoBehaviour
         if (context.started)
         {
             jumpBufferGrounded = jumpBufferTime;
+
         }
 
         if (context.canceled)
         {
             isHolding = false;
+            isJumping = false;
         }
     }
 
