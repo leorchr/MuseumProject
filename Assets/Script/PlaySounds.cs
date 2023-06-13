@@ -7,6 +7,7 @@ public class PlaySounds : MonoBehaviour
     [SerializeField] private AudioClip step;
     [SerializeField] private AudioClip[] runSteps;
     [SerializeField] private AudioClip crouch;
+    [SerializeField] private AudioClip jump;
     [SerializeField] private AudioSource source;
 
     public void StepSound()
@@ -27,5 +28,12 @@ public class PlaySounds : MonoBehaviour
     public void Crouch()
     {
         AudioManager.instance.PlaySFX(crouch, source, 0.5f);
+    }
+    
+    public void Jump()
+    {
+        source.volume = Random.Range(0.6f, 0.8f);
+        source.pitch = Random.Range(0.8f, 1.2f);
+        AudioManager.instance.PlaySFX(jump, source);
     }
 }
