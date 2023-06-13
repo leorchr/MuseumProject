@@ -8,6 +8,8 @@ public class MaskUI : MonoBehaviour
     public static MaskUI instance;
     
     public Slider maskSlider;
+
+    public CanvasGroup canvasGroup;
     
     private void Awake()
     {
@@ -23,5 +25,6 @@ public class MaskUI : MonoBehaviour
     private void Update()
     {
         maskSlider.value = Mask.instance.timeRemaining;
+        canvasGroup.alpha = maskSlider.value / 5f;
     }
 }
