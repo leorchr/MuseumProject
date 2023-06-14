@@ -6,7 +6,6 @@ public class DeathPlayer : MonoBehaviour
 {
     public static DeathPlayer instance;
     private Mask mask;
-    public bool isDead;
 
     private void Awake()
     {
@@ -17,13 +16,9 @@ public class DeathPlayer : MonoBehaviour
     private void Start()
     {
         mask = GetComponent<Mask>();
-        isDead = false;
     }
     public void Death()
     {
-        Mask.instance.cooldownRemaining = 0;
-        isDead = true;
-        Mask.instance.timeRemaining = Mask.instance.duration;
         if (Mask.instance.allPlatforms.Length == 0)
         {
             mask.ResetPlatforms();
@@ -52,6 +47,5 @@ public class DeathPlayer : MonoBehaviour
         PlayerController.instance.sprintSpeed = 8f;
         PlayerController.instance.walkSpeed = 4.5f;
         PlayerController.instance.moveSpeed = PlayerController.instance.walkSpeed;
-        isDead = false;
     }
 }

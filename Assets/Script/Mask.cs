@@ -21,7 +21,7 @@ public class Mask : MonoBehaviour
     private bool isInsidePlat;
 
     [SerializeField] private float cooldown;
-    public float cooldownRemaining;
+    private float cooldownRemaining;
     private float cooldownActivation;
     private bool ableToUse;
     public float playerSpeedReduction;
@@ -79,21 +79,11 @@ public class Mask : MonoBehaviour
                 PlayerController.instance.moveSpeed = PlayerController.instance.walkSpeed;
                 if (cooldownRemaining <= 0)
                 {
-                    if (DeathPlayer.instance.isDead)
-                    {
-                        maskStatus = MaskStatus.Full;
-                        timeRemaining = duration;
-                        PlateformOff();
-                        ableToUse = true;
-                    }
-                    else
-                    {
-                        maskStatus = MaskStatus.Charging;
-                        ableToUse = true;
-                        PlayerController.instance.sprintSpeed = 8f;
-                        PlayerController.instance.walkSpeed = 4.5f;
-                        PlayerController.instance.moveSpeed = PlayerController.instance.walkSpeed;
-                    }
+                    maskStatus = MaskStatus.Charging;
+                    ableToUse = true;
+                    PlayerController.instance.sprintSpeed = 8f;
+                    PlayerController.instance.walkSpeed = 4.5f;
+                    PlayerController.instance.moveSpeed = PlayerController.instance.walkSpeed;
                 }
                 break;
             case MaskStatus.Charging:
