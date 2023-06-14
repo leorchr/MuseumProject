@@ -51,7 +51,10 @@ public class MaskManager : MonoBehaviour
                 audioSource.outputAudioMixerGroup = mixerGroup;
                 AudioManager.instance.PlaySFX(audioClip, audioSource, 6.4f);
                 isActive = true;
+                PopUpMask.instance.ActivatePopUp();
             }
         }
     }
+
+
 }
