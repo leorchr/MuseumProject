@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private InputAction controls;
     [SerializeField] private Transform raycastPos;
     [SerializeField] private float distance = 1f;
+    private BoxCollider playerCollider;
 
     #endregion
 
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float walkSpeed;
     [Range(1f, 10f)]
     [SerializeField] public float sprintSpeed;
+    [Range(1f, 10f)]
     [SerializeField] public float crouchSpeed;
     [SerializeField] private float smoothTime;
     [SerializeField] private LayerMask groundMask;
@@ -117,6 +119,7 @@ public class PlayerController : MonoBehaviour
         instance = this;
         rb = GetComponent<Rigidbody>();
         controls = new InputAction();
+        playerCollider = GetComponent<BoxCollider>();
     }
     private void Start()
     {
@@ -391,6 +394,7 @@ public class PlayerController : MonoBehaviour
                 isCrouching = false;
                 isCrouchRunning = false;
                 moveSpeed = walkSpeed;
+                playerCollider.size = new Vector3(0.7751541f, 2.015927f, 0.9350501f);
 
             }
         }
@@ -405,6 +409,7 @@ public class PlayerController : MonoBehaviour
         {
             playerStatus = PlayerStatus.Crouch;
             moveSpeed = crouchSpeed;
+            playerCollider.size = new Vector3(0.7751541f, 1.2f, 0.9350501f);
         }
            
 
@@ -416,6 +421,7 @@ public class PlayerController : MonoBehaviour
         {
             playerStatus = PlayerStatus.CrouchRun;
             moveSpeed = crouchSpeed;
+            playerCollider.size = new Vector3(0.7751541f, 1.2f, 0.9350501f);
 
         }
         
