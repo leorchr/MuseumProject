@@ -123,6 +123,7 @@ public class Mask : MonoBehaviour
     {
         timeRemaining = duration;
         maskStatus = MaskStatus.Full;
+        PlateformOff();
         foreach (PlatformVisibility platform in allPlatforms)
         {
             platform.ResetMaskPlatforms();
