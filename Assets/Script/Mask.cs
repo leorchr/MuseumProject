@@ -121,6 +121,10 @@ public class Mask : MonoBehaviour
 
     public void ResetPlatforms()
     {
+        if(maskStatus == MaskStatus.Full || maskStatus == MaskStatus.Charging || maskStatus == MaskStatus.Empty)
+        {
+            PlateformOff();
+        }
         timeRemaining = duration;
         maskStatus = MaskStatus.Full;
         PlateformOff();
