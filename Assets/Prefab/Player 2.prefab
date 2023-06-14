@@ -106,7 +106,7 @@ Transform:
   - {fileID: 8784595010739001976}
   - {fileID: 8784595011224333519}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &129200460524761759
 BoxCollider:
@@ -226,7 +226,19 @@ MonoBehaviour:
     m_ActionId: 5ff63947-f12d-481d-a98a-61538f074cdb
     m_ActionName: PlayerActions/Move[/Keyboard/a,/Keyboard/d,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 34436255-e2df-4025-8aa2-5d143a9d554a
     m_ActionName: PlayerActions/Menu[/Keyboard/escape]
   - m_PersistentCalls:
@@ -283,13 +295,13 @@ MonoBehaviour:
     m_ActionName: PlayerActions/Crouch[/Keyboard/ctrl]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 129200460524761760}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 129200460524761752}
+        m_TargetAssemblyTypeName: Mask, Assembly-CSharp
+        m_MethodName: UseMask
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -298,7 +310,19 @@ MonoBehaviour:
     m_ActionId: 21f208ad-4ec7-40c4-bdb3-d054663a62ca
     m_ActionName: PlayerActions/Mask[/Keyboard/r]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4634008491156857779}
+        m_TargetAssemblyTypeName: PopUpMask, Assembly-CSharp
+        m_MethodName: Confirmed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 636e9b03-9a89-4661-8666-c1776c736624
     m_ActionName: PlayerActions/Confirmed[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
@@ -319,6 +343,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerContr: {fileID: 129200460524761761}
+  animator: {fileID: 0}
+  isPopUp: 0
 --- !u!114 &129200460524761752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,12 +357,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 333e0193ec7003949ab87226001ed904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 5
+  duration: 10
   multiplicateurDecharging: 1
   multiplicateurRecharging: 1
   timeRemaining: 0
   cooldown: 2
-  playerSpeedReduction: 0
+  playerSpeedReduction: 3
   maskStatus: 0
   addEnergy: 0
   allPlatforms: []
@@ -581,6 +607,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -876546973899608171, guid: e7961b7e93ae0654093851b9208b2e27,
         type: 3}
+    - target: {fileID: -3529407051639391375, guid: 7048a0973fc75fa41b60f347045f9500,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.56
+      objectReference: {fileID: 0}
+    - target: {fileID: -3529407051639391375, guid: 7048a0973fc75fa41b60f347045f9500,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.03
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7048a0973fc75fa41b60f347045f9500,
         type: 3}
       propertyPath: m_Name
