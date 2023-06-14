@@ -32,7 +32,7 @@ MonoBehaviour:
     value: 1
   gradingMode:
     overrideState: 1
-    value: 1
+    value: 0
   externalLut:
     overrideState: 0
     value: {fileID: 0}
@@ -63,11 +63,11 @@ MonoBehaviour:
     value: {fileID: 0}
     defaultState: 4
   ldrLutContribution:
-    overrideState: 0
+    overrideState: 1
     value: 1
   temperature:
     overrideState: 1
-    value: -3
+    value: 2
   tint:
     overrideState: 0
     value: 0
@@ -75,11 +75,11 @@ MonoBehaviour:
     overrideState: 0
     value: {r: 1, g: 1, b: 1, a: 1}
   hueShift:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 5
   saturation:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 30
   brightness:
     overrideState: 0
     value: 0
@@ -87,8 +87,8 @@ MonoBehaviour:
     overrideState: 0
     value: 0
   contrast:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 20
   mixerRedOutRedIn:
     overrideState: 0
     value: 100
@@ -762,7 +762,7 @@ MonoBehaviour:
       - 0.984375
       - 0.9921875
   hueVsHueCurve:
-    overrideState: 0
+    overrideState: 1
     value:
       curve:
         serializedVersion: 2

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7185866575482383299}
   - component: {fileID: 723858964168168276}
-  m_Layer: 4
+  m_Layer: 0
   m_Name: PostProcessColorGrading
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,4 +48,4 @@ MonoBehaviour:
   isGlobal: 1
   blendDistance: 0
   weight: 1
-  priority: 0
+  priority: 1
