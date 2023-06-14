@@ -395,6 +395,7 @@ public class PlayerController : MonoBehaviour
                 isCrouchRunning = false;
                 moveSpeed = walkSpeed;
                 playerCollider.size = new Vector3(0.7751541f, 2.015927f, 0.9350501f);
+                playerCollider.center = new Vector3(-0.01561642f, 0.9918525f, 0.03247494f);
 
             }
         }
@@ -410,6 +411,7 @@ public class PlayerController : MonoBehaviour
             playerStatus = PlayerStatus.Crouch;
             moveSpeed = crouchSpeed;
             playerCollider.size = new Vector3(0.7751541f, 1.2f, 0.9350501f);
+            playerCollider.center = new Vector3(-0.01561642f, 0.585121f, 0.03247494f);
         }
            
 
@@ -422,6 +424,7 @@ public class PlayerController : MonoBehaviour
             playerStatus = PlayerStatus.CrouchRun;
             moveSpeed = crouchSpeed;
             playerCollider.size = new Vector3(0.7751541f, 1.2f, 0.9350501f);
+            playerCollider.center = new Vector3(-0.01561642f, 0.585121f, 0.03247494f);
 
         }
         
