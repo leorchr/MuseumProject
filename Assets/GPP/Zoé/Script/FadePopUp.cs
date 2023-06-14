@@ -11,6 +11,8 @@ public class FadePopUp : MonoBehaviour
     public bool fadeOut;
 
     public CanvasGroup canvasGroup;
+
+    public int timeBetweenFade;
     public int speedToFade;
 
     public void Awake()
