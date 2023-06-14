@@ -358,6 +358,7 @@ public class PlayerController : MonoBehaviour
             moveSpeed = walkSpeed;
             isSprinting = false;
         }
+       
     }
 
     public void SprintEnum()
@@ -372,13 +373,13 @@ public class PlayerController : MonoBehaviour
         if (context.started && isGrounded && !isSprinting)
         {
             isCrouching = true;
-            moveSpeed = crouchSpeed;
+            
 
 
             if (isCrouching && playerStatus == PlayerStatus.Run)
             {
                 isCrouchRunning = true;
-                moveSpeed = crouchSpeed;
+                
             }
 
         }
@@ -389,7 +390,8 @@ public class PlayerController : MonoBehaviour
             {
                 isCrouching = false;
                 isCrouchRunning = false;
-                
+                moveSpeed = walkSpeed;
+
             }
         }
 
@@ -399,13 +401,24 @@ public class PlayerController : MonoBehaviour
 
     public void CrouchEnum()
     {
-        if (isCrouching) playerStatus = PlayerStatus.Crouch;
+        if (isCrouching)
+        {
+            playerStatus = PlayerStatus.Crouch;
+            moveSpeed = crouchSpeed;
+        }
+           
 
     }
 
     public void CrouchRunEnum()
     {
-        if (isCrouchRunning) playerStatus = PlayerStatus.CrouchRun;
+        if (isCrouchRunning)
+        {
+            playerStatus = PlayerStatus.CrouchRun;
+            moveSpeed = crouchSpeed;
+
+        }
+        
     }
 
 
