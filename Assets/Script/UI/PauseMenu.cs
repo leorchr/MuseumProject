@@ -69,8 +69,9 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    public void ExitGame()
+    public void Retry()
     {
-        Application.Quit();
+        Resume();
+        DeathPlayer.instance.Death();
     }
 }
