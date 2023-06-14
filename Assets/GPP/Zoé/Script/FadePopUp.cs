@@ -11,6 +11,8 @@ public class FadePopUp : MonoBehaviour
     public bool fadeOut;
 
     public CanvasGroup canvasGroup;
+
+    public int timeBetweenFade;
     public int speedToFade;
 
     public void Awake()
@@ -37,6 +39,7 @@ public class FadePopUp : MonoBehaviour
             if (canvasGroup.alpha >= 1)
             {
                 fadeIn = false;
+                Invoke("FadeOut", timeBetweenFade);
             }
         }
         if (fadeOut)
