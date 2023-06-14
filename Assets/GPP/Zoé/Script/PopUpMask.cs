@@ -9,8 +9,10 @@ using UnityEngine.InputSystem;
 public class PopUpMask : MonoBehaviour
 {
     public static PopUpMask instance;
+    public PlayerController playerContr;
+    public Animator animator;
 
-    [HideInInspector] public bool isPopUp;
+    public bool isPopUp;
 
 
     public void Awake()
