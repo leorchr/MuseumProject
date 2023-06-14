@@ -234,7 +234,7 @@ public class PlayerController : MonoBehaviour
 
     public void Fall()
     {
-        playerStatus = PlayerStatus.Fall;
+        //playerStatus = PlayerStatus.Fall;
     }
 
     public void Move(InputAction.CallbackContext context)
