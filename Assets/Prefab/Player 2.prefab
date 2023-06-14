@@ -105,7 +105,7 @@ Transform:
   - {fileID: 8784595010739001976}
   - {fileID: 8784595011224333519}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &129200460524761759
 BoxCollider:
@@ -154,7 +154,7 @@ MonoBehaviour:
   distance: 0.1
   walkSpeed: 4.5
   sprintSpeed: 8
-  crouchSpeed: 0
+  crouchSpeed: 3
   smoothTime: 0.16
   groundMask:
     serializedVersion: 2
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22ba5db2f32cf8d4d8288dce8f81fb92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mask: {fileID: 129200460524761752}
+  mask: {fileID: 0}
   audioClip: {fileID: 8300000, guid: f71f47f8ea5f19842a5bf558bbe459ba, type: 3}
   mixerGroup: {fileID: -6963785623041546196, guid: 4a134edfbb20adf48b540140b9ce53c5,
     type: 2}

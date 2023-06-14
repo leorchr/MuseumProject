@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private InputAction controls;
     [SerializeField] private Transform raycastPos;
     [SerializeField] private float distance = 1f;
+    private BoxCollider playerCollider;
 
     #endregion
 
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float walkSpeed;
     [Range(1f, 10f)]
     [SerializeField] public float sprintSpeed;
+    [Range(1f, 10f)]
     [SerializeField] public float crouchSpeed;
     [SerializeField] private float smoothTime;
     [SerializeField] private LayerMask groundMask;
@@ -117,6 +119,7 @@ public class PlayerController : MonoBehaviour
         instance = this;
         rb = GetComponent<Rigidbody>();
         controls = new InputAction();
+        playerCollider = GetComponent<BoxCollider>();
     }
     private void Start()
     {
@@ -358,6 +361,7 @@ public class PlayerController : MonoBehaviour
             moveSpeed = walkSpeed;
             isSprinting = false;
         }
+       
     }
 
     public void SprintEnum()
@@ -372,13 +376,13 @@ public class PlayerController : MonoBehaviour
         if (context.started && isGrounded && !isSprinting)
         {
             isCrouching = true;
-            moveSpeed = crouchSpeed;
+            
 
 
             if (isCrouching && playerStatus == PlayerStatus.Run)
             {
                 isCrouchRunning = true;
-                moveSpeed = crouchSpeed;
+                
             }
 
         }
@@ -389,7 +393,10 @@ public class PlayerController : MonoBehaviour
             {
                 isCrouching = false;
                 isCrouchRunning = false;
-                
+                moveSpeed = walkSpeed;
+                playerCollider.size = new Vector3(0.7751541f, 2.015927f, 0.9350501f);
+                playerCollider.center = new Vector3(-0.01561642f, 0.9918525f, 0.03247494f);
+
             }
         }
 
@@ -399,13 +406,28 @@ public class PlayerController : MonoBehaviour
 
     public void CrouchEnum()
     {
-        if (isCrouching) playerStatus = PlayerStatus.Crouch;
+        if (isCrouching)
+        {
+            playerStatus = PlayerStatus.Crouch;
+            moveSpeed = crouchSpeed;
+            playerCollider.size = new Vector3(0.7751541f, 1.3f, 0.9350501f);
+            playerCollider.center = new Vector3(-0.01561642f, 0.6f, 0.03247494f);
+        }
+           
 
     }
 
     public void CrouchRunEnum()
     {
-        if (isCrouchRunning) playerStatus = PlayerStatus.CrouchRun;
+        if (isCrouchRunning)
+        {
+            playerStatus = PlayerStatus.CrouchRun;
+            moveSpeed = crouchSpeed;
+            playerCollider.size = new Vector3(0.7751541f, 1.2f, 0.9350501f);
+            playerCollider.center = new Vector3(-0.01561642f, 0.6f, 0.03247494f);
+
+        }
+        
     }
 
 

@@ -28,7 +28,10 @@ public class CheckPoint : MonoBehaviour
             PlayerVFX.instance.respawnParticlesPos = respawnVfxPos;
             startMesh.material = doneMaterial;
             signMesh.material = signMaterial;
-            AudioManager.instance.PlaySFX(audioClip, audioSource);
+            if(GetComponent<MeshRenderer>() != null)
+            {
+                AudioManager.instance.PlaySFX(audioClip, audioSource);
+            }
             if (onlyOnce) check = true;
         }
     }
