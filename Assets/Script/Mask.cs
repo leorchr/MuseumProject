@@ -107,7 +107,6 @@ public class Mask : MonoBehaviour
         {
             platform.ShowMaskPlatforms(maskPlatforms);
         }
-
     }
 
     public void PlateformOff()
@@ -145,10 +144,12 @@ public class Mask : MonoBehaviour
                 if (maskStatus == MaskStatus.Full || maskStatus == MaskStatus.Charging)
                 {
                     PlateformOn();
+                    PlaySounds.instance.MaskOn();
                 }
                 else if (maskStatus == MaskStatus.Using)
                 {
                     PlateformOff();
+                    PlaySounds.instance.MaskOff();
                     maskStatus = MaskStatus.Charging;
                 }
             }
