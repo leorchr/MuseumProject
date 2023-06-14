@@ -39,6 +39,7 @@ public class FadePopUp : MonoBehaviour
             if (canvasGroup.alpha >= 1)
             {
                 fadeIn = false;
+                Invoke("FadeOut", timeBetweenFade);
             }
         }
         if (fadeOut)

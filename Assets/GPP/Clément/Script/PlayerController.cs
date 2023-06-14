@@ -256,7 +256,7 @@ public class PlayerController : MonoBehaviour
     public void Jump(InputAction.CallbackContext context)
     {
 
-        if ((jumpBufferGrounded > 0f) && coyoteTimeGrounded > 0f && !isCrouching && PopUpMask.instance.isPopUp)
+        if ((jumpBufferGrounded > 0f) && coyoteTimeGrounded > 0f && !isCrouching)
         {
             isHolding = true;
             isJumping = true;
