@@ -10,6 +10,9 @@ public class PopUpMask : MonoBehaviour
 {
     public static PopUpMask instance;
     public PlayerController playerContr;
+    public Animator animator;
+
+    public bool isPopUp;
 
 
     public void Awake()
@@ -20,13 +23,18 @@ public class PopUpMask : MonoBehaviour
 
     public void Start()
     {
+        isPopUp = false;
     }
     public void ActivatePopUp()
     {
         //stopper le temps;
         //afficher l'image
         FadePopUp.instance.FadeIn();
-        playerContr.enabled = false;
+        PlayerController.instance.sprintSpeed = 0;
+        PlayerController.instance.walkSpeed = 0;
+        PlayerController.instance.moveSpeed = PlayerController.instance.walkSpeed;
+        isPopUp = false;
+
     }
 
     public void Confirmed(InputAction.CallbackContext context)
@@ -34,7 +42,11 @@ public class PopUpMask : MonoBehaviour
         //appuyer sur un bouton pour passer (autre fonction)
         FadePopUp.instance.FadeOut();
         //remettre le temps a 1;
-        playerContr.enabled=true;
+        PlayerController.instance.sprintSpeed = 8f;
+        PlayerController.instance.walkSpeed = 4.5f;
+        PlayerController.instance.moveSpeed = PlayerController.instance.walkSpeed;
+        isPopUp = true;
+
 
     }
 
