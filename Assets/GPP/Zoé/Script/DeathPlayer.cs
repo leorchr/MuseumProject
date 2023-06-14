@@ -23,7 +23,7 @@ public class DeathPlayer : MonoBehaviour
         {
             mask.ResetPlatforms();
         }
-
+        mask.ResetPlatforms();
         PlayerController.instance.sprintSpeed = 0;
         PlayerController.instance.walkSpeed = 0;
         PlayerController.instance.moveSpeed = PlayerController.instance.walkSpeed;
