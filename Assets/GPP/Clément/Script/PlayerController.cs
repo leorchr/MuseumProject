@@ -410,8 +410,8 @@ public class PlayerController : MonoBehaviour
         {
             playerStatus = PlayerStatus.Crouch;
             moveSpeed = crouchSpeed;
-            playerCollider.size = new Vector3(0.7751541f, 1.2f, 0.9350501f);
-            playerCollider.center = new Vector3(-0.01561642f, 0.585121f, 0.03247494f);
+            playerCollider.size = new Vector3(0.7751541f, 1.3f, 0.9350501f);
+            playerCollider.center = new Vector3(-0.01561642f, 0.6f, 0.03247494f);
         }
            
 
@@ -424,7 +424,7 @@ public class PlayerController : MonoBehaviour
             playerStatus = PlayerStatus.CrouchRun;
             moveSpeed = crouchSpeed;
             playerCollider.size = new Vector3(0.7751541f, 1.2f, 0.9350501f);
-            playerCollider.center = new Vector3(-0.01561642f, 0.585121f, 0.03247494f);
+            playerCollider.center = new Vector3(-0.01561642f, 0.6f, 0.03247494f);
 
         }
         
