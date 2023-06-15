@@ -3,7 +3,13 @@ guid: 4ba04ca31b24fe44fa2bb2c65ee83b69
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Merged_sweep17_01
+    second: {fileID: -876546973899608171, guid: c1ea0b7d06e5ded4b82186ffdaddff38,
+      type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
