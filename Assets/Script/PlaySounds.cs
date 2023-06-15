@@ -47,10 +47,9 @@ public class PlaySounds : MonoBehaviour
     }
     
     public void Jump()
-    {
-        source.volume = 0.1f;
-        source.pitch = Random.Range(0.9f, 1.1f);
-        AudioManager.instance.PlaySFX(jump, source,0,0.3f);
+    {;
+        source.pitch = Random.Range(0.8f, 1.1f);
+        AudioManager.instance.PlaySFX(jump, source,0,1f);
     }
 
     public void MaskOn()

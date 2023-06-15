@@ -28,7 +28,8 @@ public class CheckPoint : MonoBehaviour
             PlayerVFX.instance.respawnParticlesPos = respawnVfxPos;
             startMesh.material = doneMaterial;
             signMesh.material = signMaterial;
-            if(GetComponent<MeshRenderer>() != null)
+            MeshRenderer mesh = GetComponent<MeshRenderer>();
+            if (mesh.enabled)
             {
                 AudioManager.instance.PlaySFX(audioClip, audioSource);
             }

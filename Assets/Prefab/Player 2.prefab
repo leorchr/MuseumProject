@@ -106,7 +106,7 @@ Transform:
   - {fileID: 8784595010739001976}
   - {fileID: 8784595011224333519}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &129200460524761759
 BoxCollider:
@@ -852,7 +852,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 35b38db6accf150429e6a8398ecd141b, type: 3}
   - {fileID: 8300000, guid: 2d85e6e0581f11342bdc7c6247945fbe, type: 3}
   crouch: {fileID: 8300000, guid: 42ccff9f254fb7846a3d8f921611635d, type: 3}
-  jump: {fileID: 8300000, guid: 775c03db200b635479a626e310acb742, type: 3}
+  jump: {fileID: 8300000, guid: fadf27aadfdbdf149a6f5e0febdd1966, type: 3}
   source: {fileID: 6395324512006774563}
   maskOn: {fileID: 8300000, guid: 9c31e4402bec75043942f47b369f820a, type: 3}
   maskOff: {fileID: 8300000, guid: c6c31179e3a1b354e83a0d11f7638919, type: 3}

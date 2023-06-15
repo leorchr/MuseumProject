@@ -291,7 +291,7 @@
                 {
                     "name": "",
                     "id": "e6b49f30-394f-4781-8dfe-1623588d9f3a",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -302,7 +302,7 @@
                 {
                     "name": "",
                     "id": "25f898db-171c-41a0-8e3d-c11f9a081cc2",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/select",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
